@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<style>body{background-color:white;}</style>
+
+  <link href="data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAMAAAAoLQ9TAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAABZVBMVEUAAAAdPlkcPlkbPlodPVkbO1kbPFcdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPlkdPln///+ifs4iAAAAdXRSTlMAAAAAAAAABCpZgZWZmpuhsrgdi7vv939KTE1PUlqiwSCpfR6HsBBFgwtnAhK0gBEaXgcy4Ldda/zRJuUNr6gMd/qmDsoiw6cVb6QUGbUXAxMcCgWgv0PVPsIl1vBOSUiRrRYIlv79+fv15JCPfHRzeIiCZjST6WECAAAAAWJLR0R2MWPJQQAAAAlwSFlzAABcRQAAXEUBuS1iLAAAAAd0SU1FB+QGAQEGMAe8nOwAAADrSURBVBjTJY75P0JREMXn2NWrLK1XIZH2aLEXl56ykwqPspN9ff+/e6/5ac75nPmeISL09vVbrJqm2eyOgUEChoadLrfH62Mj/sDoGGE8OBGaNKfCIBGejlDUGosjkTRTceEgPUOzWgZANudikBmi/Bw6BGh+YXFJLGKWmTpeKZjFVRVxr8koEODrG8rIlRIQWt8sV9Apja3tHQHd3Svs/yPoQJYcFvNH6CJU9WPpIVyr64rUODlV2nZmqCdgnDPqRtp+4WFNn7d16b+6viHc3t0/PHLO2/zp2WGIxsrL69v7x2fq6/vnN4OeP6dLIlhQnl/oAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA2LTAxVDAxOjA2OjQ4KzAyOjAw8gzdpAAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNi0wMVQwMTowNjo0OCswMjowMINRZRgAAABXelRYdFJhdyBwcm9maWxlIHR5cGUgaXB0YwAAeJzj8gwIcVYoKMpPy8xJ5VIAAyMLLmMLEyMTS5MUAxMgRIA0w2QDI7NUIMvY1MjEzMQcxAfLgEigSi4A6hcRdPJCNZUAAAAASUVORK5CYII=" rel="icon" type="image/x-icon" />
+  <title>Tabla resumen</title>
+  <style type="text/css">img {
+  background-color: transparent;
+  border: 0;
+}
+
+.st-table td,
+.st-table th {
+  padding: 8px;
+}
+
+.st-table > thead > tr {
+   background-color: #eeeeee;
+}
+
+.st-cross-table td {
+  text-align: center;
+}
+
+.st-descr-table td {
+  text-align: right;
+}
+
+table.st-table th {
+  text-align: center;
+}
+
+table.st-table > thead > tr {
+   background-color: #eeeeee;
+}
+
+table.st-table td span {
+  display: block;
+}
+
+table.st-table > tfoot > tr > td {
+  border:none;
+}
+
+.st-container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 15px;
+}
+
+.st-multiline {
+  white-space: pre;
+}
+
+.st-table {
+    width: auto;
+    table-layout: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+}
+
+.st-table > thead > tr > th,
+.st-table > tbody > tr > th,
+.st-table > tfoot > tr > th,
+.st-table > thead > tr > td,
+.st-table > tbody > tr > td,
+.st-table > tfoot > tr > td {
+  vertical-align: middle;
+}
+
+.st-table-bordered {
+  border: 1px solid #bbbbbb;
+}
+
+.st-table-bordered > thead > tr > th,
+.st-table-bordered > tbody > tr > th,
+.st-table-bordered > thead > tr > td,
+.st-table-bordered > tbody > tr > td {
+  border: 1px solid #cccccc;
+}
+
+.st-table-bordered > thead > tr > th,
+.st-table-bordered > thead > tr > td,
+.st-table thead > tr > th {
+  border-bottom: none;
+}
+
+.st-freq-table > thead > tr > th,
+.st-freq-table > tbody > tr > th,
+.st-freq-table > tfoot > tr > th,
+.st-freq-table > thead > tr > td,
+.st-freq-table > tbody > tr > td,
+.st-freq-table > tfoot > tr > td,
+.st-freq-table-nomiss > thead > tr > th,
+.st-freq-table-nomiss > tbody > tr > th,
+.st-freq-table-nomiss > tfoot > tr > th,
+.st-freq-table-nomiss > thead > tr > td,
+.st-freq-table-nomiss > tbody > tr > td,
+.st-freq-table-nomiss > tfoot > tr > td,
+.st-cross-table > thead > tr > th,
+.st-cross-table > tbody > tr > th,
+.st-cross-table > tfoot > tr > th,
+.st-cross-table > thead > tr > td,
+.st-cross-table > tbody > tr > td,
+.st-cross-table > tfoot > tr > td {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.st-table-bordered > thead > tr > th,
+.st-table-bordered > tbody > tr > th,
+.st-table-bordered > thead > tr > td,
+.st-table-bordered > tbody > tr > td {
+  border: 1px solid #cccccc;
+}
+
+.st-table-striped > tbody > tr:nth-of-type(odd) {
+  background-color: #ffffff;
+}
+
+.st-table-striped > tbody > tr:nth-of-type(even) {
+  background-color: #f9f9f9;
+}
+
+.st-descr-table > thead > tr > th,
+.st-descr-table > tbody > tr > th,
+.st-descr-table > thead > tr > td,
+.st-descr-table > tbody > tr > td {
+  padding-left: 24px;
+  padding-right: 24px;
+  word-wrap: break-word;
+}
+
+.st-freq-table,
+.st-freq-table-nomiss,
+.st-cross-table {
+  border: medium none;
+}
+
+.st-freq-table > thead > tr:nth-child(1) > th:nth-child(1),
+.st-cross-table > thead > tr:nth-child(1) > th:nth-child(1),
+.st-cross-table > thead > tr:nth-child(1) > th:nth-child(3) {
+  border: none;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.st-protect-top-border {
+  border-top: 1px solid #cccccc !important;
+}
+
+.st-ws-char {
+  display: inline;
+  color: #999999;
+  letter-spacing: 0.2em;
+}
+
+/* Optional classes */
+.st-small {
+  font-size: 13px;
+}
+
+.st-small td,
+.st-small th {
+  padding: 8px;
+}
+
+.st-small > thead > tr > th,
+.st-small > tbody > tr > th,
+.st-small > thead > tr > td,
+.st-small > tbody > tr > td {
+  padding-left: 12px;
+  padding-right: 12px;
+}</style>
+</head>
+<body>
+<div class="container st-container"><table class="table table-striped table-bordered st-table st-table-striped st-table-bordered st-multiline ">
+  <colgroup>
+    <col style="width:1000px"/>
+    <col style="width:10px"/>
+    <col style="width:10px"/>
+    <col style="width:10px"/>
+    <col style="width:10px"/>
+  </colgroup>
+  <thead>
+    <tr>
+      <th align="center" class="st-protect-top-border"><strong>Etiqueta</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Estad&#0237;sticas / Valores</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Frec. (% sobre v&#0225;lidos)</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>Gr&#0225;fico</strong></th>
+      <th align="center" class="st-protect-top-border"><strong>V&#0225;lido</strong></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left">Sentido de Inusticia: Gerente de una
+gran empresa</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Media (d-s) : 1.1 (1)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; mediana &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-5 &le; 0.9 &le; 5.5</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">RI (CV) : 0.9 (0.9)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">109 valores distintos</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gYGBB84RLPmnwAAAIZJREFUaN7t2MENgCAMhWFW0A0sG+j+uxlbD0SSWouJifnfgQvNR0+EUgrJZLrNLBq3Jo5tR1YwMDAwMDAwMLAfY+778Snm9gcGBgYGBgYGBgYGBvYBpjPPksJsXmoxXXNYvTJgYGBgGUy6W20Aq11/YDGs/VAbxmwzgtmxAcwKT0xeSSGZ7JKBjToPcB4kAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIyLTA2LTA2VDA0OjMxOjU2KzAwOjAwcSiRcgAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMi0wNi0wNlQwNDozMTo1NiswMDowMAB1Kc4AAAAASUVORK5CYII="></td>
+      <td align="center">711
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Sentido de Inusticia: Obrero no
+calificado</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Media (d-s) : -0.6 (0.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; mediana &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-4.2 &le; -0.6 &le; 1.7</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">RI (CV) : 0.3 (-0.7)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">128 valores distintos</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gYGBB85M7TWCQAAAHNJREFUaN7t2csJgDAQQMG0oB24dmD6700NoiAifnLSeYc9hbkFliQlPam5UhtzJwduYXlqgMFgMBgMBoPBYDAYDPZBrDwhdJWweWQYDAaDwWAw2Iewsi5GJaxfHRjsZ1i5SK+w2CrOHovD7+EFiyolPWkEjklOlQLJoisAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDYtMDZUMDQ6MzE6NTYrMDA6MDBxKJFyAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA2LTA2VDA0OjMxOjU2KzAwOjAwAHUpzgAAAABJRU5ErkJggg=="></td>
+      <td align="center">711
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Sentido de Injusticia: Entrevistado</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">Media (d-s) : -0.5 (0.4)</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">min &le; mediana &le; max:</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">-3.2 &le; -0.4 &le; 0.4</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">RI (CV) : 0.5 (-0.9)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle">165 valores distintos</td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJgAAABuBAMAAAApJ8cWAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gYGBB85M7TWCQAAAG1JREFUaN7t2KEVwCAMQEFWaEegG9D9d6soYHg1Iarvvow4DCYpRZGOQHU0JxvYdb81GAwGg8FgMBgM9nfsHLtECtaNGwaDwWAwGAwGg8FgsH1s7qw1AxtGg8HyseWvBrD1SPONzfc6VlMqivQAvJifNy+gM6IAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDYtMDZUMDQ6MzE6NTcrMDA6MDDXX5rGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA2LTA2VDA0OjMxOjU3KzAwOjAwpgIiegAAAABJRU5ErkJggg=="></td>
+      <td align="center">711
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Sentido de Injusticia: Gerente de una
+gran empresa</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Justo</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Subrecompensado</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Sobrerecompensado</td></tr></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">58</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">8.2%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">17</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">636</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">89.5%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJIAAABOBAMAAAA5qVLpAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gYGBB85M7TWCQAAAFtJREFUWMPt1sENABAQRFEtKMHqgP57E+LihMzGxf8FvONkQqDTbJSi0JRy7SEhISEhvZX8dlwhfpLMvKRckJCQkJBOJb/1lZ1PJNNbXo9SQUJCQkK6lvx2nPY1VQn8IWsXBTYAAAAldEVYdGRhdGU6Y3JlYXRlADIwMjItMDYtMDZUMDQ6MzE6NTcrMDA6MDDXX5rGAAAAJXRFWHRkYXRlOm1vZGlmeQAyMDIyLTA2LTA2VDA0OjMxOjU3KzAwOjAwpgIiegAAAABJRU5ErkJggg=="></td>
+      <td align="center">711
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Sentido de Injusticia: Obrero no
+calificado</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Justo</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Subrecompensado</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Sobrerecompensado</td></tr></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">20</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">2.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">685</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">96.3%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">6</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.8%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJ0AAABOBAMAAADIoglkAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gYGBB85M7TWCQAAAFdJREFUWMPt1UENgEAMRNGVAA6gSFj/3rgQBMAcmuz7At6p6Yyhv1Wde6Lt8a7J4/F4vBW89H5EsIW9CnW895KJx+PxeFkv/e+771t3r3g8Ho/Ha+Dpezf1JA/UgAmaTQAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wNi0wNlQwNDozMTo1NyswMDowMNdfmsYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDYtMDZUMDQ6MzE6NTcrMDA6MDCmAiJ6AAAAAElFTkSuQmCC"></td>
+      <td align="center">711
+(100.0%)</td>
+    </tr>
+    <tr>
+      <td align="left">Sentido de Injusticia: Entrevistado</td>
+      <td align="left" style="padding:8;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">1. Justo</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">2. Subrecompensado</td></tr><tr style="background-color:transparent"><td style="padding:0;margin:0;border:0" align="left">3. Sobrerecompensado</td></tr></table></td>
+      <td align="left" style="padding:0;vertical-align:middle"><table style="border-collapse:collapse;border:none;margin:0"><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">81</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">11.4%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">626</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">88.0%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr><tr style="background-color:transparent"><td style="padding:0 5px 0 7px;margin:0;border:0" align="right">4</td><td style="padding:0 2px 0 0;border:0;" align="left">(</td><td style="padding:0;border:0" align="right">0.6%</td><td style="padding:0 4px 0 2px;border:0" align="left">)</td></tr></table></td>
+      <td align="left" style="vertical-align:middle;padding:0;background-color:transparent;"><img style="border:none;background-color:transparent;padding:0;max-width:max-content;" src="data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAJAAAABOBAMAAAA9XILUAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAD1BMVEX////9/v2mpqbw8PD///+xh0SBAAAAAnRSTlMAAHaTzTgAAAABYktHRACIBR1IAAAAB3RJTUUH5gYGBB86qr2HswAAAFpJREFUWMPt1sENABAMQFErWKE2YP/dHHBxECmS4v+7d5G0dY5mkpbXVqGQShEICAgI6BS0bWar338EyXLd96uLQEBAQK9C20atvS1iD9IfD0BAQEBA10I0LgOJ3vBAT0dYnwAAACV0RVh0ZGF0ZTpjcmVhdGUAMjAyMi0wNi0wNlQwNDozMTo1NyswMDowMNdfmsYAAAAldEVYdGRhdGU6bW9kaWZ5ADIwMjItMDYtMDZUMDQ6MzE6NTgrMDA6MDBQSlKTAAAAAElFTkSuQmCC"></td>
+      <td align="center">711
+(100.0%)</td>
+    </tr>
+  </tbody>
+</table></div>
+</body>
+</html>

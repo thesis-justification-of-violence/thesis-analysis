@@ -1,0 +1,523 @@
+---
+title: |
+  ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
+  Documento de análisis descriptivo - ¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta
+author: 
+  - Martin Venegas Márquez
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+    bookdown::html_document2:
+          number_sections: false
+          theme: yeti
+    
+linkcolor: black
+urlcolor: blue
+link-citations: yes
+---
+
+<style type="text/css">
+
+h1 {
+  font-size: 38px;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  text-align: center;
+}
+</style>
+
+
+\newpage
+
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Tabla de contenidos}
+\tableofcontents
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=FALSE, results='asis', message = F, warning = F)
+summarytools::st_options(bootstrap.css     = FALSE,
+           plain.ascii       = FALSE,   
+           style             = "rmarkdown",
+           dfSummary.silent  = TRUE, 
+           footnote          = NA,
+           subtitle.emphasis = FALSE,
+           headings =  F,
+           lang =  "es")
+summarytools::st_css()
+
+```
+
+
+# Introducción
+
+El presente documento corresponde al análisis deascriptivo de los datos la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
+
+Se dividirá en dos partes.
+
+2. Sección descriptiva
+
+Primero se comienza cargando los paquetes y la base de datos.
+
+```{r packages}
+
+if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
+if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal) # librerias
+knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
+                      message = FALSE,  # mensajes/avisos de librerias  
+                      cache = FALSE,    # cache de los chunks,usar analisis pesados
+                      out.width = '85%',# largo de imagen en %
+                      fig.pos= "H",     # posicion figuras H = HERE
+                      echo = FALSE      # incluir chunk en output
+)
+
+# Otras configuraciones
+options(scipen=999) # notacion cientifica
+options(knitr.kable.NA = '') # NA en kable = ''
+
+```
+
+```{r load data}
+
+load("../input/data/procjv_analysis.RData")
+
+load("../input/data/procjv_analysis_nona.RData")
+
+load("../input/data/procjv_nums_nona.RData")
+```
+
+## Visualizacion base completa
+
+### Tabla general base completa
+
+```{r, results='asis'}
+df1<- dfSummary(procjv_analysis,
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df1$Variable <- NULL # delete variable column
+summarytools::view(df1, file = "../output/tables/sumbase_complete.html") # Ver tabla en un archivo HTML
+```
+
+### Tabla general base sin NA
+
+```{r, results='asis'}
+df2<- dfSummary(procjv_analysis_nona,
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df2$Variable <- NULL # delete variable column
+summarytools::view(df2, file = "../output/tables/sumbase_nona.html") # Ver tabla en un archivo HTML
+```
+
+## Sección descriptiva
+
+### Univariados var dep
+
+```{r, results='asis'}
+df2<- dfSummary(dplyr::select(procjv_analysis_nona, jv_est_2019_factor, jv_carab1_2019_factor, jv_carab2_2019_factor),
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df2$Variable <- NULL # delete variable column
+summarytools::view(df2, file = "../output/tables/descjv.html") # Ver tabla en un archivo HTML
+```
+
+```{r}
+
+if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
+if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal) # librerias
+knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
+                      message = FALSE,  # mensajes/avisos de librerias  
+                      cache = FALSE,    # cache de los chunks,usar analisis pesados
+                      out.width = '85%',# largo de imagen en %
+                      fig.pos= "H",     # posicion figuras H = HERE
+                      echo = FALSE      # incluir chunk en output
+)
+
+# Otras configuraciones
+options(scipen=999) # notacion cientifica
+options(knitr.kable.NA = '') # NA en kable = ''
+
+  # update.packages("sjPlot") # please install version 2.8.9 or above
+  ggplot2::theme_set(ggplot2::theme(panel.background = ggplot2::element_rect(fill = "gray85",
+                                                                             colour = "gray85"),
+                                    panel.border = ggplot2::element_blank(),
+                                    axis.text.y = ggplot2::element_text(size = 13,
+                                                                        hjust = 1),
+                                    title = ggplot2::element_text(size = 13,
+                                                                  face = "bold"),
+                                    legend.text = ggplot2::element_text(size = 12),
+                                    plot.caption = ggplot2::element_text(size = 10,
+                                                                         face = "plain",
+                                                                         hjust = 1)))
+  #Plot : Perception of meritocracy student and family
+  pjv<-
+    procjv_analysis_nona%>%
+    select(jv_carab1_2019_factor,
+           jv_carab2_2019_factor,
+           jv_est_2019_factor) %>%
+    sjPlot::plot_likert(geom.colors = "PuBu",
+                        geom.size = 0.8,
+                        catcount = 4,
+                        grid.range  =  c (1.2 , 1.2),
+                        values  =  "sum.outside",
+                        reverse.colors = T,
+                        reverse.scale = T,
+                        show.n = FALSE) +
+    theme(legend.position="bottom") #+
+  #   labs(caption =
+  #          paste0("Fuente: Authors calculations based on PACES Study"," (n=",dim(na.omit(procjv_analysis_nona))[1],")"))
+  # sjPlot::plot_grid(list(pjv),tags = c("",""))
+  
+  pjv
+```
+
+
+### Univariados Sentido de Injusticia
+
+```{r, results='asis'}
+df2<- dfSummary(dplyr::select(procjv_analysis_nona, sj_ceo, sj_obrero, sj_entrevistado, sj_ceo_cat_factor, sj_obrero_cat_factor, sj_entrevistado_cat_factor),
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df2$Variable <- NULL # delete variable column
+summarytools::view(df2,file = "../output/tables/descsj.html") # Ver tabla en un archivo HTML
+```
+
+```{r}
+ # update.packages("sjPlot") # please install version 2.8.9 or above
+  ggplot2::theme_set(ggplot2::theme(panel.background = ggplot2::element_rect(fill = "gray85",
+                                                                             colour = "gray85"),
+                                    panel.border = ggplot2::element_blank(),
+                                    axis.text.y = ggplot2::element_text(size = 13,
+                                                                        hjust = 1),
+                                    title = ggplot2::element_text(size = 13,
+                                                                  face = "bold"),
+                                    legend.text = ggplot2::element_text(size = 12),
+                                    plot.caption = ggplot2::element_text(size = 10,
+                                                                         face = "plain",
+                                                                         hjust = 1)))
+a <- data.frame(procjv_nums_nona$sj_obrero);
+a$grupo <- "Obrero"
+names(a) <- c("promedio","Recompensado:")
+
+b <- data.frame(procjv_nums_nona$sj_ceo);
+b$grupo <- "Gerente"
+names(b) <- c("promedio","Recompensado:")
+
+c <- data.frame(procjv_nums_nona$sj_entrevistado);
+c$grupo <- "Entrevistado"
+names(c) <- c("promedio","Recompensado:")
+
+df_notas<- rbind(c,b,a)
+  ggplot(df_notas) +
+  geom_density(aes(x=promedio,fill=`Recompensado:`
+), alpha=0.4) +
+  scale_x_continuous(name = "Distribución Sentido de Injusticia",
+                     breaks=-5:5,
+                     labels = as.character(-5:5)) +
+  ylab("Density")+
+  theme(legend.position="bottom")
+  
+  
+  
+  
+  
+```
+
+
+### Univariados Pertenencia a grupos desaventajados
+
+```{r, results='asis'}
+ df2<- dfSummary(dplyr::select(procjv_analysis_nona, ingreso, quintiles_ingreso_factor, sexo_factor, educ_rec_factor, ingreso_satisfact_factor, indigena_rec_factor),
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df2$Variable <- NULL # delete variable column
+summarytools::view(df2, file = "../output/tables/descgrupos.html") # Ver tabla en un archivo HTML
+```
+
+
+### Univariados Ideología
+
+```{r, results='asis'}
+df2<- dfSummary(dplyr::select(procjv_analysis_nona, sdo_soc_ideal_factor:rwa_obediencia_discplina_factor),
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df2$Variable <- NULL # delete variable column
+summarytools::view(df2, file = "../output/tables/descideol.html") # Ver tabla en un archivo HTML
+```
+
+```{r}
+ # update.packages("sjPlot") # please install version 2.8.9 or above
+  ggplot2::theme_set(ggplot2::theme(panel.background = ggplot2::element_rect(fill = "gray85",
+                                                                             colour = "gray85"),
+                                    panel.border = ggplot2::element_blank(),
+                                    axis.text.y = ggplot2::element_text(size = 13,
+                                                                        hjust = 1),
+                                    title = ggplot2::element_text(size = 13,
+                                                                  face = "bold"),
+                                    legend.text = ggplot2::element_text(size = 12),
+                                    plot.caption = ggplot2::element_text(size = 10,
+                                                                         face = "plain",
+                                                                         hjust = 1)))
+a <- data.frame(procjv_nums_nona$sdo_indice);
+a$grupo <- "SDO"
+names(a) <- c("promedio","Ideologia:")
+
+b <- data.frame(procjv_nums_nona$rwa_indice);
+b$grupo <- "RWA"
+names(b) <- c("promedio","Ideologia:")
+
+df_notas<- rbind(b,a)
+  ggplot(df_notas) +
+  geom_density(aes(x=promedio,fill=`Ideologia:`
+), alpha=0.4) +
+  scale_x_continuous(name = "Distribución Indices de Ideología",
+                     breaks= 0:20,
+                     labels = as.character(0:20)) +
+  ylab("Density")+
+  theme(legend.position="bottom")
+  
+  
+  
+  
+  
+```
+
+### Univariados Trato justo
+```{r, results='asis'}
+df2<- dfSummary(dplyr::select(procjv_analysis_nona, trato_salud_factor, trato_carab_factor),
+               plain.ascii = FALSE,
+               style = "grid",
+               tmp.img.dir = "/tmp",
+               graph.magnif = TRUE,
+               headings = F,  # encabezado
+               varnumbers = F, # num variable
+               labels.col = T, # etiquetas
+               na.col = F,    # missing
+               graph.col = T, # plot
+               valid.col = T, # n valido
+               col.widths = c(1000,10,10,10,10)
+               )
+df2$Variable <- NULL # delete variable column
+summarytools::view(df2, file = "../output/tables/desctrato.html") # Ver tabla en un archivo HTML
+```
+
+### Bivariado sense of justice
+
+
+```{r}
+
+# Con las variables dependientes
+
+table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | jv_est_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Cambio. - Que estudiantes lancen piedras a carabineros")
+table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | jv_carab1_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Control - Carabineros reprima marchas")
+table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | jv_carab2_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Control - Carabineros desaloje liceos en toma")
+
+# Con predictores de trato respetuoso
+
+# table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | trato_salud_factor, data = procjv_analysis_nona, caption = "Trato Respetuoso en Servicios de Salud")
+# table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | trato_carab_factor, data = procjv_analysis_nona, caption = "Trato Respetuoso por Carabineros")
+# 
+# # Con predictores de grupos desventajdos
+# table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | sexo_factor, data = procjv_analysis_nona)
+# 
+# table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | educ_rec_factor, data = procjv_analysis_nona)
+# 
+# table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | ingreso_satisfact_factor, data = procjv_analysis_nona)
+
+
+
+```
+### Bivariados trato respetuoso
+
+```{r}
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$trato_salud_factor,show.col.prc=TRUE,show.summary=FALSE)
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$trato_carab_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$trato_salud_factor,show.col.prc=TRUE,show.summary=FALSE)
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$trato_carab_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$trato_salud_factor,show.col.prc=TRUE,show.summary=FALSE)
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$trato_carab_factor,show.col.prc=TRUE,show.summary=FALSE)
+```
+
+### Bivariados grupos desventajados
+
+```{r}
+
+# Just Viol x Sexo
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$sexo_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$sexo_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$sexo_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+# Just Viol x Educ
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$educ_rec_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$educ_rec_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$educ_rec_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+# Just Viol x Ingreso
+
+table1::table1(~ingreso | jv_est_2019_factor, data = procjv_analysis_nona)
+table1::table1(~ingreso | jv_carab1_2019_factor, data = procjv_analysis_nona)
+table1::table1(~ingreso | jv_carab2_2019_factor, data = procjv_analysis_nona)
+
+# Just Viol x Quintiles
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$quintiles_ingreso_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$quintiles_ingreso_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$quintiles_ingreso_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+# Just Viol x Satisfacción con los ingresos
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$ingreso_satisfact_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$ingreso_satisfact_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$ingreso_satisfact_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+# Just Viol x Pertenencia a pueblos originarios
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_est_2019_factor, procjv_analysis_nona$indigena_rec_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab1_2019_factor, procjv_analysis_nona$indigena_rec_factor,show.col.prc=TRUE,show.summary=FALSE)
+
+sjPlot::sjt.xtab(procjv_analysis_nona$jv_carab2_2019_factor, procjv_analysis_nona$indigena_rec_factor,show.col.prc=TRUE,show.summary=FALSE)
+```
+
+### Correlaciones entre variables dependientes y sense of justice
+```{r}
+sjPlot::tab_corr(dplyr::select(
+  procjv_nums_nona, 
+  jv_carab1_2019,
+  jv_carab2_2019,
+  jv_est_2019,
+  sj_ceo, 
+  sj_obrero,
+  sj_entrevistado),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corh1.html")
+```
+
+### Correlaciones entre variables dependientes y grupos desventajados
+```{r}
+sjPlot::tab_corr(dplyr::select(
+  procjv_nums_nona, 
+  jv_carab1_2019,
+  jv_carab2_2019,
+  jv_est_2019,
+  ingreso,
+  ingreso_satisfact
+  ),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corc1.html")
+```
+
+### Correlaciones entre variables dependientes e ideología (indicadores por separado)
+
+```{r}
+sjPlot::tab_corr(dplyr::select(procjv_nums_nona,
+                                 jv_carab1_2019,
+                                 jv_carab2_2019,
+                                 jv_est_2019,
+                                 starts_with("sdo")),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corc2_sdo.html")
+
+sjPlot::tab_corr(dplyr::select(procjv_nums_nona,
+                                 jv_carab1_2019,
+                                 jv_carab2_2019,
+                                 jv_est_2019,
+                                 starts_with("rwa")),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corc2_rwa.html")
+
+```
+
+### Correlaciones entre variables dpendientes y trato justo
+```{r}
+sjPlot::tab_corr(dplyr::select(
+  procjv_nums_nona, 
+  jv_carab1_2019,
+  jv_carab2_2019,
+  jv_est_2019 ,
+  trato_salud,
+  trato_carab),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corc3.html")
+```
+
+### Correlaciones ideología 
+```{r}
+sjPlot::tab_corr(dplyr::select(procjv_nums_nona,starts_with("sdo")),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corideol_sdo.html")
+
+sjPlot::tab_corr(dplyr::select(procjv_nums_nona,starts_with("rwa")),
+  triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corideol_rwa.html")
+```
