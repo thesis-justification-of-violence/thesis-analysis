@@ -1346,7 +1346,9 @@ sjmisc::frq(procjv$conf_carab_factor)
 save(procjv, file = "../input/data/procjv_all.RData") # Guardar base de datos con todas las variables
 
 procjv_analysis <- procjv %>%  dplyr::select(jv_carab1_2019_factor:jv_est_2019_factor,
-                                             sj_obrero:sj_ceo,
+                                             sj_obrero,
+                                             sj_obrero_rec,
+                                             sj_ceo,
                                              sj_ceo_cat_factor:sj_obrero_cat_factor,
                                              quintiles_ingreso_factor,
                                              ingreso,
@@ -1367,7 +1369,9 @@ procjv_analysis <- procjv %>%  dplyr::select(jv_carab1_2019_factor:jv_est_2019_f
 
 
 procjv_nums <- procjv %>%  dplyr::select(jv_carab1_2019:jv_est_2019,
-                                             sj_obrero:sj_ceo,
+                                             sj_obrero,
+                                             sj_obrero_rec,
+                                             sj_ceo,
                                              ingreso,
                                              sj_entrevistado,
                                              sj_entrevistado_rec,

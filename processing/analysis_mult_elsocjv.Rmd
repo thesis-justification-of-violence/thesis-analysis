@@ -114,8 +114,8 @@ sjPlot::tab_model(list(jv_est_2019.modelsimp1,
 ## Numericas
 
 jv_est_2019.modelsimp1 <- clm(jv_est_2019_factor ~ sj_ceo, data = procjv_analysis_nona)
-jv_est_2019.modelsimp2 <- clm(jv_est_2019_factor ~ sj_obrero, data = procjv_analysis_nona)
-jv_est_2019.modelsimp3 <- clm(jv_est_2019_factor ~ sj_entrevistado, data = procjv_analysis_nona)
+jv_est_2019.modelsimp2 <- clm(jv_est_2019_factor ~ sj_obrero_rec, data = procjv_analysis_nona)
+jv_est_2019.modelsimp3 <- clm(jv_est_2019_factor ~ sj_entrevistado_rec, data = procjv_analysis_nona)
 
 sjPlot::tab_model(list(jv_est_2019.modelsimp1,
                        jv_est_2019.modelsimp2,
@@ -150,8 +150,8 @@ sjPlot::tab_model(list(jv_carab1_2019.modelsimp1,
 ## Numericas
 
 jv_carab1_2019.modelsimp1 <- clm(jv_carab1_2019_factor ~ sj_ceo, data = procjv_analysis_nona)
-jv_carab1_2019.modelsimp2 <- clm(jv_carab1_2019_factor ~ sj_obrero, data = procjv_analysis_nona)
-jv_carab1_2019.modelsimp3 <- clm(jv_carab1_2019_factor ~ sj_entrevistado, data = procjv_analysis_nona)
+jv_carab1_2019.modelsimp2 <- clm(jv_carab1_2019_factor ~ sj_obrero_rec, data = procjv_analysis_nona)
+jv_carab1_2019.modelsimp3 <- clm(jv_carab1_2019_factor ~ sj_entrevistado_rec, data = procjv_analysis_nona)
 
 sjPlot::tab_model(list(jv_carab1_2019.modelsimp1,
                        jv_carab1_2019.modelsimp2,
@@ -186,8 +186,8 @@ sjPlot::tab_model(list(jv_carab2_2019.modelsimp1,
 ## Numericas
 
 jv_carab2_2019.modelsimp1 <- clm(jv_carab2_2019_factor ~ sj_ceo, data = procjv_analysis_nona)
-jv_carab2_2019.modelsimp2 <- clm(jv_carab2_2019_factor ~ sj_obrero, data = procjv_analysis_nona)
-jv_carab2_2019.modelsimp3 <- clm(jv_carab2_2019_factor ~ sj_entrevistado, data = procjv_analysis_nona)
+jv_carab2_2019.modelsimp2 <- clm(jv_carab2_2019_factor ~ sj_obrero_rec, data = procjv_analysis_nona)
+jv_carab2_2019.modelsimp3 <- clm(jv_carab2_2019_factor ~ sj_entrevistado_rec, data = procjv_analysis_nona)
 
 sjPlot::tab_model(list(jv_carab2_2019.modelsimp1,
                        jv_carab2_2019.modelsimp2,
@@ -208,61 +208,61 @@ sjPlot::tab_model(list(jv_carab2_2019.modelsimp1,
 
 # Sj No reflexico
 
-jv_est_2019.modelmul1 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero, data = procjv_analysis_nona)
+jv_est_2019.modelmul1 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec, data = procjv_analysis_nona)
 
 # Sj TODO
 
-jv_est_2019.modelmul2 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona)
+jv_est_2019.modelmul2 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona)
 
 # SJ + Ingresos
 
-jv_est_2019.modelmul3<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso, data = procjv_analysis_nona)
+jv_est_2019.modelmul3<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso, data = procjv_analysis_nona)
 
 # SJ +  Educ
 
-jv_est_2019.modelmul4 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + educ_rec_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul4 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + educ_rec_factor, data = procjv_analysis_nona)
 
 # SJ + Sexo
 
-jv_est_2019.modelmul5 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sexo_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul5 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sexo_factor, data = procjv_analysis_nona)
 
 # SJ + Satisfacción con los ingresos
 
-jv_est_2019.modelmul6 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso_satisfact_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul6 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso_satisfact_factor, data = procjv_analysis_nona)
 
 
 # SJ + Pueblos indigenas
 
-jv_est_2019.modelmul7 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + indigena_rec_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul7 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + indigena_rec_factor, data = procjv_analysis_nona)
 
 # SJ - GRUPOS DESAVENTAJADOS
 
-jv_est_2019.modelmul7 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + educ_rec_factor + sexo_factor + ingreso_satisfact_factor + indigena_rec_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul7 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + educ_rec_factor + sexo_factor + ingreso_satisfact_factor + indigena_rec_factor, data = procjv_analysis_nona)
 
 
 # SJ + SDO
 
-jv_est_2019.modelmul8 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sdo_indice, data = procjv_analysis_nona)
+jv_est_2019.modelmul8 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sdo_indice, data = procjv_analysis_nona)
 
 # SJ + RWA 
 
-jv_est_2019.modelmul9 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + rwa_indice, data = procjv_analysis_nona)
+jv_est_2019.modelmul9 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + rwa_indice, data = procjv_analysis_nona)
 
 # SJ - Ideología
 
-jv_est_2019.modelmul10 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sdo_indice + rwa_indice, data = procjv_analysis_nona)
+jv_est_2019.modelmul10 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sdo_indice + rwa_indice, data = procjv_analysis_nona)
 
 # SJ + Trato salud
 
-jv_est_2019.modelmul11<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_salud_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul11<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_salud_factor, data = procjv_analysis_nona)
 
 # SJ + Trato carab
 
-jv_est_2019.modelmul12<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_carab_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul12<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_carab_factor, data = procjv_analysis_nona)
 
 # SJ - Justicia en el trato
 
-jv_est_2019.modelmul13<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmul13<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
 sjPlot::tab_model(list(jv_est_2019.modelmul1,
                        jv_est_2019.modelmul2,
@@ -292,61 +292,61 @@ sjPlot::tab_model(list(jv_est_2019.modelmul1,
 
 # Sj No reflexico
 
-jv_carab1_2019.modelmul1 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul1 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec, data = procjv_analysis_nona)
 
 # Sj TODO
 
-jv_carab1_2019.modelmul2 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul2 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona)
 
 # SJ + Ingresos
 
-jv_carab1_2019.modelmul3<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul3<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso, data = procjv_analysis_nona)
 
 # SJ +  Educ
 
-jv_carab1_2019.modelmul4 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + educ_rec_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul4 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + educ_rec_factor, data = procjv_analysis_nona)
 
 # SJ + Sexo
 
-jv_carab1_2019.modelmul5 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sexo_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul5 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sexo_factor, data = procjv_analysis_nona)
 
 # SJ + Satisfacción con los ingresos
 
-jv_carab1_2019.modelmul6 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso_satisfact_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul6 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso_satisfact_factor, data = procjv_analysis_nona)
 
 
 # SJ + Pueblos indigenas
 
-jv_carab1_2019.modelmul7 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + indigena_rec_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul7 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + indigena_rec_factor, data = procjv_analysis_nona)
 
 # SJ - GRUPOS DESAVENTAJADOS
 
-jv_carab1_2019.modelmul7 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + educ_rec_factor + sexo_factor + ingreso_satisfact_factor + indigena_rec_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul7 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + educ_rec_factor + sexo_factor + ingreso_satisfact_factor + indigena_rec_factor, data = procjv_analysis_nona)
 
 
 # SJ + SDO
 
-jv_carab1_2019.modelmul8 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sdo_indice, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul8 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sdo_indice, data = procjv_analysis_nona)
 
 # SJ + RWA 
 
-jv_carab1_2019.modelmul9 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + rwa_indice, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul9 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + rwa_indice, data = procjv_analysis_nona)
 
 # SJ - Ideología
 
-jv_carab1_2019.modelmul10 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sdo_indice + rwa_indice, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul10 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sdo_indice + rwa_indice, data = procjv_analysis_nona)
 
 # SJ + Trato salud
 
-jv_carab1_2019.modelmul11<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_salud_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul11<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_salud_factor, data = procjv_analysis_nona)
 
 # SJ + Trato carab
 
-jv_carab1_2019.modelmul12<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_carab_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul12<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_carab_factor, data = procjv_analysis_nona)
 
 # SJ - Justicia en el trato
 
-jv_carab1_2019.modelmul13<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmul13<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
 sjPlot::tab_model(list(jv_carab1_2019.modelmul1,
                        jv_carab1_2019.modelmul2,
@@ -375,61 +375,61 @@ sjPlot::tab_model(list(jv_carab1_2019.modelmul1,
 
 # Sj No reflexico
 
-jv_carab2_2019.modelmul1 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul1 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec, data = procjv_analysis_nona)
 
 # Sj TODO
 
-jv_carab2_2019.modelmul2 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul2 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona)
 
 # SJ + Ingresos
 
-jv_carab2_2019.modelmul3<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul3<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso, data = procjv_analysis_nona)
 
 # SJ +  Educ
 
-jv_carab2_2019.modelmul4 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + educ_rec_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul4 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + educ_rec_factor, data = procjv_analysis_nona)
 
 # SJ + Sexo
 
-jv_carab2_2019.modelmul5 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sexo_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul5 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sexo_factor, data = procjv_analysis_nona)
 
 # SJ + Satisfacción con los ingresos
 
-jv_carab2_2019.modelmul6 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso_satisfact_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul6 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso_satisfact_factor, data = procjv_analysis_nona)
 
 
 # SJ + Pueblos indigenas
 
-jv_carab2_2019.modelmul7 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + indigena_rec_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul7 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + indigena_rec_factor, data = procjv_analysis_nona)
 
 # SJ - GRUPOS DESAVENTAJADOS
 
-jv_carab2_2019.modelmul7 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + educ_rec_factor + sexo_factor + ingreso_satisfact_factor + indigena_rec_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul7 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + educ_rec_factor + sexo_factor + ingreso_satisfact_factor + indigena_rec_factor, data = procjv_analysis_nona)
 
 
 # SJ + SDO
 
-jv_carab2_2019.modelmul8 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sdo_indice, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul8 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sdo_indice, data = procjv_analysis_nona)
 
 # SJ + RWA 
 
-jv_carab2_2019.modelmul9 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + rwa_indice, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul9 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + rwa_indice, data = procjv_analysis_nona)
 
 # SJ - Ideología
 
-jv_carab2_2019.modelmul10 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + sdo_indice + rwa_indice, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul10 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + sdo_indice + rwa_indice, data = procjv_analysis_nona)
 
 # SJ + Trato salud
 
-jv_carab2_2019.modelmul11<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_salud_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul11<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_salud_factor, data = procjv_analysis_nona)
 
 # SJ + Trato carab
 
-jv_carab2_2019.modelmul12<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_carab_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul12<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_carab_factor, data = procjv_analysis_nona)
 
 # SJ - Justicia en el trato
 
-jv_carab2_2019.modelmul13<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmul13<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
 sjPlot::tab_model(list(jv_carab2_2019.modelmul1,
                        jv_carab2_2019.modelmul2,
@@ -488,17 +488,17 @@ sjPlot::tab_model(list(jv_carab2_2019.modelmul1,
 #  
  ## Independientes numericas
 
- jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona)
+ jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona)
  
- jv_est_2019.modelmulpub2<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor, data = procjv_analysis_nona)
+ jv_est_2019.modelmulpub2<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor, data = procjv_analysis_nona)
  
-jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice, data = procjv_analysis_nona)
+jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice, data = procjv_analysis_nona)
   
-jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
-jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sexo_factor*sj_ceo + ingreso_satisfact_factor*sj_ceo, data = procjv_analysis_nona)
+jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sexo_factor*sj_ceo + ingreso_satisfact_factor*sj_ceo, data = procjv_analysis_nona)
 
-jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sexo_factor*sj_ceo + ingreso_satisfact_factor*sj_ceo + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sexo_factor*sj_ceo + ingreso_satisfact_factor*sj_ceo + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
 
 
 
@@ -556,17 +556,17 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entr
 #  
  ## Independientes numericas
 
- jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona)
+ jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona)
  
- jv_carab1_2019.modelmulpub2<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor, data = procjv_analysis_nona)
+ jv_carab1_2019.modelmulpub2<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor, data = procjv_analysis_nona)
  
-jv_carab1_2019.modelmulpub3<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice, data = procjv_analysis_nona)
+jv_carab1_2019.modelmulpub3<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice, data = procjv_analysis_nona)
   
-jv_carab1_2019.modelmulpub4<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmulpub4<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
-jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + educ_rec_factor*sj_obrero, data = procjv_analysis_nona)
+jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + educ_rec_factor*sj_obrero_rec, data = procjv_analysis_nona)
 
-jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + educ_rec_factor*sj_obrero + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + educ_rec_factor*sj_obrero_rec + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
 
 
 
@@ -621,17 +621,17 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + s
 #  
 #  ## Independientes numericas
 
- jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona)
+ jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona)
  
- jv_carab2_2019.modelmulpub2<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor, data = procjv_analysis_nona)
+ jv_carab2_2019.modelmulpub2<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor, data = procjv_analysis_nona)
  
-jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice, data = procjv_analysis_nona)
+jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice, data = procjv_analysis_nona)
   
-jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
-jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + ingreso*sj_ceo + ingreso_satisfact_factor*sj_ceo + ingreso*sj_entrevistado + ingreso_satisfact_factor*sj_entrevistado, data = procjv_analysis_nona)
+jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + ingreso*sj_ceo + ingreso_satisfact_factor*sj_ceo + ingreso*sj_entrevistado_rec + ingreso_satisfact_factor*sj_entrevistado_rec, data = procjv_analysis_nona)
 
-jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + ingreso*sj_ceo + ingreso_satisfact_factor*sj_ceo + ingreso*sj_entrevistado + ingreso_satisfact_factor*sj_entrevistado + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + ingreso*sj_ceo + ingreso_satisfact_factor*sj_ceo + ingreso*sj_entrevistado_rec + ingreso_satisfact_factor*sj_entrevistado_rec + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
 
 
 
@@ -656,32 +656,32 @@ jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + s
 ## JV est
 ### Model SJ
 
- jv_est_2019.test1 <- polr(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona, Hess = TRUE)
+ jv_est_2019.test1 <- polr(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona, Hess = TRUE)
  
 
 ### Model complete
 
-# jv_est_2019.test2<- polr(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*sexo_factor + sj_ceo*ingreso_satisfact_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona , Hess = TRUE)
+# jv_est_2019.test2<- polr(jv_est_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*sexo_factor + sj_ceo*ingreso_satisfact_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona , Hess = TRUE)
 
 
 ## JV carab1
 ### Model SJ
 
- jv_carab1_2019.test1 <- polr(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona, Hess = TRUE)
+ jv_carab1_2019.test1 <- polr(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona, Hess = TRUE)
 
 ### Model complete
  
- # jv_carab1_2019.test2<- polr(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_obrero*educ_rec_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona, Hess = TRUE)
+ # jv_carab1_2019.test2<- polr(jv_carab1_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_obrero*educ_rec_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona, Hess = TRUE)
 
 ## JV carab2
 ### Model SJ
  
-  jv_carab2_2019.test1<- polr(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado, data = procjv_analysis_nona, Hess = TRUE)
+  jv_carab2_2019.test1<- polr(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec, data = procjv_analysis_nona, Hess = TRUE)
  
 
 ### Model complete
   
-# jv_carab2_2019.test2<- polr(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*ingreso + sj_ceo*ingreso_satisfact_factor + sj_entrevistado*ingreso + sj_entrevistado*ingreso_satisfact_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona, Hess = TRUE)
+# jv_carab2_2019.test2<- polr(jv_carab2_2019_factor ~ sj_ceo + sj_obrero_rec + sj_entrevistado_rec + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*ingreso + sj_ceo*ingreso_satisfact_factor + sj_entrevistado*ingreso + sj_entrevistado*ingreso_satisfact_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona, Hess = TRUE)
 
 
 brant(jv_est_2019.test1)
