@@ -427,7 +427,7 @@ procjv$sj_ceo <- ln(procjv$salario_perc_ceo/procjv$salario_just_ceo)
 ## Etiquetado sense of justice
 
 procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "SJ Obrero")
-procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obreror_rec, label = "SJ Obrero")
+procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obrero_rec, label = "SJ Obrero")
 
 procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "SJ Gerente")
 
