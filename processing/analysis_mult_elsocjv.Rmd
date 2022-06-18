@@ -496,9 +496,9 @@ jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entr
   
 jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
-jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*sexo_factor + sj_ceo*ingreso_satisfact_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sexo_factor*sj_ceo + ingreso_satisfact_factor*sj_ceo, data = procjv_analysis_nona)
 
-jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*sexo_factor + sj_ceo*ingreso_satisfact_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
+jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sexo_factor*sj_ceo + ingreso_satisfact_factor*sj_ceo + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
 
 
 
@@ -509,6 +509,7 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ sj_ceo + sj_obrero + sj_entr
                         jv_est_2019.modelmulpub4,
                         jv_est_2019.modelmulpub5,
                         jv_est_2019.modelmulpub6), # los modelos estimados
+   transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
    p.style = "stars", # asteriscos de significación estadística
    dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
@@ -563,9 +564,9 @@ jv_carab1_2019.modelmulpub3<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + s
   
 jv_carab1_2019.modelmulpub4<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
-jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_obrero*educ_rec_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + educ_rec_factor*sj_obrero, data = procjv_analysis_nona)
 
-jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_obrero*educ_rec_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
+jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + educ_rec_factor*sj_obrero + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
 
 
 
@@ -576,6 +577,7 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ sj_ceo + sj_obrero + s
                         jv_carab1_2019.modelmulpub4,
                         jv_carab1_2019.modelmulpub5,
                         jv_carab1_2019.modelmulpub6), # los modelos estimados
+   transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
    p.style = "stars", # asteriscos de significación estadística
    dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
@@ -627,9 +629,9 @@ jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + s
   
 jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor, data = procjv_analysis_nona)
 
-jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*ingreso + sj_ceo*ingreso_satisfact_factor + sj_entrevistado*ingreso + sj_entrevistado*ingreso_satisfact_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + ingreso*sj_ceo + ingreso_satisfact_factor*sj_ceo + ingreso*sj_entrevistado + ingreso_satisfact_factor*sj_entrevistado, data = procjv_analysis_nona)
 
-jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + sj_ceo*ingreso + sj_ceo*ingreso_satisfact_factor + sj_entrevistado*ingreso + sj_entrevistado*ingreso_satisfact_factor + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
+jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + sj_entrevistado + ingreso + sexo_factor + ingreso_satisfact_factor + educ_rec_factor + indigena_rec_factor + sdo_indice + rwa_indice + trato_salud_factor + trato_carab_factor + ingreso*sj_ceo + ingreso_satisfact_factor*sj_ceo + ingreso*sj_entrevistado + ingreso_satisfact_factor*sj_entrevistado + pos_pol_rec_factor + frec_marcha_factor + conf_carab_factor, data = procjv_analysis_nona)
 
 
 
@@ -640,6 +642,7 @@ jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ sj_ceo + sj_obrero + s
                         jv_carab2_2019.modelmulpub4,
                         jv_carab2_2019.modelmulpub5,
                         jv_carab2_2019.modelmulpub6), # los modelos estimados
+   transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
    p.style = "stars", # asteriscos de significación estadística
    dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.

@@ -167,13 +167,13 @@ sjmisc::frq(procjv$jv_carab1_2019)
 procjv$jv_carab1_2019<- set_na(procjv$jv_carab1_2019, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetado variable númerica
-procjv$jv_carab1_2019 <- sjlabelled::set_label(procjv$jv_carab1_2019, label = "Justificacion violencia control social: Carabineros reprime marchas")
+procjv$jv_carab1_2019 <- sjlabelled::set_label(procjv$jv_carab1_2019, label = "JV Represion")
 
 # Creacion variable factor
 procjv$jv_carab1_2019_factor <- factor(procjv$jv_carab1_2019, levels = c(1,2,3,4,5), labels = c("Nunca se justifica", "Pocas veces se justifica", "Algunas veces se justifica", "Muchas veces se justifica", "Siempre se justifica"))
 
 # Etiquetado variable factor
-procjv$jv_carab1_2019_factor <- sjlabelled::set_label(procjv$jv_carab1_2019_factor, label = "Justificacion violencia control social: Carabineros reprime marchas")
+procjv$jv_carab1_2019_factor <- sjlabelled::set_label(procjv$jv_carab1_2019_factor, label = "JV Represion")
 ```
 
 
@@ -205,13 +205,13 @@ sjmisc::frq(procjv$jv_carab2_2019)
 procjv$jv_carab2_2019<- set_na(procjv$jv_carab2_2019, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetado variable númerica
-procjv$jv_carab2_2019 <- sjlabelled::set_label(procjv$jv_carab2_2019, label = "Justificacion violencia control social: Carabineros desaloja liceos en toma")
+procjv$jv_carab2_2019 <- sjlabelled::set_label(procjv$jv_carab2_2019, label = "JV Desalojo")
 
 # Creacion variable factor
 procjv$jv_carab2_2019_factor <- factor(procjv$jv_carab2_2019, levels = c(1,2,3,4,5), labels = c("Nunca se justifica", "Pocas veces se justifica", "Algunas veces se justifica", "Muchas veces se justifica", "Siempre se justifica"))
 
 # Etiquetado variable factor
-procjv$jv_carab2_2019_factor <- sjlabelled::set_label(procjv$jv_carab2_2019_factor, label = "Justificacion violencia control social: Carabineros desaloja liceos en toma")
+procjv$jv_carab2_2019_factor <- sjlabelled::set_label(procjv$jv_carab2_2019_factor, label = "JV Desalojo")
 
 
 ```
@@ -245,13 +245,13 @@ sjmisc::frq(procjv$jv_est_2019)
 procjv$jv_est_2019<- set_na(procjv$jv_est_2019, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetado variable númerica
-procjv$jv_est_2019 <- sjlabelled::set_label(procjv$jv_est_2019, label = "Justificacion violencia cambio social: Estudiantes tiren piedras")
+procjv$jv_est_2019 <- sjlabelled::set_label(procjv$jv_est_2019, label = "JV Piedras")
 
 # Creacion variable factor
 procjv$jv_est_2019_factor <- factor(procjv$jv_est_2019, levels = c(1,2,3,4,5), labels = c("Nunca se justifica", "Pocas veces se justifica", "Algunas veces se justifica", "Muchas veces se justifica", "Siempre se justifica"))
 
 # Etiquetado variable factor
-procjv$jv_est_2019_factor <- sjlabelled::set_label(procjv$jv_est_2019_factor, label = "Justificacion violencia cambio social: Estudiantes tiren piedras")
+procjv$jv_est_2019_factor <- sjlabelled::set_label(procjv$jv_est_2019_factor, label = "JV Piedras")
 
 
 ```
@@ -420,13 +420,15 @@ table1::table1(~salario_perc_ceo + salario_perc_obrero + salario_just_ceo + sala
 
 procjv$sj_obrero <- ln(procjv$salario_perc_obrero/procjv$salario_just_obrero)
 
+procjv$sj_obrero_rec <- abs(procjv$sj_obrero)
+
 procjv$sj_ceo <- ln(procjv$salario_perc_ceo/procjv$salario_just_ceo)
 
 ## Etiquetado sense of justice
 
-procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "Sentido de Inusticia: Obrero no calificado")
+procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "SJ Obrero")
 
-procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "Sentido de Inusticia: Gerente de una gran empresa")
+procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "SJ Gerente")
 
 ## Descriptivos sense of justice
 
@@ -446,14 +448,14 @@ procjv$sj_obrero_cat[procjv$sj_obrero == 0] <- 0
 procjv$sj_obrero_cat[procjv$sj_obrero < 0] <- 1
 procjv$sj_obrero_cat[procjv$sj_obrero > 0] <- 2
 
-procjv$sj_obrero_cat <- sjlabelled::set_label(procjv$sj_obrero_cat, label = "Sentido de Injusticia: Obrero no calificado")
-procjv$sj_ceo_cat <- sjlabelled::set_label(procjv$sj_ceo_cat, label = "Sentido de Injusticia: Gerente de una gran empresa")
+procjv$sj_obrero_cat <- sjlabelled::set_label(procjv$sj_obrero_cat, label = "SJ Obrero")
+procjv$sj_ceo_cat <- sjlabelled::set_label(procjv$sj_ceo_cat, label = "SJ Gerente")
 
 procjv$sj_ceo_cat_factor <- factor(procjv$sj_ceo_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
 procjv$sj_obrero_cat_factor <- factor(procjv$sj_obrero_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
 
-procjv$sj_obrero_cat_factor <- sjlabelled::set_label(procjv$sj_obrero_cat_factor, label = "Sentido de Injusticia: Obrero no calificado")
-procjv$sj_ceo_cat_factor <- sjlabelled::set_label(procjv$sj_ceo_cat_factor, label = "Sentido de Injusticia: Gerente de una gran empresa")
+procjv$sj_obrero_cat_factor <- sjlabelled::set_label(procjv$sj_obrero_cat_factor, label = "SJ Obrero")
+procjv$sj_ceo_cat_factor <- sjlabelled::set_label(procjv$sj_ceo_cat_factor, label = "SJ Gerente")
 
 
 sjmisc::frq(procjv$sj_ceo_cat_factor)
@@ -625,10 +627,12 @@ table1::table1(~ingreso + ingreso_justo, data = procjv)
 
 procjv$sj_entrevistado <- ln(procjv$ingreso/procjv$ingreso_justo)
 
+procjv$sj_entrevistado_rec <- abs(procjv$sj_entrevistado)
+
 
 ## Etiquetado sense of justice
 
-procjv$sj_entrevistado <- sjlabelled::set_label(procjv$sj_entrevistado, label = "Sentido de Injusticia: Entrevistado")
+procjv$sj_entrevistado <- sjlabelled::set_label(procjv$sj_entrevistado, label = "SJ Entrevistado")
 
 
 ## Descriptivos sense of justice
@@ -643,11 +647,11 @@ procjv$sj_entrevistado_cat[procjv$sj_entrevistado == 0] <- 0
 procjv$sj_entrevistado_cat[procjv$sj_entrevistado < 0] <- 1
 procjv$sj_entrevistado_cat[procjv$sj_entrevistado > 0] <- 2
 
-procjv$sj_entrevistado_cat <- sjlabelled::set_label(procjv$sj_entrevistado_cat, label = "Sentido de Injusticia: Entrevistado")
+procjv$sj_entrevistado_cat <- sjlabelled::set_label(procjv$sj_entrevistado_cat, label = "SJ Entrevistado")
 
 procjv$sj_entrevistado_cat_factor <- factor(procjv$sj_entrevistado_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
 
-procjv$sj_entrevistado_cat_factor <- sjlabelled::set_label(procjv$sj_entrevistado_cat_factor, label = "Sentido de Injusticia: Entrevistado")
+procjv$sj_entrevistado_cat_factor <- sjlabelled::set_label(procjv$sj_entrevistado_cat_factor, label = "SJ Entrevistado")
 
 sjmisc::frq(procjv$sj_entrevistado_cat_factor)
 ```
