@@ -76,7 +76,7 @@ load("../input/data/ELSOC_Wide_2016_2019_v1.00_R.RData") # cargar base
 ```{r select}
 
 # Seleccionar y renombrar variables para el análisis
-procjv <- elsoc_wide_2016_2019 %>% select(
+procjv <- elsoc_wide_2016_2019 %>% dplyr::select(
                                       # idencuesta,
                                       # Variables dependientes
                                       ## Justificacion violencia por el control social
@@ -130,7 +130,7 @@ procjv <- elsoc_wide_2016_2019 %>% select(
                                       #comuna = comuna_w04, # Comuna
                                       pos_pol = c15_w04, # Posicion política
                                       frec_marcha = c08_02_w04, # Frecuencia participacion en marchas
-                                      conf_carab = c05_03_w04, # Confianza en carabineros
+                                      conf_carab = c05_03_w04 # Confianza en carabineros
                                       )
 ```
 
@@ -1350,6 +1350,7 @@ procjv_analysis <- procjv %>%  dplyr::select(jv_carab1_2019_factor:jv_est_2019_f
                                              quintiles_ingreso_factor,
                                              ingreso,
                                              sj_entrevistado,
+                                             sj_entrevistado_rec,
                                              sj_entrevistado_cat_factor,
                                              ingreso_satisfact_factor,
                                              educ_rec_factor,
@@ -1368,6 +1369,7 @@ procjv_nums <- procjv %>%  dplyr::select(jv_carab1_2019:jv_est_2019,
                                              sj_obrero:sj_ceo,
                                              ingreso,
                                              sj_entrevistado,
+                                             sj_entrevistado_rec,
                                              ingreso_satisfact,
                                              educ_rec,
                                              sexo,
