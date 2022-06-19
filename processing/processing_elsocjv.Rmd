@@ -998,21 +998,21 @@ sjmisc::frq(procjv$sdo_condiciones_iguales_factor)
 ### Otros ajustes
 
 ```{r}
-# Crear indices sumativos de 
+# Crear indices para ideología
 
-procjv <- procjv %>% rowwise() %>% mutate(sdo_indice = sum(sdo_soc_ideal, sdo_grupos_inferiores, sdo_oportunidades_iguales, sdo_condiciones_iguales, na.rm = T))
+# SDO
 
-procjv$sdo_indice <- sjlabelled::set_label(procjv$sdo_indice, label = "Ideología SDO: Indice")
+procjv <- procjv %>% rowwise() %>% mutate(sdo_indice = sum(sdo_soc_ideal, sdo_grupos_inferiores, sdo_oportunidades_iguales, sdo_condiciones_iguales, na.rm = T)/4) # Promedias indicadores
 
-procjv <- procjv %>% rowwise() %>% mutate(rwa_indice = sum(rwa_gobierno_firme, rwa_mandatario_fuerte, rwa_valores_ninos, rwa_obediencia_discplina, na.rm = T))
+frq(procjv$sdo_indice)
 
-procjv$rwa_indice <- sjlabelled::set_label(procjv$rwa_indice, label = "Ideología RWA: Indice")
+procjv$sdo_indice <- (procjv$sdo_indice-min(procjv$sdo_indice))/(max(procjv$sdo_indice)-min(procjv$sdo_indice)) # Estandarizar
+
+procjv$sdo_indice <- sjlabelled::set_label(procjv$sdo_indice, label = "Ideología SDO: Indice") # Etiquetar
 
 # Frecuencias variables nuevas
 
 frq(procjv$sdo_indice)
-
-frq(procjv$rwa_indice)
 ```
 
 ## Ideología: Gobierno firme (RWA)
@@ -1072,7 +1072,7 @@ procjv$rwa_mandatario_fuerte_factor <- sjlabelled::set_label(procjv$rwa_mandatar
 ```{r}
 sjmisc::frq(procjv$rwa_mandatario_fuerte)
 
-sjmisc::frq(procjv$rwa_mandatario_fuerte)
+sjmisc::frq(procjv$rwa_mandatario_fuerte_factor)
 ```
 
 ## Ideología: Valores niños (RWA)
@@ -1128,10 +1128,29 @@ procjv$rwa_obediencia_discplina_factor <- sjlabelled::set_label(procjv$rwa_obedi
 ### Descriptivo final
 
 ```{r}
-sjmisc::frq(procjv$rwa_obediencia_disciplina)
+sjmisc::frq(procjv$rwa_obediencia_discplina)
 
 sjmisc::frq(procjv$rwa_obediencia_discplina_factor)
 ```
+
+### Otros ajustes
+
+```{r}
+# RWA
+
+procjv <- procjv %>% rowwise() %>% mutate(rwa_indice = sum(rwa_gobierno_firme, rwa_mandatario_fuerte, rwa_valores_ninos, rwa_obediencia_discplina, na.rm = T)/4) # Promediar indicadores
+
+frq(procjv$rwa_indice)
+
+procjv$rwa_indice <- (procjv$rwa_indice-min(procjv$rwa_indice))/(max(procjv$rwa_indice)-min(procjv$rwa_indice)) # Estandarizar
+
+procjv$rwa_indice <- sjlabelled::set_label(procjv$rwa_indice, label = "Ideología RWA: Indice") # Etiquetar
+
+### Farecuencia variable nueva
+
+frq(procjv$rwa_indice)
+```
+
 
 ## Just. Proc: Trato respetuoso en servicios de salud
 
