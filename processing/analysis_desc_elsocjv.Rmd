@@ -178,32 +178,33 @@ options(knitr.kable.NA = '') # NA en kable = ''
   ggplot2::theme_set(ggplot2::theme(panel.background = ggplot2::element_rect(fill = "gray85",
                                                                              colour = "gray85"),
                                     panel.border = ggplot2::element_blank(),
-                                    axis.text.y = ggplot2::element_text(size = 13,
+                                    axis.text.y = ggplot2::element_text(size = 12,
                                                                         hjust = 1),
-                                    title = ggplot2::element_text(size = 13,
+                                    title = ggplot2::element_text(size = 12,
                                                                   face = "bold"),
-                                    legend.text = ggplot2::element_text(size = 12),
-                                    plot.caption = ggplot2::element_text(size = 10,
+                                    legend.text = ggplot2::element_text(size = 11),
+                                    plot.caption = ggplot2::element_text(size = 9,
                                                                          face = "plain",
                                                                          hjust = 1)))
   #Plot : Perception of meritocracy student and family
   pjv<-
     procjv_analysis_nona%>%
-    select(jv_carab1_2019_factor,
-           jv_carab2_2019_factor,
-           jv_est_2019_factor) %>%
+    select(jv_est_2019_factor,
+           jv_carab1_2019_factor,
+           jv_carab2_2019_factor) %>%
     sjPlot::plot_likert(geom.colors = "PuBu",
                         geom.size = 0.8,
-                        catcount = 4,
+                        catcount = 5,
+                        # axis.labels = c("JV: Estudiantes lancen piedras","JV: Carabineros repriman marchas ","JV: Carabineros desalojen tomas"),
+                        legend.labels = c("Nunca","Pocas veces","Algunas veces","Muchas veces","Siempre"),
                         grid.range  =  c (1.2 , 1.2),
                         values  =  "sum.outside",
                         reverse.colors = T,
                         reverse.scale = T,
                         show.n = FALSE) +
-    theme(legend.position="bottom") #+
-  #   labs(caption =
-  #          paste0("Fuente: Authors calculations based on PACES Study"," (n=",dim(na.omit(procjv_analysis_nona))[1],")"))
-  # sjPlot::plot_grid(list(pjv),tags = c("",""))
+    theme(legend.position="bottom") +
+    labs(caption =
+           paste0("Fuente: ELSOC 2019"," (n=",dim(na.omit(procjv_analysis_nona))[1],")"))
   
   pjv
 ```
@@ -230,6 +231,29 @@ summarytools::view(df2,file = "../output/tables/descsj.html") # Ver tabla en un 
 ```
 
 ```{r}
+ load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_nums_nona.RData"))
+
+if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
+if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, sjmisc, ggrepel) # librerias
+knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
+                      message = FALSE,  # mensajes/avisos de librerias  
+                      cache = FALSE,    # cache de los chunks,usar analisis pesados
+                      # out.width = '50%',# largo de imagen en %
+                      fig.pos= "H",     # posicion figuras H = HERE
+                      echo = FALSE      # incluir chunk en output
+)
+
+# Otras configuraciones
+options(scipen=999) # notacion cientifica
+options(knitr.kable.NA = '') # NA en kable = ''
+
+
+
+
+
  # update.packages("sjPlot") # please install version 2.8.9 or above
   ggplot2::theme_set(ggplot2::theme(panel.background = ggplot2::element_rect(fill = "gray85",
                                                                              colour = "gray85"),
@@ -242,7 +266,7 @@ summarytools::view(df2,file = "../output/tables/descsj.html") # Ver tabla en un 
                                     plot.caption = ggplot2::element_text(size = 10,
                                                                          face = "plain",
                                                                          hjust = 1)))
-a <- data.frame(procjv_nums_nona$sj_obrero);
+a <- data.frame(procjv_nums_nona$sj_obrero_rec);
 a$grupo <- "Obrero"
 names(a) <- c("promedio","Recompensado:")
 
@@ -250,22 +274,21 @@ b <- data.frame(procjv_nums_nona$sj_ceo);
 b$grupo <- "Gerente"
 names(b) <- c("promedio","Recompensado:")
 
-c <- data.frame(procjv_nums_nona$sj_entrevistado);
+c <- data.frame(procjv_nums_nona$sj_entrevistado_rec);
 c$grupo <- "Entrevistado"
 names(c) <- c("promedio","Recompensado:")
 
-df_notas<- rbind(c,b,a)
-  ggplot(df_notas) +
+df_sj<- rbind(c,b,a)
+  ggplot(df_sj) +
   geom_density(aes(x=promedio,fill=`Recompensado:`
 ), alpha=0.4) +
-  scale_x_continuous(name = "Distribución Sentido de Injusticia",
+  scale_x_continuous(name = "Sentido de Injusticia",
                      breaks=-5:5,
                      labels = as.character(-5:5)) +
   ylab("Density")+
-  theme(legend.position="bottom")
-  
-  
-  
+  theme(legend.position="bottom") + theme_classic() +
+    labs(caption =
+           paste0("Fuente: ELSOC 2019"," (n=",dim(na.omit(procjv_analysis_nona))[1],")"))
   
   
 ```
@@ -337,11 +360,11 @@ df_notas<- rbind(b,a)
   ggplot(df_notas) +
   geom_density(aes(x=promedio,fill=`Ideologia:`
 ), alpha=0.4) +
-  scale_x_continuous(name = "Distribución Indices de Ideología",
-                     breaks= 0:20,
-                     labels = as.character(0:20)) +
+  scale_x_continuous(name = "Indices de Ideología",
+                     breaks= 0:1,
+                     labels = as.character(0:1)) +
   ylab("Density")+
-  theme(legend.position="bottom")
+  theme(legend.position="bottom") + theme_classic()
   
   
   
@@ -375,9 +398,9 @@ summarytools::view(df2, file = "../output/tables/desctrato.html") # Ver tabla en
 
 # Con las variables dependientes
 
-table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | jv_est_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Cambio. - Que estudiantes lancen piedras a carabineros")
-table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | jv_carab1_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Control - Carabineros reprima marchas")
-table1::table1(~sj_obrero + sj_ceo + sj_entrevistado | jv_carab2_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Control - Carabineros desaloje liceos en toma")
+table1::table1(~sj_ceo + sj_obrero_rec + sj_entrevistado_rec | jv_est_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Cambio. - Que estudiantes lancen piedras a carabineros")
+table1::table1(~sj_ceo + sj_obrero_rec + sj_entrevistado_rec | jv_carab1_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Control - Carabineros reprima marchas")
+table1::table1(~sj_ceo + sj_obrero_rec + sj_entrevistado_rec | jv_carab2_2019_factor, data = procjv_analysis_nona, caption = "Just. Viol. Control - Carabineros desaloje liceos en toma")
 
 # Con predictores de trato respetuoso
 
@@ -464,8 +487,8 @@ sjPlot::tab_corr(dplyr::select(
   jv_carab2_2019,
   jv_est_2019,
   sj_ceo, 
-  sj_obrero,
-  sj_entrevistado),
+  sj_obrero_rec,
+  sj_entrevistado_rec),
   triangle = "lower", encoding = "Windows-1252", file = "../output/tables/corh1.html")
 ```
 
