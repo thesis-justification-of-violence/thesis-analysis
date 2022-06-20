@@ -167,13 +167,13 @@ sjmisc::frq(procjv$jv_carab1_2019)
 procjv$jv_carab1_2019<- set_na(procjv$jv_carab1_2019, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetado variable númerica
-procjv$jv_carab1_2019 <- sjlabelled::set_label(procjv$jv_carab1_2019, label = "JV Represion")
+procjv$jv_carab1_2019 <- sjlabelled::set_label(procjv$jv_carab1_2019, label = "JV: Represión")
 
 # Creacion variable factor
 procjv$jv_carab1_2019_factor <- factor(procjv$jv_carab1_2019, levels = c(1,2,3,4,5), labels = c("Nunca se justifica", "Pocas veces se justifica", "Algunas veces se justifica", "Muchas veces se justifica", "Siempre se justifica"))
 
 # Etiquetado variable factor
-procjv$jv_carab1_2019_factor <- sjlabelled::set_label(procjv$jv_carab1_2019_factor, label = "JV Represion")
+procjv$jv_carab1_2019_factor <- sjlabelled::set_label(procjv$jv_carab1_2019_factor, label = "JV: Represión")
 ```
 
 
@@ -205,13 +205,13 @@ sjmisc::frq(procjv$jv_carab2_2019)
 procjv$jv_carab2_2019<- set_na(procjv$jv_carab2_2019, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetado variable númerica
-procjv$jv_carab2_2019 <- sjlabelled::set_label(procjv$jv_carab2_2019, label = "JV Desalojo")
+procjv$jv_carab2_2019 <- sjlabelled::set_label(procjv$jv_carab2_2019, label = "JV: Desalojo")
 
 # Creacion variable factor
 procjv$jv_carab2_2019_factor <- factor(procjv$jv_carab2_2019, levels = c(1,2,3,4,5), labels = c("Nunca se justifica", "Pocas veces se justifica", "Algunas veces se justifica", "Muchas veces se justifica", "Siempre se justifica"))
 
 # Etiquetado variable factor
-procjv$jv_carab2_2019_factor <- sjlabelled::set_label(procjv$jv_carab2_2019_factor, label = "JV Desalojo")
+procjv$jv_carab2_2019_factor <- sjlabelled::set_label(procjv$jv_carab2_2019_factor, label = "JV: Desalojo")
 
 
 ```
@@ -245,13 +245,13 @@ sjmisc::frq(procjv$jv_est_2019)
 procjv$jv_est_2019<- set_na(procjv$jv_est_2019, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetado variable númerica
-procjv$jv_est_2019 <- sjlabelled::set_label(procjv$jv_est_2019, label = "JV Piedras")
+procjv$jv_est_2019 <- sjlabelled::set_label(procjv$jv_est_2019, label = "JV: Piedras")
 
 # Creacion variable factor
 procjv$jv_est_2019_factor <- factor(procjv$jv_est_2019, levels = c(1,2,3,4,5), labels = c("Nunca se justifica", "Pocas veces se justifica", "Algunas veces se justifica", "Muchas veces se justifica", "Siempre se justifica"))
 
 # Etiquetado variable factor
-procjv$jv_est_2019_factor <- sjlabelled::set_label(procjv$jv_est_2019_factor, label = "JV Piedras")
+procjv$jv_est_2019_factor <- sjlabelled::set_label(procjv$jv_est_2019_factor, label = "JV: Piedras")
 
 
 ```
