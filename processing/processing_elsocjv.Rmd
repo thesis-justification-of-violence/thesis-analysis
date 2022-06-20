@@ -426,10 +426,10 @@ procjv$sj_ceo <- ln(procjv$salario_perc_ceo/procjv$salario_just_ceo)
 
 ## Etiquetado sense of justice
 
-procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "SJ Obrero")
-procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obrero_rec, label = "SJ Obrero")
+procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "J Obrero")
+procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obrero_rec, label = "J Obrero")
 
-procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "SJ Gerente")
+procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "J Gerente")
 
 ## Descriptivos sense of justice
 
@@ -449,14 +449,14 @@ procjv$sj_obrero_cat[procjv$sj_obrero == 0] <- 0
 procjv$sj_obrero_cat[procjv$sj_obrero < 0] <- 1
 procjv$sj_obrero_cat[procjv$sj_obrero > 0] <- 2
 
-procjv$sj_obrero_cat <- sjlabelled::set_label(procjv$sj_obrero_cat, label = "SJ Obrero")
-procjv$sj_ceo_cat <- sjlabelled::set_label(procjv$sj_ceo_cat, label = "SJ Gerente")
+procjv$sj_obrero_cat <- sjlabelled::set_label(procjv$sj_obrero_cat, label = "J Obrero")
+procjv$sj_ceo_cat <- sjlabelled::set_label(procjv$sj_ceo_cat, label = "J Gerente")
 
 procjv$sj_ceo_cat_factor <- factor(procjv$sj_ceo_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
 procjv$sj_obrero_cat_factor <- factor(procjv$sj_obrero_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
 
-procjv$sj_obrero_cat_factor <- sjlabelled::set_label(procjv$sj_obrero_cat_factor, label = "SJ Obrero")
-procjv$sj_ceo_cat_factor <- sjlabelled::set_label(procjv$sj_ceo_cat_factor, label = "SJ Gerente")
+procjv$sj_obrero_cat_factor <- sjlabelled::set_label(procjv$sj_obrero_cat_factor, label = "J Obrero")
+procjv$sj_ceo_cat_factor <- sjlabelled::set_label(procjv$sj_ceo_cat_factor, label = "J Gerente")
 
 
 sjmisc::frq(procjv$sj_ceo_cat_factor)
@@ -633,8 +633,8 @@ procjv$sj_entrevistado_rec <- abs(procjv$sj_entrevistado)
 
 ## Etiquetado sense of justice
 
-procjv$sj_entrevistado <- sjlabelled::set_label(procjv$sj_entrevistado, label = "SJ Entrevistado")
-procjv$sj_entrevistado_rec <- sjlabelled::set_label(procjv$sj_entrevistado_rec, label = "SJ Entrevistado")
+procjv$sj_entrevistado <- sjlabelled::set_label(procjv$sj_entrevistado, label = "J Entrevistado")
+procjv$sj_entrevistado_rec <- sjlabelled::set_label(procjv$sj_entrevistado_rec, label = "J Entrevistado")
 
 ## Descriptivos sense of justice
 
@@ -648,11 +648,11 @@ procjv$sj_entrevistado_cat[procjv$sj_entrevistado == 0] <- 0
 procjv$sj_entrevistado_cat[procjv$sj_entrevistado < 0] <- 1
 procjv$sj_entrevistado_cat[procjv$sj_entrevistado > 0] <- 2
 
-procjv$sj_entrevistado_cat <- sjlabelled::set_label(procjv$sj_entrevistado_cat, label = "SJ Entrevistado")
+procjv$sj_entrevistado_cat <- sjlabelled::set_label(procjv$sj_entrevistado_cat, label = "J Entrevistado")
 
 procjv$sj_entrevistado_cat_factor <- factor(procjv$sj_entrevistado_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
 
-procjv$sj_entrevistado_cat_factor <- sjlabelled::set_label(procjv$sj_entrevistado_cat_factor, label = "SJ Entrevistado")
+procjv$sj_entrevistado_cat_factor <- sjlabelled::set_label(procjv$sj_entrevistado_cat_factor, label = "J Entrevistado")
 
 sjmisc::frq(procjv$sj_entrevistado_cat_factor)
 ```
