@@ -442,18 +442,18 @@ sjPlot::plot_frq(procjv$sj_ceo, type = "histogram", show.mean = TRUE)
 ## Creacion de sense of justicer categorico
 
 procjv$sj_ceo_cat[procjv$sj_ceo == 0] <- 0
-procjv$sj_ceo_cat[procjv$sj_ceo < 0] <- 1
-procjv$sj_ceo_cat[procjv$sj_ceo > 0] <- 2
+procjv$sj_ceo_cat[procjv$sj_ceo < 0] <- 0
+procjv$sj_ceo_cat[procjv$sj_ceo > 0] <- 1
 
 procjv$sj_obrero_cat[procjv$sj_obrero == 0] <- 0
-procjv$sj_obrero_cat[procjv$sj_obrero < 0] <- 1
-procjv$sj_obrero_cat[procjv$sj_obrero > 0] <- 2
+procjv$sj_obrero_cat[procjv$sj_obrero < 0] <- 0
+procjv$sj_obrero_cat[procjv$sj_obrero > 0] <- 1
 
 procjv$sj_obrero_cat <- sjlabelled::set_label(procjv$sj_obrero_cat, label = "J Obrero")
 procjv$sj_ceo_cat <- sjlabelled::set_label(procjv$sj_ceo_cat, label = "J Gerente")
 
-procjv$sj_ceo_cat_factor <- factor(procjv$sj_ceo_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
-procjv$sj_obrero_cat_factor <- factor(procjv$sj_obrero_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
+procjv$sj_ceo_cat_factor <- factor(procjv$sj_ceo_cat, levels = c(0,1), labels = c("Justo", "Injusto"))
+procjv$sj_obrero_cat_factor <- factor(procjv$sj_obrero_cat, levels = c(0,1), labels = c("Justo", "Injusto"))
 
 procjv$sj_obrero_cat_factor <- sjlabelled::set_label(procjv$sj_obrero_cat_factor, label = "J Obrero")
 procjv$sj_ceo_cat_factor <- sjlabelled::set_label(procjv$sj_ceo_cat_factor, label = "J Gerente")
@@ -645,12 +645,12 @@ sjPlot::plot_frq(na.omit(procjv$sj_entrevistado), type = "histogram", show.mean 
 
 # Crear categorica sense of justice
 procjv$sj_entrevistado_cat[procjv$sj_entrevistado == 0] <- 0
-procjv$sj_entrevistado_cat[procjv$sj_entrevistado < 0] <- 1
-procjv$sj_entrevistado_cat[procjv$sj_entrevistado > 0] <- 2
+procjv$sj_entrevistado_cat[procjv$sj_entrevistado < 0] <- 0
+procjv$sj_entrevistado_cat[procjv$sj_entrevistado > 0] <- 1
 
 procjv$sj_entrevistado_cat <- sjlabelled::set_label(procjv$sj_entrevistado_cat, label = "J Entrevistado")
 
-procjv$sj_entrevistado_cat_factor <- factor(procjv$sj_entrevistado_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensado", "Sobrerecompensado"))
+procjv$sj_entrevistado_cat_factor <- factor(procjv$sj_entrevistado_cat, levels = c(0,1), labels = c("Justo", "Injusto"))
 
 procjv$sj_entrevistado_cat_factor <- sjlabelled::set_label(procjv$sj_entrevistado_cat_factor, label = "J Entrevistado")
 
