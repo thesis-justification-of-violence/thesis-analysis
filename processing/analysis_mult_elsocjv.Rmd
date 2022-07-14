@@ -183,7 +183,7 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~
 
 omit_coef="(Intercept)|(educ_rec_factor)|(indigena_rec_factor)|(sdo_indice)|(rwa_indice)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
-cap1 <- "Modelos de regresión logística para justificación de que estudianten lancen pierdras" # Título tabla
+cap1 <- "Modelos de regresión logística ordinal para justificación de que estudianten lancen pierdras" # Título tabla
 
 coef_names <- c(
   "Gerente",
@@ -342,7 +342,7 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~
                    
 omit_coef="(Intercept)|(ingreso)|(sexo_factor)|(ingreso_satisfact_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
-cap1 <- "Modelos de regresión logística para justificación de que carabineros repriman marchas pacificas" # Título tabla
+cap1 <- "Modelos de regresión logística ordinal para justificación de que carabineros repriman marchas pacificas" # Título tabla
 
 coef_names <- c(
   "Gerente",
@@ -502,7 +502,7 @@ jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~
 
 omit_coef="(Intercept)|(educ_rec_factor)|(sexo_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
-cap1 <- "Modelos de regresión logística para justificación de carabineros desalojen tomas" # Título tabla
+cap1 <- "Modelos de regresión logística ordinal para justificación de carabineros desalojen tomas" # Título tabla
 
 coef_names <- c(
   "Gerente",
@@ -530,11 +530,11 @@ coef_names <- c(
   # "A veces",
   # "Casi siempre",
   # "Siempre",
-  "J Gerente x Ingreso",
-  "J Gerente x Insatisfecho",
-  "J Gerente x Ni satisfecho ni insatisfecho",
-  "J Gerente x Satisfecho",
-  "J Gerente x Totalmente satisfecho"
+  "J Obrero x Ingreso",
+  "J Obrero x Insatisfecho",
+  "J Obrero x Ni satisfecho ni insatisfecho",
+  "J Obrero x Satisfecho",
+  "J Obrero x Totalmente satisfecho"
   # "Pos. Pol. - Centro (ref: Izquierda)",
   # "Derecha",
   # "Independiente",
