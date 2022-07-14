@@ -1,7 +1,7 @@
 ---
 title: |
   ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
-  Documento de análisis multivariado - ¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta
+  Anexos - Gráficos de Probabilidades Predichas
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
@@ -75,12 +75,8 @@ options(knitr.kable.NA = '') # NA en kable = ''
 
 # Introducción
 
-El presente documento corresponde al análisis deascriptivo de los datos la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
+El presente documento contiene los **gráficos de probabilidades predichas** para la tesis "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 
-
-Primero se comienza cargando los paquetes y la base de datos.
-
-## Modelos para reporte
 
 ```{r load data}
 
@@ -347,11 +343,17 @@ jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~
                                   data = procjv_analysis_nona)
 ```
 
-# Prob. Pred: Justificación de que estudiantes tiren piedras
+# Probabilidades predichas
+
+A continuación se presentan los gráficos de probabilidades predichas para cada relación significativa del estudio.
+
+## Prob. Pred: Justificación de que estudiantes tiren piedras
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el sentido de injusticia de los gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
 ```{r}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
 jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~ 
                                  sj_ceo + 
@@ -381,11 +383,14 @@ plot_pred_jvest
 
 ```
 
-# Prob. Pred: Justificación de que carabineros repriman marchas pacificas
+## Prob. Pred: Justificación de que carabineros repriman marchas pacificas
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros repriman marchas pecificas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
 ```{r}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 
  jv_carab1_2019.modelmulpub2<- clm(jv_carab1_2019_factor ~ 
                                      sj_ceo + 
@@ -411,11 +416,14 @@ plot_pred_carab1
 
 ```
 
-# Prob. Pred: Justificación Carabineros desalojen tomas
+## Prob. Pred: Justificación Carabineros desalojen tomas
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
 ```{r}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 
 jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ 
                                     sj_ceo + 
@@ -443,11 +451,18 @@ plot_pred_carab2$data$response.level[plot_pred_carab2$data$response.level == 5] 
 plot_pred_carab2
 ```
 
-# Interaction Term: SexoxJGerente
+# Interacciones
+
+A continuación se presentan los gráficos de probabilidades predichas de los efectos de interacción significativos.
+
+## Interaction Term: Sexo x J Gerente
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el efecto de interacción entre el sexo y el sentido de injusticia en gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
 ```{r}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 
 jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ 
                                  sj_ceo + 
@@ -482,11 +497,15 @@ plot_it1
 
 ```
 
-# Interaction Term: IngresoSatisfactxJGerente
+## Interaction Term: Satisfacción Ingreros x J Gerente
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el efecto de interacción entre la satisfacción con los ingresos y el sentido de injusticia en gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
 
 ```{r}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 
 jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ 
                                  sj_ceo + 
@@ -526,9 +545,14 @@ plot_it2$data <- plot_it2$data %>% filter(x == 1 | x == 5)
 plot_it2
 ```
 
+## Interaction Term: Ingresos x J Obrero
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el efecto de interacción entre el ingreso y el sentido de injusticia en obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+
 ```{r}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
 jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ 
                                     sj_ceo + 
@@ -547,7 +571,7 @@ jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~
                                     ingreso_satisfact_factor*sj_obrero_rec,
                                   data = procjv_analysis_nona)
 
-plot_it3<- plot_model(jv_carab2_2019.modelmulpub5, type = "pred", terms = c("ingreso", "sj_obrero_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+plot_it3<- plot_model(jv_carab2_2019.modelmulpub5, type = "pred", terms = c("ingreso[all]", "sj_obrero_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
 
 
 plot_it3$data$response.level[plot_it3$data$response.level == 1] <- "1. Nunca"

@@ -96,7 +96,8 @@ load("../input/data/procjv_nums_nona.RData")
 
 ```{r jv-est-model, echo=FALSE, results='asis', cache = T}
 
-load("../input/data/procjv_analysis_nona.RData")
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 
 jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ 
                                   sj_ceo + 
@@ -259,6 +260,8 @@ texreg::knitreg(list(jv_est_2019.modelmulpub1,
 
 ```{r jv-carab1-model, echo=FALSE, results='asis', cache = T}
 
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ 
                                      sj_ceo + 
                                      sj_obrero_rec + 
@@ -416,6 +419,9 @@ texreg::knitreg(list(jv_carab1_2019.modelmulpub1,
 ### Justificación carabineros desalojen tomas
 
 ```{r jv-carab2-model, echo=FALSE, results='asis', cache = T}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
 
  jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ 
                                       sj_ceo + 
