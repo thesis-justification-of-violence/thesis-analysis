@@ -94,7 +94,9 @@ load("../input/data/procjv_nums_nona.RData")
 
 ### Justificación estudiantes lancen piedras
 
-```{r jv-est-model, echo=FALSE, results='asis', cache = T}
+```{r}
+
+# Crear modelos para publicación
 
 load("../input/data/procjv_analysis_nona.RData")
 
@@ -181,83 +183,28 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~
 
 
 
-omit_coef="(Intercept)|(educ_rec_factor)|(indigena_rec_factor)|(sdo_indice)|(rwa_indice)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
-cap1 <- "Modelos de regresión logística para justificación de que estudianten lancen pierdras" # Título tabla
-
-coef_names <- c(
-  "Gerente",
-  "Obrero",
-  "Entrevistado",
-  "Ingresos",
-  "Mujer",
-  "Insatisfecho",
-  "Ni satisfecho ni insatisfecho",
-  "Satisfecho",
-  "Totalmente Satisfecho",
-  # "Primaria y secundaria baja",
-  # "Secundaria alta",
-  # "Terciaria ciclo corto",
-  # "Terciaria y postgrado",
-  # "Indigena - Otro pueblo (ref: No pertenece a ningón pueblo",
-  # "Mapuche",
-  # "Ideol. SDO",
-  # "Ideol. RWA",
-  # "Trato Resp. Salud - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Casi siempre",
-  # "Siempre",
-  # "Trato Resp. Carab - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Casi siempre",
-  # "Siempre",
-  "J Gerente x Mujer",
-  "J Gerente x Insatisfecho",
-  "J Gerente x Ni satisfecho ni insatisfecho",
-  "J Gerente x Satisfecho",
-  "J Gerente x Totalmente satisfecho"
-  # "Pos. Pol. - Centro (ref: Izquierda)",
-  # "Derecha",
-  # "Independiente",
-  # "Frec. Part. Marchas - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Frecuentemente",
-  # "Muy frecuentemente",
-  # "Conf. Carab. - Poca (ref: Nada)",
-  # "Algo",
-  # "Bastante",
-  # "Mucha"
-  
-  ) # Nombre coeficientes
-
-# Renderizar
-texreg::knitreg(list(jv_est_2019.modelmulpub1,
+ sjPlot::tab_model(list(jv_est_2019.modelmulpub1,
                         jv_est_2019.modelmulpub2,
                         jv_est_2019.modelmulpub3,
                         jv_est_2019.modelmulpub4,
                         jv_est_2019.modelmulpub5,
-                        jv_est_2019.modelmulpub6),
-        caption = paste("(\\#tab:jv-est-model)",cap1),
-        caption.above=TRUE,
-        omit.coef=omit_coef,
-        include.thresholds=FALSE,
-        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=c("0.018",	"0.047",	"0.103",	"0.156",	"0.176",	"0.276")),
-        groups=list("Sentido de Injusticia (J)"=1:3,
-                    "Sexo (ref: Hombre)"=5,
-                    "Satisfacción Ingresos (ref: Totalmente insatisfecho)" = 6:9,
-                    "Interacciones:"=10:14),
-        custom.coef.names=coef_names,
-        scalebox = 0.75,
-        threeparttable = T,
-        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Lit' refiere a la introducción de todas las variables relevantes por literatura. 'Exp.' refiere a la incorporación de variables de control exploratorias."
-)    
+                        jv_est_2019.modelmulpub6), # los modelos estimados
+   transform = NULL,
+   show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+   p.style = "stars", # asteriscos de significación estadística
+   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
+   string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion estudiantes lancen piedras", file = "../output/tables/jv_est_num.html") # nombre predictores y símbolo beta en tabla
+
 ```
 
 
 ### Justificación carabineros repriman marchas
 
-```{r jv-carab1-model, echo=FALSE, results='asis', cache = T}
+```{r}
+
+# Crear modelos para publicación
+ ## Independientes numericas
 
 jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ 
                                      sj_ceo + 
@@ -339,83 +286,29 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~
                                     conf_carab_factor, 
                                   data = procjv_analysis_nona)
 
-                   
-omit_coef="(Intercept)|(ingreso)|(sexo_factor)|(ingreso_satisfact_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
-cap1 <- "Modelos de regresión logística para justificación de que carabineros repriman marchas pacificas" # Título tabla
 
-coef_names <- c(
-  "Gerente",
-  "Obrero",
-  "Entrevistado",
-  # "Ingresos",
-  # "Sexo - Mujer (ref: Hombre)",
-  # "Satisfacción Ingresos - Insatisfecho (ref: Totalmente Insatisfecho)",
-  # "Ni satisfecho ni insatisfecho",
-  # "Satisfecho",
-  # "Totalmente Satisfecho",
-  "Primaria y secundaria baja",
-  "Secundaria alta",
-  "Terciaria ciclo corto",
-  "Terciaria y postgrado",
-  # "Indigena - Otro pueblo (ref: No pertenece a ningón pueblo",
-  # "Mapuche",
-  "SDO",
-  "RWA",
-  # "Trato Resp. Salud - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Casi siempre",
-  # "Siempre",
-  # "Trato Resp. Carab - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Casi siempre",
-  # "Siempre",
-  "J Obrero x Primaria y secundaria baja",
-  "J Obrero x Secundaria alta",
-  "J Obrero x Terciaria ciclo corto",
-  "J Obrero x Terciaria y postgrado"
-  # "Pos. Pol. - Centro (ref: Izquierda)",
-  # "Derecha",
-  # "Independiente",
-  # "Frec. Part. Marchas - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Frecuentemente",
-  # "Muy frecuentemente",
-  # "Conf. Carab. - Poca (ref: Nada)",
-  # "Algo",
-  # "Bastante",
-  # "Mucha"
-  
-  ) # Nombre coeficientes
 
-# Renderizar
-texreg::knitreg(list(jv_carab1_2019.modelmulpub1,
+ sjPlot::tab_model(list(jv_carab1_2019.modelmulpub1,
                         jv_carab1_2019.modelmulpub2,
                         jv_carab1_2019.modelmulpub3,
                         jv_carab1_2019.modelmulpub4,
                         jv_carab1_2019.modelmulpub5,
-                        jv_carab1_2019.modelmulpub6),
-        caption = paste("(\\#tab:jv-carab1-model)",cap1),
-        caption.above=TRUE,
-        omit.coef=omit_coef,
-        include.thresholds=FALSE,
-        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=c("0.031",	"0.067",	"0.146",	"0.165",	"0.172",	"0.199")), # ESTOS VALORES SE EXTRAEN DEL CALCULO DE MODELOS EN EL RMD DE ANÁLISIS MULTIVARIADO.
-        groups=list("Sentido de Injusticia (J)"=1:3,
-                    "Educación (ref: Primaria incompleta menos)"=4:7,
-                    "Ideologia" = 8:9,
-                    "Interacciones:"=10:13),
-        custom.coef.names=coef_names,
-        scalebox = 0.75,
-        threeparttable = T,
-        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Lit' refiere a la introducción de todas las variables relevantes por literatura. 'Exp.' refiere a la incorporación de variables de control exploratorias."
-)                   
-                   
+                        jv_carab1_2019.modelmulpub6), # los modelos estimados
+   transform = NULL,
+   show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+   p.style = "stars", # asteriscos de significación estadística
+   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
+   string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion carabineros reprime marchas", file = "../output/tables/jv_carab1_num.html") # nombre predictores y símbolo beta en tabla
+
 ```
 
 ### Justificación carabineros desalojen tomas
 
-```{r jv-carab2-model, echo=FALSE, results='asis', cache = T}
+```{r}
+
+# Crear modelos para publicación
+#  ## Independientes numericas
 
  jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ 
                                       sj_ceo + 
@@ -500,80 +393,18 @@ jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~
                                   data = procjv_analysis_nona)
 
 
-omit_coef="(Intercept)|(educ_rec_factor)|(sexo_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
-cap1 <- "Modelos de regresión logística para justificación de carabineros desalojen tomas" # Título tabla
 
-coef_names <- c(
-  "Gerente",
-  "Obrero",
-  "Entrevistado",
-  "Ingresos",
-  # "Mujer",
-  "Insatisfecho",
-  "Ni satisfecho ni insatisfecho",
-  "Satisfecho",
-  "Totalmente Satisfecho",
-  # "Primaria y secundaria baja",
-  # "Secundaria alta",
-  # "Terciaria ciclo corto",
-  # "Terciaria y postgrado",
-  # "Indigena - Otro pueblo (ref: No pertenece a ningón pueblo",
-  # "Mapuche",
-  "SDO",
-  "RWA",
-  # "Trato Resp. Salud - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Casi siempre",
-  # "Siempre",
-  # "Trato Resp. Carab - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Casi siempre",
-  # "Siempre",
-  "J Gerente x Ingreso",
-  "J Gerente x Insatisfecho",
-  "J Gerente x Ni satisfecho ni insatisfecho",
-  "J Gerente x Satisfecho",
-  "J Gerente x Totalmente satisfecho"
-  # "Pos. Pol. - Centro (ref: Izquierda)",
-  # "Derecha",
-  # "Independiente",
-  # "Frec. Part. Marchas - Casi Nunca (ref: Nunca)",
-  # "A veces",
-  # "Frecuentemente",
-  # "Muy frecuentemente",
-  # "Conf. Carab. - Poca (ref: Nada)",
-  # "Algo",
-  # "Bastante",
-  # "Mucha"
-  
-  ) # Nombre coeficientes
-
-# Renderizar
-texreg::knitreg(list(jv_carab2_2019.modelmulpub1,
+ sjPlot::tab_model(list(jv_carab2_2019.modelmulpub1,
                         jv_carab2_2019.modelmulpub2,
                         jv_carab2_2019.modelmulpub3,
                         jv_carab2_2019.modelmulpub4,
                         jv_carab2_2019.modelmulpub5,
-                        jv_carab2_2019.modelmulpub6),
-        caption = paste("(\\#tab:jv-carab2-model)",cap1),
-        caption.above=TRUE,
-        omit.coef=omit_coef,
-        include.thresholds=FALSE,
-        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=	c("0.053",	"0.089",	"0.161",	"0.202",	"0.214",	"0.262")),
-        groups=list("Sentido de Injusticia (J)"=1:3,
-                    "Satisfacción Ingresos (ref: Totalmente insatisfecho)"=5:8,
-                    "Ideologia" = 9:10,
-                    "Interacciones:"=11:15),
-        custom.coef.names=coef_names,
-        scalebox = 0.75,
-        threeparttable = T,
-        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Lit' refiere a la introducción de todas las variables relevantes por literatura. 'Exp.' refiere a la incorporación de variables de control exploratorias."
-)
+                        jv_carab2_2019.modelmulpub6), # los modelos estimados
+   transform = NULL,
+   show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
+   p.style = "stars", # asteriscos de significación estadística
+   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
+   string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion carabineros desalojan tomas", file = "../output/tables/jv_carab2_num.html") # nombre predictores y símbolo beta en tabla
+
 ```
-
-
-
-
-
