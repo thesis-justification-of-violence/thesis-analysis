@@ -587,3 +587,37 @@ plot_it3
 
 ```
 
+## Test de Supuesto de Proporcionalidad
+
+### Justificaciónn de que estudiantes tiren piedras
+
+```{r}
+nominal_test(jv_est_2019.modelmulpub1)
+nominal_test(jv_est_2019.modelmulpub2)
+nominal_test(jv_est_2019.modelmulpub3)
+nominal_test(jv_est_2019.modelmulpub4)
+nominal_test(jv_est_2019.modelmulpub5)
+nominal_test(jv_est_2019.modelmulpub6)
+```
+
+## Justificación de que carabineros reprima marchas pacificas
+
+```{r}
+nominal_test(jv_carab1_2019.modelmulpub1)
+nominal_test(jv_carab1_2019.modelmulpub2)
+nominal_test(jv_carab1_2019.modelmulpub3)
+nominal_test(jv_carab1_2019.modelmulpub4)
+nominal_test(jv_carab1_2019.modelmulpub5)
+nominal_test(jv_carab1_2019.modelmulpub6)
+```
+
+## Justificación de que carabineros desalojen liceos en toma
+
+```{r}
+nominal_test(jv_carab2_2019.modelmulpub1)
+nominal_test(jv_carab2_2019.modelmulpub2)
+nominal_test(jv_carab2_2019.modelmulpub3)
+nominal_test(jv_carab2_2019.modelmulpub4)
+nominal_test(jv_carab2_2019.modelmulpub5)
+nominal_test(jv_carab2_2019.modelmulpub6)
+```
