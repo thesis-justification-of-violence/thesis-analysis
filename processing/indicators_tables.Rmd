@@ -1,0 +1,139 @@
+---
+title: |
+  ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
+  Anexos - Gráficos de Probabilidades Predichas
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
+author: 
+  - Martin Venegas Márquez
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+    bookdown::html_document2:
+          number_sections: false
+          theme: yeti
+    
+linkcolor: black
+urlcolor: blue
+link-citations: yes
+---
+
+<style type="text/css">
+
+h1 {
+  font-size: 38px;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  text-align: center;
+}
+</style>
+
+
+\newpage
+
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Tabla de contenidos}
+\tableofcontents
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=FALSE, results='asis', message = F, warning = F)
+summarytools::st_options(bootstrap.css     = FALSE,
+           plain.ascii       = FALSE,   
+           style             = "rmarkdown",
+           dfSummary.silent  = TRUE, 
+           footnote          = NA,
+           subtitle.emphasis = FALSE,
+           headings =  F,
+           lang =  "es")
+summarytools::st_css()
+
+```
+
+```{r packages}
+
+if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
+if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant, htmlTable) # librerias
+knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
+                      message = FALSE,  # mensajes/avisos de librerias  
+                      cache = FALSE,    # cache de los chunks,usar analisis pesados
+                      out.width = '85%',# largo de imagen en %
+                      fig.pos= "H",     # posicion figuras H = HERE
+                      echo = FALSE      # incluir chunk en output
+)
+
+# Otras configuraciones
+options(scipen=999) # notacion cientifica
+options(knitr.kable.NA = '') # NA en kable = ''
+
+```
+
+# Introducción
+
+El presente documento contiene las tablas de indicadores para la tesis "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
+
+
+```{r load data}
+
+load("../input/data/procjv_analysis.RData")
+
+load("../input/data/procjv_analysis_nona.RData")
+
+load("../input/data/procjv_nums_nona.RData")
+```
+
+## Dependientes
+```{r include=FALSE}
+cap1 <- "Variables dependientes"
+# if (knitr::is_html_output()) {tb <- table_nums("tb",cap)} else {tb <- cap}
+```
+
+```{r tab-dep, echo=FALSE}
+tab01 <- read.csv(file = "tables/table01.csv",header = 1,sep = ";",encoding = "UTF-8")
+cnames <- c("Concepto","Indicador", "Categorías de respuesta")
+
+kable(tab01,table_format,booktabs = T, linesep = "",col.names = cnames, caption = cap1) %>%
+  kable_styling(
+    full_width = T,
+    latex_options = c("hold_position"),
+    position = "center",
+    font_size = 10,
+    bootstrap_options=c("striped", "bordered")) %>%
+  column_spec(column = 1, width = "2 cm", ) %>%
+  column_spec(column = 2,width = "7 cm") %>%
+  column_spec(column = 3,width = "4 cm") %>%
+  collapse_rows(columns = 1:2,valign = "middle")
+```
+
+## Independientes
+
+
+```{r include=FALSE}
+cap2 <- "Varables Independientes"
+# if (knitr::is_html_output()) {tb <- table_nums("tb",cap)} else {tb <- cap}
+```
+
+```{r tab-indep, echo=FALSE}
+tab02 <- read.csv(file = "tables/table02.csv",header = 1,sep = ";",encoding = "UTF-8")
+cnames <- c("Concepto","Indicador", "Categorías de respuesta")
+
+kable(tab02,table_format,booktabs = T, linesep = "",col.names = cnames, caption = cap2) %>%
+  kable_styling(
+    full_width = T,
+    latex_options = c("hold_position"),
+    position = "center",
+    font_size = 10,
+    bootstrap_options=c("striped", "bordered")) %>%
+  column_spec(column = 1, width = "2 cm", ) %>%
+  column_spec(column = 2,width = "7 cm") %>%
+  column_spec(column = 3,width = "4 cm") %>%
+  collapse_rows(columns = 1:2,valign = "middle")
+```
+
+## Controles
