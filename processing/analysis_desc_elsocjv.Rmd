@@ -295,7 +295,7 @@ df_sj<- rbind(c,b,a)
 ### Univariados Pertenencia a grupos desaventajados
 
 ```{r, results='asis'}
- df2<- dfSummary(dplyr::select(procjv_analysis_nona, ingreso, quintiles_ingreso_factor, sexo_factor, educ_rec_factor, ingreso_satisfact_factor, indigena_rec_factor),
+ df2<- dfSummary(dplyr::select(procjv_analysis_nona, ingreso, sexo_factor, educ_rec_factor, ingreso_satisfact_factor, indigena_rec_factor),
                plain.ascii = FALSE,
                style = "grid",
                tmp.img.dir = "/tmp",
@@ -332,7 +332,9 @@ df2<- dfSummary(dplyr::select(procjv_analysis_nona, sdo_soc_ideal_factor:rwa_obe
                col.widths = c(1000,10,10,10,10)
                )
 df2$Variable <- NULL # delete variable column
-summarytools::view(df2, file = "../output/tables/descideol.html") # Ver tabla en un archivo HTML
+summarytools::view(df2
+                   # , file = "../output/tables/descideol.html"
+                   ) # Ver tabla en un archivo HTML
 ```
 
 ```{r}

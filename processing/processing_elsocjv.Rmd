@@ -1,7 +1,9 @@
 ---
 title: |
   ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
-  Documento de Procesamiento Tesis - ¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta
+  Documento de Procesamiento
+  
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
@@ -483,7 +485,7 @@ table1::table1(~ingreso, data = procjv)
 procjv$ingreso<- set_na(procjv$ingreso, na = c(-888,-999,0), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar variable
-procjv$ingreso <- sjlabelled::set_label(procjv$ingreso, label = "Ingreso mensual del entrevistado")
+procjv$ingreso <- sjlabelled::set_label(procjv$ingreso, label = "Ingresos")
 ```
 
 ### Descriptivo final
@@ -700,7 +702,7 @@ procjv$ingreso_satisfact_factor <- factor(procjv$ingreso_satisfact, levels = c(1
                                                                                                                   "Totalmente satisfecho"))
 
 # Etiquetado variable factor
-procjv$ingreso_satisfact_factor <- sjlabelled::set_label(procjv$ingreso_satisfact_factor, label = "Satisfaccion con los ingresos")
+procjv$ingreso_satisfact_factor <- sjlabelled::set_label(procjv$ingreso_satisfact_factor, label = "Satisfaccion Ingresos")
 ```
 
 ### Descriptivo final
@@ -802,7 +804,7 @@ procjv$sexo<- set_na(procjv$sexo, na = c(-888,-999), drop.levels = TRUE, as.tag 
 procjv$sexo_factor <- factor(procjv$sexo, levels = c(1,2), labels = c("Hombre", "Mujer"))
 
 # Etiquetado variable factor
-procjv$sexo_factor <- sjlabelled::set_label(procjv$sexo_factor, label = "Sexo del entrevistado")
+procjv$sexo_factor <- sjlabelled::set_label(procjv$sexo_factor, label = "Sexo")
 ```
 
 ### Desriptivo final
@@ -1028,7 +1030,7 @@ frq(procjv$sdo_indice)
 
 procjv$sdo_indice <- (procjv$sdo_indice-min(procjv$sdo_indice))/(max(procjv$sdo_indice)-min(procjv$sdo_indice)) # Estandarizar
 
-procjv$sdo_indice <- sjlabelled::set_label(procjv$sdo_indice, label = "Ideología SDO: Indice") # Etiquetar
+procjv$sdo_indice <- sjlabelled::set_label(procjv$sdo_indice, label = "SDO Indice") # Etiquetar
 
 # Frecuencias variables nuevas
 
@@ -1164,7 +1166,7 @@ frq(procjv$rwa_indice)
 
 procjv$rwa_indice <- (procjv$rwa_indice-min(procjv$rwa_indice))/(max(procjv$rwa_indice)-min(procjv$rwa_indice)) # Estandarizar
 
-procjv$rwa_indice <- sjlabelled::set_label(procjv$rwa_indice, label = "Ideología RWA: Indice") # Etiquetar
+procjv$rwa_indice <- sjlabelled::set_label(procjv$rwa_indice, label = "RWA Indice") # Etiquetar
 
 ### Farecuencia variable nueva
 
@@ -1194,7 +1196,7 @@ procjv$trato_salud<- set_na(procjv$trato_salud, na = c(-888,-999), drop.levels =
 procjv$trato_salud_factor <- factor(procjv$trato_salud, levels = c(1,2,3,4,5), labels = c("Nunca", "Casi nunca", "A veces", "Casi siempre", "Siempre"))
 
 # Etiquetado variable factor
-procjv$trato_salud_factor <- sjlabelled::set_label(procjv$trato_salud_factor, label = "Trato respetuoso en servicios de salud")
+procjv$trato_salud_factor <- sjlabelled::set_label(procjv$trato_salud_factor, label = "Trato Respetuoso Salud")
 
 ```
 
@@ -1229,7 +1231,7 @@ procjv$trato_carab<- set_na(procjv$trato_carab, na = c(-888,-999), drop.levels =
 procjv$trato_carab_factor <- factor(procjv$trato_carab, levels = c(1,2,3,4,5), labels = c("Nunca", "Casi nunca", "A veces", "Casi siempre", "Siempre"))
 
 # Etiquetado variable factor
-procjv$trato_carab_factor <- sjlabelled::set_label(procjv$trato_carab_factor, label = "Trato respetuoso por parte de carabineros")
+procjv$trato_carab_factor <- sjlabelled::set_label(procjv$trato_carab_factor, label = "Trato Respetuoso Carabineros")
 
 ```
 
@@ -1259,7 +1261,7 @@ table1::table1(~edad, data = procjv)
 # Recoficiacion NA
 procjv$edad<- set_na(procjv$edad, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
-procjv$edad <- sjlabelled::set_label(procjv$edad, label = "Edad del entrevistado")
+procjv$edad <- sjlabelled::set_label(procjv$edad, label = "Edad")
 ```
 
 ### Descriptivo final
@@ -1300,7 +1302,7 @@ procjv$pos_pol_rec_factor <- factor(procjv$pos_pol_rec, levels = c(1:5), labels 
                                                                              "Independiente"))
 
 # Etiquetado variable factor
-procjv$pos_pol_rec_factor <- sjlabelled::set_label(procjv$pos_pol_rec_factor, label = "Posicion política")
+procjv$pos_pol_rec_factor <- sjlabelled::set_label(procjv$pos_pol_rec_factor, label = "Posicion Politica")
 ```
 
 ### Descriptivo final
@@ -1334,7 +1336,7 @@ procjv$frec_marcha_factor <- factor(procjv$frec_marcha, levels = c(1,2,3,4,5), l
                                                                                                       "Muy frecuentemente"))
 
 # Etiquetado variable factor
-procjv$frec_marcha_factor <- sjlabelled::set_label(procjv$frec_marcha_factor, label = "Frecuencia de participacion en marchas (últimos 12 meses)")
+procjv$frec_marcha_factor <- sjlabelled::set_label(procjv$frec_marcha_factor, label = "Frecuencia de Participacion en Marchas")
 ```
 
 ### Descriptivo final
@@ -1367,7 +1369,7 @@ procjv$conf_carab_factor <- factor(procjv$conf_carab, levels = c(1,2,3,4,5), lab
                                                                                         "Mucha"))
 
 # Etiquetado variable factor
-procjv$conf_carab_factor <- sjlabelled::set_label(procjv$conf_carab_factor, label = "Confianza en carabineros")
+procjv$conf_carab_factor <- sjlabelled::set_label(procjv$conf_carab_factor, label = "Confianza en Carabineros")
 ```
 
 ### Descriptivo final
