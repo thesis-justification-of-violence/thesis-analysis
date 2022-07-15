@@ -58,7 +58,7 @@ summarytools::st_css()
 
 if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
 if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
-pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant, interaction) # librerias
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant, interaction, gofcat) # librerias
 knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
                       message = FALSE,  # mensajes/avisos de librerias  
                       cache = FALSE,    # cache de los chunks,usar analisis pesados
@@ -75,19 +75,8 @@ options(knitr.kable.NA = '') # NA en kable = ''
 
 # Introducción
 
-El presente documento corresponde al análisis deascriptivo de los datos la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
+El presente documento corresponde chequeo de supuesto de proporcionalidad de la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta". Se utiliza en Test de Brant.
 
-
-Primero se comienza cargando los paquetes y la base de datos.
-
-```{r load data}
-
-load("../input/data/procjv_analysis.RData")
-
-load("../input/data/procjv_analysis_nona.RData")
-
-load("../input/data/procjv_nums_nona.RData")
-```
 
 ```{r jv-est-model, echo=FALSE, results='asis', cache = T}
 
@@ -350,18 +339,95 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 ## Test de Supuesto de Proporcionalidad
 
 ```{r}
+round_df <- function(x, digits) {
+    # round all numeric variables
+    # x: data frame 
+    # digits: number of digits to round
+    numeric_columns <- sapply(x, mode) == 'numeric'
+    x[numeric_columns] <-  round(x[numeric_columns], digits)
+    x
+}
+```
 
-brant(jv_est_2019.modelmulpub1)
-brant(jv_est_2019.modelmulpub2)
-brant(jv_est_2019.modelmulpub3)
+### Justificación de que estudiantes tiren piedras
+
+```{r}
+
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_est_2019.modelmulpub1 <- polr(jv_est_2019_factor ~ 
+                                  sj_ceo + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado, 
+                                data = procjv_analysis_nona, Hess = TRUE)
+
+bt_est_1 <- brant(jv_est_2019.modelmulpub1)
+
+bt_est_1 <- as.data.frame(bt_est_1)
+
+rownames(bt_est_1) <- c("Modelo", "J Gerente", "J Obrero", "J Entrevistado")
+
+bt_est_1$Indicador <- rownames(bt_est_1)
+
+bt_est_1 <- bt_est_1 %>% dplyr::rename(gl = df,
+                                       Probabilidad = probability)
+
+bt_est_1 <- round_df(bt_est_1, 3)
+
+bt_est_1 <- bt_est_1[,c(4,1,2,3)]
+
+tab_df(bt_est_1)
+
+```
+
+
+```{r}
+# brant(jv_est_2019.modelmulpub2)
+# brant(jv_est_2019.modelmulpub3)
 # brant(jv_est_2019.modelmulpub4)
 # brant(jv_est_2019.modelmulpub5)
 # brant(jv_est_2019.modelmulpub6)
 ```
 
+
+### Justificación de que carabineros repriman marchas pacificas
+
 ```{r}
 
-brant(jv_carab1_2019.modelmulpub1)
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~ 
+                                  sj_ceo + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado, 
+                                data = procjv_analysis_nona, Hess = TRUE)
+
+bt_carab1_1 <- brant(jv_carab1_2019.modelmulpub1)
+
+bt_carab1_1 <- as.data.frame(bt_carab1_1)
+
+rownames(bt_carab1_1) <- c("Modelo", "J Gerente", "J Obrero", "J Entrevistado")
+
+bt_carab1_1$Indicador <- rownames(bt_carab1_1)
+
+bt_carab1_1 <- bt_carab1_1 %>% dplyr::rename(gl = df,
+                                       Probabilidad = probability)
+
+bt_carab1_1 <- round_df(bt_carab1_1, 3)
+
+bt_carab1_1 <- bt_carab1_1[,c(4,1,2,3)]
+
+tab_df(bt_carab1_1)
+
+```
+
+
+```{r}
+
 # brant(jv_carab1_2019.modelmulpub2)
 # brant(jv_carab1_2019.modelmulpub3)
 # brant(jv_carab1_2019.modelmulpub4)
@@ -369,9 +435,42 @@ brant(jv_carab1_2019.modelmulpub1)
 # brant(jv_carab1_2019.modelmulpub6)
 ```
 
+### Justificación de que carabineros deslaojen liceos en toma
+
+
 ```{r}
 
-brant(jv_carab2_2019.modelmulpub1)
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_carab2_2019.modelmulpub1 <- polr(jv_carab2_2019_factor ~ 
+                                  sj_ceo + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado, 
+                                data = procjv_analysis_nona, Hess = TRUE)
+
+bt_carab2_1 <- brant(jv_carab2_2019.modelmulpub1)
+
+bt_carab2_1 <- as.data.frame(bt_carab2_1)
+
+rownames(bt_carab2_1) <- c("Modelo", "J Gerente", "J Obrero", "J Entrevistado")
+
+bt_carab2_1$Indicador <- rownames(bt_carab2_1)
+
+bt_carab2_1 <- bt_carab2_1 %>% dplyr::rename(gl = df,
+                                       Probabilidad = probability)
+
+bt_carab2_1 <- round_df(bt_carab2_1, 3)
+
+bt_carab2_1 <- bt_carab2_1[,c(4,1,2,3)]
+
+tab_df(bt_carab2_1)
+
+```
+
+```{r}
+
 # brant(jv_carab2_2019.modelmulpub2)
 # brant(jv_carab2_2019.modelmulpub3)
 # brant(jv_carab2_2019.modelmulpub4)
