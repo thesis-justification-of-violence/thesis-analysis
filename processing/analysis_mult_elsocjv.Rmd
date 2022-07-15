@@ -1,7 +1,8 @@
 ---
 title: |
   ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
-  Documento de análisis multivariado - ¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta
+  Documento de Análisis Multivariado
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
@@ -75,12 +76,9 @@ options(knitr.kable.NA = '') # NA en kable = ''
 
 # Introducción
 
-El presente documento corresponde al análisis deascriptivo de los datos la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
+El presente documento corresponde al análisis multivariado de la tésis titulada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
 
-
-Primero se comienza cargando los paquetes y la base de datos.
-
-## Modelos para reporte
+## Modelos para reporte oficial
 
 ```{r load data}
 

@@ -1,7 +1,8 @@
 ---
 title: |
   ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
-  Documento de análisis multivariado - ¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta
+  Anexo - Modelos de Regresión Logística Ordinal (extensos)
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
@@ -75,12 +76,14 @@ options(knitr.kable.NA = '') # NA en kable = ''
 
 # Introducción
 
-El presente documento corresponde al análisis deascriptivo de los datos la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
+En el presente documento se reportan los modelos logísticos ordinales de la tesis titulada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta". A diferencia del reporte en el trabajo original, aquí se presentan los modelos con todos los predictores, tanto las variables de hipótesis, como las variables independientes.
 
 
 Primero se comienza cargando los paquetes y la base de datos.
 
-## Modelos para reporte
+## Modelos con todos los predictores
+
+A continuación, se presentan los modelos de regresión ordinal con todos los predictores.
 
 ```{r load data}
 
@@ -197,7 +200,6 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~
    string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion estudiantes lancen piedras", file = "../output/tables/jv_est_num.html") # nombre predictores y símbolo beta en tabla
 
 ```
-
 
 ### Justificación carabineros repriman marchas
 

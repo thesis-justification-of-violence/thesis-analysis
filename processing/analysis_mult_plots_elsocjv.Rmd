@@ -2,6 +2,7 @@
 title: |
   ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
   Anexos - Gráficos de Probabilidades Predichas
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
@@ -58,7 +59,7 @@ summarytools::st_css()
 
 if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
 if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
-pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant) # librerias
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant, htmlTable) # librerias
 knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
                       message = FALSE,  # mensajes/avisos de librerias  
                       cache = FALSE,    # cache de los chunks,usar analisis pesados
@@ -351,7 +352,7 @@ A continuación se presentan los gráficos de probabilidades predichas para cada
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el sentido de injusticia de los gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r}
+```{r predjvest}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -387,7 +388,7 @@ plot_pred_jvest
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros repriman marchas pecificas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r}
+```{r predcarab1}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -420,7 +421,7 @@ plot_pred_carab1
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r}
+```{r predcarab2}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -459,7 +460,7 @@ A continuación se presentan los gráficos de probabilidades predichas de los ef
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el efecto de interacción entre el sexo y el sentido de injusticia en gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r}
+```{r intsex}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -502,7 +503,7 @@ plot_it1
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el efecto de interacción entre la satisfacción con los ingresos y el sentido de injusticia en gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
 
-```{r}
+```{r intsatisfact}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -550,7 +551,7 @@ plot_it2
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el efecto de interacción entre el ingreso y el sentido de injusticia en obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
 
-```{r}
+```{r intingreso}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -592,32 +593,93 @@ plot_it3
 ### Justificaciónn de que estudiantes tiren piedras
 
 ```{r}
-nominal_test(jv_est_2019.modelmulpub1)
-nominal_test(jv_est_2019.modelmulpub2)
-nominal_test(jv_est_2019.modelmulpub3)
-nominal_test(jv_est_2019.modelmulpub4)
-nominal_test(jv_est_2019.modelmulpub5)
-nominal_test(jv_est_2019.modelmulpub6)
+round_df <- function(x, digits) {
+    # round all numeric variables
+    # x: data frame 
+    # digits: number of digits to round
+    numeric_columns <- sapply(x, mode) == 'numeric'
+    x[numeric_columns] <-  round(x[numeric_columns], digits)
+    x
+}
 ```
 
-## Justificación de que carabineros reprima marchas pacificas
+
+```{r ntest1}
+nt_est_1 <- nominal_test(jv_est_2019.modelmulpub1)
+
+nt_est_1 <- nt_est_1[-c(1), ]
+rownames(nt_est_1) <- c("J Gerente", "J Obrero", "J Entrevistado")
+
+nt_est_1$Indicador <- rownames(nt_est_1)
+
+nt_est_1 <- round_df(nt_est_1, 3)
+
+nt_est_1 <- nt_est_1[,c(6,1,2,3,4,5)]
+
+tab_df(nt_est_1)
+```
 
 ```{r}
-nominal_test(jv_carab1_2019.modelmulpub1)
-nominal_test(jv_carab1_2019.modelmulpub2)
-nominal_test(jv_carab1_2019.modelmulpub3)
-nominal_test(jv_carab1_2019.modelmulpub4)
-nominal_test(jv_carab1_2019.modelmulpub5)
-nominal_test(jv_carab1_2019.modelmulpub6)
+nt_est_2 <- nominal_test(jv_est_2019.modelmulpub2)
+nt_est_3 <- nominal_test(jv_est_2019.modelmulpub3)
+nt_est_4 <- nominal_test(jv_est_2019.modelmulpub4)
+nt_est_5 <- nominal_test(jv_est_2019.modelmulpub5)
+nt_est_6 <- nominal_test(jv_est_2019.modelmulpub6)
 ```
 
-## Justificación de que carabineros desalojen liceos en toma
+
+
+### Justificación de que carabineros reprima marchas pacificas
+
+```{r ntcarab1}
+nt_carab1_1 <- nominal_test(jv_carab1_2019.modelmulpub1)
+
+nt_carab1_1 <- nt_carab1_1[-c(1), ]
+rownames(nt_carab1_1) <- c("J Gerente", "J Obrero", "J Entrevistado")
+
+nt_carab1_1$Indicador <- rownames(nt_carab1_1)
+
+nt_carab1_1 <- round_df(nt_carab1_1, 3)
+
+nt_carab1_1 <- nt_carab1_1[,c(6,1,2,3,4,5)]
+
+tab_df(nt_carab1_1)
+
+```
 
 ```{r}
-nominal_test(jv_carab2_2019.modelmulpub1)
-nominal_test(jv_carab2_2019.modelmulpub2)
-nominal_test(jv_carab2_2019.modelmulpub3)
-nominal_test(jv_carab2_2019.modelmulpub4)
-nominal_test(jv_carab2_2019.modelmulpub5)
-nominal_test(jv_carab2_2019.modelmulpub6)
+nt_carab1_2 <- nominal_test(jv_carab1_2019.modelmulpub2)
+nt_carab1_3 <- nominal_test(jv_carab1_2019.modelmulpub3)
+nt_carab1_4 <- nominal_test(jv_carab1_2019.modelmulpub4)
+nt_carab1_5 <- nominal_test(jv_carab1_2019.modelmulpub5)
+nt_carab1_6 <- nominal_test(jv_carab1_2019.modelmulpub6)
 ```
+
+
+
+### Justificación de que carabineros desalojen liceos en toma
+
+```{r ntcarab2}
+nt_carab2_1 <- nominal_test(jv_carab2_2019.modelmulpub1)
+
+nt_carab2_1 <- nt_carab2_1[-c(1), ]
+rownames(nt_carab2_1) <- c("J Gerente", "J Obrero", "J Entrevistado")
+
+nt_carab2_1$Indicador <- rownames(nt_carab2_1)
+
+nt_carab2_1 <- round_df(nt_carab2_1, 3)
+
+nt_carab2_1 <- nt_carab2_1[,c(6,1,2,3,4,5)]
+
+tab_df(nt_carab2_1)
+
+```
+
+```{r}
+nt_carab2_2 <- nominal_test(jv_carab2_2019.modelmulpub2)
+nt_carab2_3 <- nominal_test(jv_carab2_2019.modelmulpub3)
+nt_carab2_4 <- nominal_test(jv_carab2_2019.modelmulpub4)
+nt_carab2_5 <- nominal_test(jv_carab2_2019.modelmulpub5)
+nt_carab2_6 <- nominal_test(jv_carab2_2019.modelmulpub6)
+```
+
