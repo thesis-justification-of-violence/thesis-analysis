@@ -343,7 +343,97 @@ A continuación se presentan los gráficos de probabilidades predichas para cada
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el sentido de injusticia de los gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r predjvest}
+### Modelo 1
+
+```{r predjvest1}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ 
+                                  sj_ceo_rec + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado, 
+                                data = procjv_analysis_nona)
+
+plot_pred_jvest_1 <- plot_model(jv_est_2019.modelmulpub1, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_1
+
+
+```
+
+### Modelo 2
+
+```{r predjvest2}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+ jv_est_2019.modelmulpub2<- clm(jv_est_2019_factor ~ 
+                                  sj_ceo_rec + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado + 
+                                  ingreso + 
+                                  sexo_factor + 
+                                  ingreso_satisfact_factor + 
+                                  educ_rec_factor + 
+                                  indigena_rec_factor, 
+                                data = procjv_analysis_nona)
+
+plot_pred_jvest_2 <- plot_model(jv_est_2019.modelmulpub2, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_2
+
+
+```
+
+### Modelo 3
+
+```{r predjvest3}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~ 
+                                 sj_ceo_rec + 
+                                 sj_obrero_rec + 
+                                 sj_entrevistado + 
+                                 ingreso + 
+                                 sexo_factor + 
+                                 ingreso_satisfact_factor + 
+                                 educ_rec_factor + 
+                                 indigena_rec_factor + 
+                                 sdo_indice + 
+                                 rwa_indice, 
+                               data = procjv_analysis_nona)
+  
+
+plot_pred_jvest_3 <- plot_model(jv_est_2019.modelmulpub3, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_3
+
+
+```
+
+### Modelo 4
+
+```{r predjvest4}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -362,15 +452,15 @@ jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~
                                  trato_carab_factor, 
                                data = procjv_analysis_nona)
 
-plot_pred_jvest <- plot_model(jv_est_2019.modelmulpub1, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+plot_pred_jvest_4 <- plot_model(jv_est_2019.modelmulpub4, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
 
-plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 1] <- "1. Nunca"
-plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 2] <- "2. Pocas veces"
-plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 3] <- "3. Algunas veces"
-plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 4] <- "4. Muchas veces"
-plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 5] <- "5. Siempre"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 5] <- "5. Siempre"
 
-plot_pred_jvest
+plot_pred_jvest_4
 
 
 ```
@@ -379,7 +469,35 @@ plot_pred_jvest
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros repriman marchas pecificas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r predcarab1}
+### Modelo 1
+
+```{r predcarab1_1}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ 
+                                     sj_ceo_rec + 
+                                     sj_obrero_rec + 
+                                     sj_entrevistado, 
+                                   data = procjv_analysis_nona)
+
+plot_pred_carab1_1 <- plot_model(jv_carab1_2019.modelmulpub1, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab1_1
+
+
+```
+
+### Modelo 2
+
+```{r predcarab1_2}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
@@ -395,15 +513,15 @@ load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/ra
                                      indigena_rec_factor, 
                                    data = procjv_analysis_nona)
 
-plot_pred_carab1 <- plot_model(jv_carab1_2019.modelmulpub2, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+plot_pred_carab1_2 <- plot_model(jv_carab1_2019.modelmulpub2, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
 
-plot_pred_carab1$data$response.level[plot_pred_carab1$data$response.level == 1] <- "1. Nunca"
-plot_pred_carab1$data$response.level[plot_pred_carab1$data$response.level == 2] <- "2. Pocas veces"
-plot_pred_carab1$data$response.level[plot_pred_carab1$data$response.level == 3] <- "3. Algunas veces"
-plot_pred_carab1$data$response.level[plot_pred_carab1$data$response.level == 4] <- "4. Muchas veces"
-plot_pred_carab1$data$response.level[plot_pred_carab1$data$response.level == 5] <- "5. Siempre"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 5] <- "5. Siempre"
 
-plot_pred_carab1
+plot_pred_carab1_2
 
 
 ```
@@ -412,12 +530,99 @@ plot_pred_carab1
 
 A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
 
-```{r predcarab2}
+### Modelo 1
+
+```{r predcarab2_1}
 
 load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
 
 
-jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ 
+ jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ 
+                                      sj_ceo_rec + 
+                                      sj_obrero_rec + 
+                                      sj_entrevistado_rec, 
+                                    data = procjv_analysis_nona)
+
+plot_pred_carab2_1 <- plot_model(jv_carab2_2019.modelmulpub1, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_1
+```
+
+### Modelo 2
+
+```{r predcarab2_2}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+ jv_carab2_2019.modelmulpub2<- clm(jv_carab2_2019_factor ~ 
+                                     sj_ceo_rec +
+                                     sj_obrero_rec + 
+                                     sj_entrevistado_rec +
+                                     ingreso + 
+                                     sexo_factor + 
+                                     ingreso_satisfact_factor + 
+                                     educ_rec_factor +
+                                     indigena_rec_factor,
+                                   data = procjv_analysis_nona)
+
+plot_pred_carab2_2 <- plot_model(jv_carab2_2019.modelmulpub2, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_2
+```
+
+
+### Modelo 3
+
+```{r predcarab2_3}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~ 
+                                    sj_ceo_rec + 
+                                    sj_obrero_rec + 
+                                    sj_entrevistado_rec + 
+                                    ingreso +
+                                    sexo_factor + 
+                                    ingreso_satisfact_factor +
+                                    educ_rec_factor + 
+                                    indigena_rec_factor + 
+                                    sdo_indice + 
+                                    rwa_indice, 
+                                  data = procjv_analysis_nona)
+
+plot_pred_carab2_3 <- plot_model(jv_carab2_2019.modelmulpub3, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_3
+```
+
+### Modelo 4
+
+```{r predcarab2_4}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_carab2_2019.modelmulpub1<- clm(jv_carab2_2019_factor ~ 
                                     sj_ceo_rec + 
                                     sj_obrero_rec +
                                     sj_entrevistado_rec + 
@@ -432,16 +637,18 @@ jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~
                                     trato_carab_factor, 
                                   data = procjv_analysis_nona)
 
-plot_pred_carab2 <- plot_model(jv_carab2_2019.modelmulpub4, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+plot_pred_carab2_4 <- plot_model(jv_carab2_2019.modelmulpub4, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
 
-plot_pred_carab2$data$response.level[plot_pred_carab2$data$response.level == 1] <- "1. Nunca"
-plot_pred_carab2$data$response.level[plot_pred_carab2$data$response.level == 2] <- "2. Pocas veces"
-plot_pred_carab2$data$response.level[plot_pred_carab2$data$response.level == 3] <- "3. Algunas veces"
-plot_pred_carab2$data$response.level[plot_pred_carab2$data$response.level == 4] <- "4. Muchas veces"
-plot_pred_carab2$data$response.level[plot_pred_carab2$data$response.level == 5] <- "5. Siempre"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 5] <- "5. Siempre"
 
-plot_pred_carab2
+plot_pred_carab2_4
 ```
+
+
 
 # Interacciones
 
@@ -482,8 +689,8 @@ plot_it1$data$response.level[plot_it1$data$response.level == 3] <- "3. Algunas v
 plot_it1$data$response.level[plot_it1$data$response.level == 4] <- "4. Muchas veces"
 plot_it1$data$response.level[plot_it1$data$response.level == 5] <- "5. Siempre"
 
-plot_it1$data$group <- factor(plot_it1$data$group, levels = c(0.24, 1.16, 2.09), labels = c("Media-DE","Media","Media+DE"))
-plot_it1$data$group_col <- factor(plot_it1$data$group_col, levels = c(0.24, 1.16, 2.09), labels = c("Media-DE","Media","Media+DE"))
+plot_it1$data$group <- factor(plot_it1$data$group, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
+plot_it1$data$group_col <- factor(plot_it1$data$group_col, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
 
 plot_it1
 
@@ -529,8 +736,8 @@ plot_it2$data$response.level[plot_it2$data$response.level == 3] <- "3. Algunas v
 plot_it2$data$response.level[plot_it2$data$response.level == 4] <- "4. Muchas veces"
 plot_it2$data$response.level[plot_it2$data$response.level == 5] <- "5. Siempre"
 
-plot_it2$data$group <- factor(plot_it2$data$group, levels = c(0.24, 1.16, 2.09), labels = c("Media-DE","Media","Media+DE"))
-plot_it2$data$group_col <- factor(plot_it2$data$group_col, levels = c(0.24, 1.16, 2.09), labels = c("Media-DE","Media","Media+DE"))
+plot_it2$data$group <- factor(plot_it2$data$group, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
+plot_it2$data$group_col <- factor(plot_it2$data$group_col, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
 
 plot_it2$data <- plot_it2$data %>% filter(x == 1 | x == 5)
 
@@ -572,8 +779,8 @@ plot_it3$data$response.level[plot_it3$data$response.level == 3] <- "3. Algunas v
 plot_it3$data$response.level[plot_it3$data$response.level == 4] <- "4. Muchas veces"
 plot_it3$data$response.level[plot_it3$data$response.level == 5] <- "5. Siempre"
 
-plot_it3$data$group <- factor(plot_it3$data$group, levels = c(0.24, 0.64, 1.05), labels = c("Media-DE","Media","Media+DE"))
-plot_it3$data$group_col <- factor(plot_it3$data$group_col, levels = c(0.24, 0.64, 1.05), labels = c("Media-DE","Media","Media+DE"))
+plot_it3$data$group <- factor(plot_it3$data$group, levels = c(0.22, 0.64, 1.06), labels = c("Media-DE","Media","Media+DE"))
+plot_it3$data$group_col <- factor(plot_it3$data$group_col, levels = c(0.22, 0.64, 1.06), labels = c("Media-DE","Media","Media+DE"))
 
 plot_it3
 
@@ -704,14 +911,15 @@ nt_carab2_6 <- nominal_test(jv_carab2_2019.modelmulpub6)
 ```
 
 ```{r}
-ggpredict(jv_est_2019.modelmulpub4, "sj_ceo_rec[0.24, 1.16, 2.09]")
+ggpredict(jv_est_2019.modelmulpub4, "sj_ceo_rec[0.13, 1.13, 2.13]")
 ```
 
 ```{r}
-ggpredict(jv_carab1_2019.modelmulpub2, "sj_obrero_rec[0.24, 0.64, 1.05]")
+ggpredict(jv_carab1_2019.modelmulpub2, "sj_obrero_rec[0.22, 0.64, 1.06]")
 ```
 
 ```{r}
-ggpredict(jv_carab2_2019.modelmulpub4, "sj_obrero_rec[0.24, 0.64, 1.05]")
+ggpredict(jv_carab2_2019.modelmulpub4, "sj_obrero_rec[0.22, 0.64, 1.06]")
 ```
+
 
