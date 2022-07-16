@@ -195,7 +195,7 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~
                         jv_est_2019.modelmulpub6), # los modelos estimados
    transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
-   p.style = "stars", # asteriscos de significación estadística
+   p.style = "numeric", # asteriscos de significación estadística
    dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
    string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion estudiantes lancen piedras", file = "../output/tables/jv_est_num.html") # nombre predictores y símbolo beta en tabla
 
@@ -299,7 +299,7 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~
                         jv_carab1_2019.modelmulpub6), # los modelos estimados
    transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
-   p.style = "stars", # asteriscos de significación estadística
+   p.style = "numeric", # asteriscos de significación estadística
    dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
    string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion carabineros reprime marchas", file = "../output/tables/jv_carab1_num.html") # nombre predictores y símbolo beta en tabla
 
@@ -405,7 +405,7 @@ jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~
                         jv_carab2_2019.modelmulpub6), # los modelos estimados
    transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
-   p.style = "stars", # asteriscos de significación estadística
+   p.style = "numeric", # asteriscos de significación estadística
    dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
    string.pred = "Predictores", string.est = "β", title = "Regresiones ordinales logit - Justificacion carabineros desalojan tomas", file = "../output/tables/jv_carab2_num.html") # nombre predictores y símbolo beta en tabla
 

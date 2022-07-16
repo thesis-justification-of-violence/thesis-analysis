@@ -82,11 +82,7 @@ El presente documento corresponde al análisis multivariado de la tésis titulad
 
 ```{r load data}
 
-load("../input/data/procjv_analysis.RData")
-
 load("../input/data/procjv_analysis_nona.RData")
-
-load("../input/data/procjv_nums_nona.RData")
 ```
 
 
@@ -190,10 +186,10 @@ coef_names <- c(
   "Entrevistado",
   "Ingresos",
   "Mujer",
-  "Insatisfecho",
-  "Ni satisfecho ni insatisfecho",
   "Satisfecho",
-  "Totalmente Satisfecho",
+  "Ni satisfecho ni insatisfecho",
+  "Insatisfecho",
+  "Totalmente insatisfecho",
   # "Primaria y secundaria baja",
   # "Secundaria alta",
   # "Terciaria ciclo corto",
@@ -211,9 +207,9 @@ coef_names <- c(
   # "Casi siempre",
   # "Siempre",
   "J Gerente x Mujer",
-  "J Gerente x Insatisfecho",
-  "J Gerente x Ni satisfecho ni insatisfecho",
   "J Gerente x Satisfecho",
+  "J Gerente x Ni satisfecho ni insatisfecho",
+  "J Gerente x insatisfecho",
   "J Gerente x Totalmente satisfecho"
   # "Pos. Pol. - Centro (ref: Izquierda)",
   # "Derecha",
@@ -241,10 +237,10 @@ texreg::knitreg(list(jv_est_2019.modelmulpub1,
         omit.coef=omit_coef,
         include.thresholds=FALSE,
         custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=c("0.018",	"0.047",	"0.103",	"0.156",	"0.176",	"0.276")),
+                             R2Nagelkerke=c("0.018",	"0.046",	"0.103",	"0.156",	"0.176",	"0.276")),
         groups=list("Sentido de Injusticia (J)"=1:3,
                     "Sexo (ref: Hombre)"=5,
-                    "Satisfacción Ingresos (ref: Totalmente insatisfecho)" = 6:9,
+                    "Satisfacción Ingresos (ref: Totalmente satisfecho)" = 6:9,
                     "Interacciones:"=10:14),
         custom.coef.names=coef_names,
         scalebox = 0.75,
@@ -514,10 +510,10 @@ coef_names <- c(
   "Entrevistado",
   "Ingresos",
   # "Mujer",
-  "Insatisfecho",
-  "Ni satisfecho ni insatisfecho",
   "Satisfecho",
-  "Totalmente Satisfecho",
+  "Ni satisfecho ni insatisfecho",
+  "Insatisfecho",
+  "Totalmente insatisfecho",
   # "Primaria y secundaria baja",
   # "Secundaria alta",
   # "Terciaria ciclo corto",
@@ -535,10 +531,10 @@ coef_names <- c(
   # "Casi siempre",
   # "Siempre",
   "J Obrero x Ingreso",
-  "J Obrero x Insatisfecho",
-  "J Obrero x Ni satisfecho ni insatisfecho",
   "J Obrero x Satisfecho",
-  "J Obrero x Totalmente satisfecho"
+  "J Obrero x Ni satisfecho ni insatisfecho",
+  "J Obrero x Insatisfecho",
+  "J Obrero x Totalmente insatisfecho"
   # "Pos. Pol. - Centro (ref: Izquierda)",
   # "Derecha",
   # "Independiente",
@@ -565,9 +561,9 @@ texreg::knitreg(list(jv_carab2_2019.modelmulpub1,
         omit.coef=omit_coef,
         include.thresholds=FALSE,
         custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=	c("0.053",	"0.089",	"0.161",	"0.202",	"0.214",	"0.262")),
+                             R2Nagelkerke=	c("0.053",	"0.089",	"0.161",	"0.202",	"0.214",	"0.263")),
         groups=list("Sentido de Injusticia (J)"=1:3,
-                    "Satisfacción Ingresos (ref: Totalmente insatisfecho)"=5:8,
+                    "Satisfacción Ingresos (ref: Totalmente satisfecho)"=5:8,
                     "Ideologia" = 9:10,
                     "Interacciones:"=11:15),
         custom.coef.names=coef_names,

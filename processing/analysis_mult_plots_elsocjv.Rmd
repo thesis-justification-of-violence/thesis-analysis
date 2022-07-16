@@ -516,11 +516,11 @@ jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~
                                  ingreso_satisfact_factor*sj_ceo, 
                                data = procjv_analysis_nona)
 
-plot_it2<- plot_model(jv_est_2019.modelmulpub5, type = "pred", terms = c("ingreso_satisfact_factor", "sj_ceo"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") +  scale_x_continuous(breaks = c(1,2,3,4,5), labels=c("TI", 
+plot_it2<- plot_model(jv_est_2019.modelmulpub5, type = "pred", terms = c("ingreso_satisfact_factor", "sj_ceo"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") +  scale_x_continuous(breaks = c(1,2,3,4,5), labels=c("T. Satis.", 
                             "", 
                             "", 
                             "",
-                            "TS")) 
+                            "T. Insatis.")) 
 
 
 plot_it2$data$response.level[plot_it2$data$response.level == 1] <- "1. Nunca"
@@ -563,7 +563,7 @@ jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~
                                     ingreso_satisfact_factor*sj_obrero_rec,
                                   data = procjv_analysis_nona)
 
-plot_it3<- plot_model(jv_carab2_2019.modelmulpub5, type = "pred", terms = c("ingreso[all]", "sj_obrero_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+plot_it3<- plot_model(jv_carab2_2019.modelmulpub5, type = "pred", terms = c("ingreso[0:3000000]", "sj_obrero_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
 
 
 plot_it3$data$response.level[plot_it3$data$response.level == 1] <- "1. Nunca"
