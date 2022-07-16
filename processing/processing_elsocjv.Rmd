@@ -424,13 +424,13 @@ procjv$sj_obrero <- ln(procjv$salario_perc_obrero/procjv$salario_just_obrero)
 
 procjv$sj_obrero_rec <- procjv$sj_obrero*-1
 
-procjv$sj_obrero_rec[procjv$sj_obrero_rec < 0] <- 0
+# procjv$sj_obrero_rec[procjv$sj_obrero_rec < 0] <- 0
 
 procjv$sj_ceo <- ln(procjv$salario_perc_ceo/procjv$salario_just_ceo)
 
 procjv$sj_ceo_rec <- procjv$sj_ceo
 
-procjv$sj_ceo_rec[procjv$sj_ceo_rec < 0] <- 0
+# procjv$sj_ceo_rec[procjv$sj_ceo_rec < 0] <- 0
 
 ## Etiquetado sense of justice
 
@@ -639,7 +639,7 @@ procjv$sj_entrevistado <- ln(procjv$ingreso/procjv$ingreso_justo)
 
 procjv$sj_entrevistado_rec <- procjv$sj_entrevistado*-1
 
-procjv$sj_entrevistado_rec[procjv$sj_entrevistado_rec < 0] <- 0
+# procjv$sj_entrevistado_rec[procjv$sj_entrevistado_rec < 0] <- 0
 
 
 ## Etiquetado sense of justice
