@@ -58,7 +58,7 @@ summarytools::st_css()
 
 if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
 if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
-pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant, interaction, gofcat) # librerias
+pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant, gofcat) # librerias
 knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
                       message = FALSE,  # mensajes/avisos de librerias  
                       cache = FALSE,    # cache de los chunks,usar analisis pesados
@@ -83,13 +83,13 @@ El presente documento corresponde chequeo de supuesto de proporcionalidad de la 
 load("../input/data/procjv_analysis_nona.RData")
 
 jv_est_2019.modelmulpub1 <- polr(jv_est_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado, 
                                 data = procjv_analysis_nona, Hess = TRUE)
  
  jv_est_2019.modelmulpub2<- polr(jv_est_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado + 
                                   ingreso + 
@@ -100,7 +100,7 @@ jv_est_2019.modelmulpub1 <- polr(jv_est_2019_factor ~
                                 data = procjv_analysis_nona, Hess = TRUE)
  
 jv_est_2019.modelmulpub3<- polr(jv_est_2019_factor ~ 
-                                 sj_ceo + 
+                                 sj_ceo_rec + 
                                  sj_obrero_rec + 
                                  sj_entrevistado + 
                                  ingreso + 
@@ -113,7 +113,7 @@ jv_est_2019.modelmulpub3<- polr(jv_est_2019_factor ~
                                data = procjv_analysis_nona, Hess = TRUE)
   
 # jv_est_2019.modelmulpub4<- polr(jv_est_2019_factor ~ 
-#                                  sj_ceo + 
+#                                  sj_ceo_rec + 
 #                                  sj_obrero_rec + 
 #                                  sj_entrevistado + 
 #                                  ingreso + 
@@ -128,7 +128,7 @@ jv_est_2019.modelmulpub3<- polr(jv_est_2019_factor ~
 #                                data = procjv_analysis_nona, Hess = TRUE)
 # 
 # jv_est_2019.modelmulpub5<- polr(jv_est_2019_factor ~ 
-#                                  sj_ceo + 
+#                                  sj_ceo_rec + 
 #                                  sj_obrero_rec + 
 #                                  sj_entrevistado + 
 #                                  ingreso + 
@@ -140,12 +140,12 @@ jv_est_2019.modelmulpub3<- polr(jv_est_2019_factor ~
 #                                  rwa_indice + 
 #                                  trato_salud_factor + 
 #                                  trato_carab_factor + 
-#                                  sexo_factor*sj_ceo + 
-#                                  ingreso_satisfact_factor*sj_ceo, 
+#                                  sexo_factor*sj_ceo_rec + 
+#                                  ingreso_satisfact_factor*sj_ceo_rec, 
 #                                data = procjv_analysis_nona, Hess = TRUE)
 # 
 # jv_est_2019.modelmulpub6<- polr(jv_est_2019_factor ~ 
-#                                  sj_ceo + 
+#                                  sj_ceo_rec + 
 #                                  sj_obrero_rec + 
 #                                  sj_entrevistado + 
 #                                  ingreso + 
@@ -156,8 +156,8 @@ jv_est_2019.modelmulpub3<- polr(jv_est_2019_factor ~
 #                                  sdo_indice + rwa_indice + 
 #                                  trato_salud_factor + 
 #                                  trato_carab_factor + 
-#                                  sexo_factor*sj_ceo + 
-#                                  ingreso_satisfact_factor*sj_ceo + 
+#                                  sexo_factor*sj_ceo_rec + 
+#                                  ingreso_satisfact_factor*sj_ceo_rec + 
 #                                  pos_pol_rec_factor + 
 #                                  frec_marcha_factor + 
 #                                  conf_carab_factor, 
@@ -168,13 +168,13 @@ jv_est_2019.modelmulpub3<- polr(jv_est_2019_factor ~
 ```{r jv-carab1-model, echo=FALSE, results='asis', cache = T}
 
 jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~ 
-                                     sj_ceo + 
+                                     sj_ceo_rec + 
                                      sj_obrero_rec + 
                                      sj_entrevistado, 
                                    data = procjv_analysis_nona, Hess = TRUE)
  
 #  jv_carab1_2019.modelmulpub2<- polr(jv_carab1_2019_factor ~ 
-#                                      sj_ceo + 
+#                                      sj_ceo_rec + 
 #                                      sj_obrero_rec + 
 #                                      sj_entrevistado + 
 #                                      ingreso + 
@@ -185,7 +185,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                    data = procjv_analysis_nona, Hess = TRUE)
 #  
 # jv_carab1_2019.modelmulpub3<- polr(jv_carab1_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado + 
 #                                     ingreso + 
@@ -198,7 +198,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                   data = procjv_analysis_nona, Hess = TRUE)
 #   
 # jv_carab1_2019.modelmulpub4<- polr(jv_carab1_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado + 
 #                                     ingreso + 
@@ -213,7 +213,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                   data = procjv_analysis_nona, Hess = TRUE)
 # 
 # jv_carab1_2019.modelmulpub5<- polr(jv_carab1_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado + 
 #                                     ingreso + 
@@ -229,7 +229,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                   data = procjv_analysis_nona, Hess = TRUE)
 # 
 # jv_carab1_2019.modelmulpub6<- polr(jv_carab1_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado + 
 #                                     ingreso + 
@@ -253,13 +253,13 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 ```{r jv-carab2-model, echo=FALSE, results='asis', cache = T}
 
  jv_carab2_2019.modelmulpub1 <- polr(jv_carab2_2019_factor ~ 
-                                      sj_ceo + 
+                                      sj_ceo_rec + 
                                       sj_obrero_rec + 
                                       sj_entrevistado_rec, 
                                     data = procjv_analysis_nona, Hess = TRUE)
  
 #  jv_carab2_2019.modelmulpub2<- polr(jv_carab2_2019_factor ~ 
-#                                      sj_ceo +
+#                                      sj_ceo_rec +
 #                                      sj_obrero_rec + 
 #                                      sj_entrevistado_rec +
 #                                      ingreso + 
@@ -270,7 +270,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                    data = procjv_analysis_nona, Hess = TRUE)
 #  
 # jv_carab2_2019.modelmulpub3<- polr(jv_carab2_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado_rec + 
 #                                     ingreso +
@@ -283,7 +283,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                   data = procjv_analysis_nona, Hess = TRUE)
 #   
 # jv_carab2_2019.modelmulpub4<- polr(jv_carab2_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec +
 #                                     sj_entrevistado_rec + 
 #                                     ingreso +
@@ -298,7 +298,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                   data = procjv_analysis_nona, Hess = TRUE)
 # 
 # jv_carab2_2019.modelmulpub5<- polr(jv_carab2_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado_rec + 
 #                                     ingreso +
@@ -315,7 +315,7 @@ jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~
 #                                   data = procjv_analysis_nona, Hess = TRUE)
 # 
 # jv_carab2_2019.modelmulpub6<- polr(jv_carab2_2019_factor ~ 
-#                                     sj_ceo + 
+#                                     sj_ceo_rec + 
 #                                     sj_obrero_rec + 
 #                                     sj_entrevistado_rec + 
 #                                     ingreso + 
@@ -358,7 +358,7 @@ load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/ra
 
 
 jv_est_2019.modelmulpub1 <- polr(jv_est_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado, 
                                 data = procjv_analysis_nona, Hess = TRUE)
@@ -401,7 +401,7 @@ load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/ra
 
 
 jv_carab1_2019.modelmulpub1 <- polr(jv_carab1_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado, 
                                 data = procjv_analysis_nona, Hess = TRUE)
@@ -445,7 +445,7 @@ load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/ra
 
 
 jv_carab2_2019.modelmulpub1 <- polr(jv_carab2_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado, 
                                 data = procjv_analysis_nona, Hess = TRUE)

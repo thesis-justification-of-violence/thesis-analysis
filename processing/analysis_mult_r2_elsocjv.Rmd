@@ -104,13 +104,13 @@ load("../input/data/procjv_nums_nona.RData")
 load("../input/data/procjv_analysis_nona.RData")
 
 jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado, 
                                 data = procjv_analysis_nona)
  
  jv_est_2019.modelmulpub2<- clm(jv_est_2019_factor ~ 
-                                  sj_ceo + 
+                                  sj_ceo_rec + 
                                   sj_obrero_rec + 
                                   sj_entrevistado + 
                                   ingreso + 
@@ -121,7 +121,7 @@ jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~
                                 data = procjv_analysis_nona)
  
 jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo + 
+                                 sj_ceo_rec + 
                                  sj_obrero_rec + 
                                  sj_entrevistado + 
                                  ingreso + 
@@ -134,7 +134,7 @@ jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~
                                data = procjv_analysis_nona)
   
 jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo + 
+                                 sj_ceo_rec + 
                                  sj_obrero_rec + 
                                  sj_entrevistado + 
                                  ingreso + 
@@ -149,7 +149,7 @@ jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~
                                data = procjv_analysis_nona)
 
 jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo + 
+                                 sj_ceo_rec + 
                                  sj_obrero_rec + 
                                  sj_entrevistado + 
                                  ingreso + 
@@ -161,12 +161,12 @@ jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~
                                  rwa_indice + 
                                  trato_salud_factor + 
                                  trato_carab_factor + 
-                                 sexo_factor*sj_ceo + 
-                                 ingreso_satisfact_factor*sj_ceo, 
+                                 sexo_factor*sj_ceo_rec + 
+                                 ingreso_satisfact_factor*sj_ceo_rec, 
                                data = procjv_analysis_nona)
 
 jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo + 
+                                 sj_ceo_rec + 
                                  sj_obrero_rec + 
                                  sj_entrevistado + 
                                  ingreso + 
@@ -177,8 +177,8 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~
                                  sdo_indice + rwa_indice + 
                                  trato_salud_factor + 
                                  trato_carab_factor + 
-                                 sexo_factor*sj_ceo + 
-                                 ingreso_satisfact_factor*sj_ceo + 
+                                 sexo_factor*sj_ceo_rec + 
+                                 ingreso_satisfact_factor*sj_ceo_rec + 
                                  pos_pol_rec_factor + 
                                  frec_marcha_factor + 
                                  conf_carab_factor, 
@@ -209,13 +209,13 @@ jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~
  ## Independientes numericas
 
 jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ 
-                                     sj_ceo + 
+                                     sj_ceo_rec + 
                                      sj_obrero_rec + 
                                      sj_entrevistado, 
                                    data = procjv_analysis_nona)
  
  jv_carab1_2019.modelmulpub2<- clm(jv_carab1_2019_factor ~ 
-                                     sj_ceo + 
+                                     sj_ceo_rec + 
                                      sj_obrero_rec + 
                                      sj_entrevistado + 
                                      ingreso + 
@@ -226,7 +226,7 @@ jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~
                                    data = procjv_analysis_nona)
  
 jv_carab1_2019.modelmulpub3<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado + 
                                     ingreso + 
@@ -239,7 +239,7 @@ jv_carab1_2019.modelmulpub3<- clm(jv_carab1_2019_factor ~
                                   data = procjv_analysis_nona)
   
 jv_carab1_2019.modelmulpub4<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado + 
                                     ingreso + 
@@ -254,7 +254,7 @@ jv_carab1_2019.modelmulpub4<- clm(jv_carab1_2019_factor ~
                                   data = procjv_analysis_nona)
 
 jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado + 
                                     ingreso + 
@@ -270,7 +270,7 @@ jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~
                                   data = procjv_analysis_nona)
 
 jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado + 
                                     ingreso + 
@@ -313,13 +313,13 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~
 #  ## Independientes numericas
 
  jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ 
-                                      sj_ceo + 
+                                      sj_ceo_rec + 
                                       sj_obrero_rec + 
                                       sj_entrevistado_rec, 
                                     data = procjv_analysis_nona)
  
  jv_carab2_2019.modelmulpub2<- clm(jv_carab2_2019_factor ~ 
-                                     sj_ceo +
+                                     sj_ceo_rec +
                                      sj_obrero_rec + 
                                      sj_entrevistado_rec +
                                      ingreso + 
@@ -330,7 +330,7 @@ jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~
                                    data = procjv_analysis_nona)
  
 jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado_rec + 
                                     ingreso +
@@ -343,7 +343,7 @@ jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~
                                   data = procjv_analysis_nona)
   
 jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec +
                                     sj_entrevistado_rec + 
                                     ingreso +
@@ -358,7 +358,7 @@ jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~
                                   data = procjv_analysis_nona)
 
 jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado_rec + 
                                     ingreso +
@@ -375,7 +375,7 @@ jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~
                                   data = procjv_analysis_nona)
 
 jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo + 
+                                    sj_ceo_rec + 
                                     sj_obrero_rec + 
                                     sj_entrevistado_rec + 
                                     ingreso + 

@@ -362,7 +362,7 @@ jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~
                                  trato_carab_factor, 
                                data = procjv_analysis_nona)
 
-plot_pred_jvest <- plot_model(jv_est_2019.modelmulpub1, type = "pred", terms = c("sj_ceo_rec"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+plot_pred_jvest <- plot_model(jv_est_2019.modelmulpub1, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
 
 plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 1] <- "1. Nunca"
 plot_pred_jvest$data$response.level[plot_pred_jvest$data$response.level == 2] <- "2. Pocas veces"
