@@ -435,7 +435,7 @@ procjv$sj_ceo_rec <- procjv$sj_ceo
 ## Etiquetado sense of justice
 
 procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "J Obrero")
-procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obrero_rec, label = "J Obrero")
+procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obrero_rec, label = "J' Obrero")
 
 procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "J Gerente")
 procjv$sj_ceo_rec <- sjlabelled::set_label(procjv$sj_ceo_rec, label = "J Gerente")
@@ -645,7 +645,7 @@ procjv$sj_entrevistado_rec <- procjv$sj_entrevistado*-1
 ## Etiquetado sense of justice
 
 procjv$sj_entrevistado <- sjlabelled::set_label(procjv$sj_entrevistado, label = "J Entrevistado")
-procjv$sj_entrevistado_rec <- sjlabelled::set_label(procjv$sj_entrevistado_rec, label = "J Entrevistado")
+procjv$sj_entrevistado_rec <- sjlabelled::set_label(procjv$sj_entrevistado_rec, label = "J' Entrevistado")
 
 ## Descriptivos sense of justice
 
