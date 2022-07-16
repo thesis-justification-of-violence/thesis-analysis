@@ -701,6 +701,19 @@ procjv$ingreso_satisfact_factor <- factor(procjv$ingreso_satisfact, levels = c(1
                                                                                                                   "Satisfecho",
                                                                                                                   "Totalmente satisfecho"))
 
+frq(procjv$ingreso_satisfact_factor)
+
+procjv$ingreso_satisfact_factor <- factor(procjv$ingreso_satisfact_factor, levels = c("Totalmente satisfecho",
+                                                                                         "Satisfecho",
+                                                                                         "Ni satisfecho ni insatisfecho",
+                                                                                         "Insatisfecho",
+                                                                                         "Totalmente insatisfecho")
+                                                        )
+
+frq(procjv$ingreso_satisfact_factor)
+
+
+
 # Etiquetado variable factor
 procjv$ingreso_satisfact_factor <- sjlabelled::set_label(procjv$ingreso_satisfact_factor, label = "Satisfaccion Ingresos")
 ```

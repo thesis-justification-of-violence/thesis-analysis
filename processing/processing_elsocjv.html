@@ -3270,18 +3270,49 @@ procjv$ingreso_satisfact_factor &lt;- factor(procjv$ingreso_satisfact, levels = 
                                                                                                                   &quot;Satisfecho&quot;,
                                                                                                                   &quot;Totalmente satisfecho&quot;))
 
-# Etiquetado variable factor
-procjv$ingreso_satisfact_factor &lt;- sjlabelled::set_label(procjv$ingreso_satisfact_factor, label = &quot;Satisfaccion Ingresos&quot;)</code></pre>
+frq(procjv$ingreso_satisfact_factor)</code></pre>
+<p>x <categorical>
+# total N=3417 valid N=2125 mean=2.60 sd=1.01</p>
 </div>
-<div id="descriptivo-final-10" class="section level3" number="2.27.2">
-<h3><span class="header-section-number">2.27.2</span> Descriptivo final</h3>
+</div>
+<div id="value-n-raw-valid-cum.-7" class="section level2" number="2.28">
+<h2><span class="header-section-number">2.28</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<p>Totalmente insatisfecho | 212 | 6.20 | 9.98 | 9.98
+Insatisfecho | 1002 | 29.32 | 47.15 | 57.13
+Ni satisfecho ni insatisfecho | 381 | 11.15 | 17.93 | 75.06
+Satisfecho | 486 | 14.22 | 22.87 | 97.93
+Totalmente satisfecho | 44 | 1.29 | 2.07 | 100.00
+<NA> | 1292 | 37.81 | <NA> | <NA></p>
+<pre class="r"><code>procjv$ingreso_satisfact_factor &lt;- factor(procjv$ingreso_satisfact_factor, levels = c(&quot;Totalmente satisfecho&quot;,
+                                                                                         &quot;Satisfecho&quot;,
+                                                                                         &quot;Ni satisfecho ni insatisfecho&quot;,
+                                                                                         &quot;Insatisfecho&quot;,
+                                                                                         &quot;Totalmente insatisfecho&quot;)
+                                                        )
+
+frq(procjv$ingreso_satisfact_factor)</code></pre>
+<p>x <categorical>
+# total N=3417 valid N=2125 mean=3.40 sd=1.01</p>
+</div>
+<div id="value-n-raw-valid-cum.-8" class="section level2" number="2.29">
+<h2><span class="header-section-number">2.29</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<p>Totalmente satisfecho | 44 | 1.29 | 2.07 | 2.07
+Satisfecho | 486 | 14.22 | 22.87 | 24.94
+Ni satisfecho ni insatisfecho | 381 | 11.15 | 17.93 | 42.87
+Insatisfecho | 1002 | 29.32 | 47.15 | 90.02
+Totalmente insatisfecho | 212 | 6.20 | 9.98 | 100.00
+<NA> | 1292 | 37.81 | <NA> | <NA></p>
+<pre class="r"><code># Etiquetado variable factor
+procjv$ingreso_satisfact_factor &lt;- sjlabelled::set_label(procjv$ingreso_satisfact_factor, label = &quot;Satisfaccion Ingresos&quot;)</code></pre>
+<div id="descriptivo-final-10" class="section level3" number="2.29.1">
+<h3><span class="header-section-number">2.29.1</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$ingreso_satisfact)</code></pre>
 <p>Satisfaccion con ingreso (2019) (x) <numeric>
 # total N=3417 valid N=2125 mean=2.60 sd=1.01</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-9" class="section level2" number="2.28">
-<h2><span class="header-section-number">2.28</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-9" class="section level2" number="2.30">
+<h2><span class="header-section-number">2.30</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente insatisfecho |  212 |  6.20 |    9.98 |   9.98
 2 |                  Insatisfecho | 1002 | 29.32 |   47.15 |  57.13
 3 | Ni satisfecho ni insatisfecho |  381 | 11.15 |   17.93 |  75.06
@@ -3290,28 +3321,28 @@ procjv$ingreso_satisfact_factor &lt;- sjlabelled::set_label(procjv$ingreso_satis
 <p><NA> | <NA> | 1292 | 37.81 | <NA> | <NA></p>
 <pre class="r"><code>sjmisc::frq(procjv$ingreso_satisfact_factor)</code></pre>
 <p>Satisfaccion Ingresos (x) <categorical>
-# total N=3417 valid N=2125 mean=2.60 sd=1.01</p>
+# total N=3417 valid N=2125 mean=3.40 sd=1.01</p>
 </div>
-<div id="value-n-raw-valid-cum.-7" class="section level2" number="2.29">
-<h2><span class="header-section-number">2.29</span> Value | N | Raw % | Valid % | Cum. %</h2>
-<p>Totalmente insatisfecho | 212 | 6.20 | 9.98 | 9.98
-Insatisfecho | 1002 | 29.32 | 47.15 | 57.13
-Ni satisfecho ni insatisfecho | 381 | 11.15 | 17.93 | 75.06
-Satisfecho | 486 | 14.22 | 22.87 | 97.93
-Totalmente satisfecho | 44 | 1.29 | 2.07 | 100.00
+<div id="value-n-raw-valid-cum.-9" class="section level2" number="2.31">
+<h2><span class="header-section-number">2.31</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<p>Totalmente satisfecho | 44 | 1.29 | 2.07 | 2.07
+Satisfecho | 486 | 14.22 | 22.87 | 24.94
+Ni satisfecho ni insatisfecho | 381 | 11.15 | 17.93 | 42.87
+Insatisfecho | 1002 | 29.32 | 47.15 | 90.02
+Totalmente insatisfecho | 212 | 6.20 | 9.98 | 100.00
 <NA> | 1292 | 37.81 | <NA> | <NA></p>
 </div>
-<div id="grupos-desaventajados-nivel-educacional" class="section level2" number="2.30">
-<h2><span class="header-section-number">2.30</span> Grupos Desaventajados: Nivel educacional</h2>
-<div id="descriptivo-10" class="section level3" number="2.30.1">
-<h3><span class="header-section-number">2.30.1</span> Descriptivo</h3>
+<div id="grupos-desaventajados-nivel-educacional" class="section level2" number="2.32">
+<h2><span class="header-section-number">2.32</span> Grupos Desaventajados: Nivel educacional</h2>
+<div id="descriptivo-10" class="section level3" number="2.32.1">
+<h3><span class="header-section-number">2.32.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$educ)</code></pre>
 <p>Nivel educacional (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=4.08 sd=34.42</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-10" class="section level2" number="2.31">
-<h2><span class="header-section-number">2.31</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-10" class="section level2" number="2.33">
+<h2><span class="header-section-number">2.33</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 4 | 0.12 | 0.12 | 0.12
 -888 | No Sabe (no leer) | 0 | 0.00 | 0.00 | 0.12
 1 | Sin estudios | 35 | 1.02 | 1.02 | 1.14
@@ -3325,8 +3356,8 @@ Totalmente satisfecho | 44 | 1.29 | 2.07 | 100.00
 9 | Universitaria completa | 375 | 10.97 | 10.97 | 98.39
 10 | Estudios de posgrado (magister o doctorado) | 55 | 1.61 | 1.61 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-11" class="section level3" number="2.31.1">
-<h3><span class="header-section-number">2.31.1</span> Recodificacion</h3>
+<div id="recodificacion-11" class="section level3" number="2.33.1">
+<h3><span class="header-section-number">2.33.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$educ&lt;- set_na(procjv$educ, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 set_na</code></pre>
@@ -3351,7 +3382,7 @@ as.tag = as.tag, var.name = NULL)
 }
 x
 }
-&lt;bytecode: 0x000001f858bf4eb8&gt;
+&lt;bytecode: 0x00000244d6ec5418&gt;
 &lt;environment: namespace:sjlabelled&gt;</p>
 <pre class="r"><code># Creacion variable factor
 procjv$educ_factor &lt;- factor(procjv$educ, levels = c(1:10), labels = c(&quot;Sin estudios&quot;,
@@ -3396,15 +3427,15 @@ procjv$educ_rec_factor &lt;- factor(procjv$educ_rec, levels = c(1,2,3,4,5), labe
 # Etiquetado variable rec factor
 procjv$educ_rec_factor &lt;- sjlabelled::set_label(procjv$educ_rec_factor, label = &quot;Nivel Educacional CINE 11&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-11" class="section level3" number="2.31.2">
-<h3><span class="header-section-number">2.31.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-11" class="section level3" number="2.33.2">
+<h3><span class="header-section-number">2.33.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$educ)</code></pre>
 <p>Nivel educacional (2019) (x) <numeric>
 # total N=3417 valid N=3413 mean=5.25 sd=2.24</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-11" class="section level2" number="2.32">
-<h2><span class="header-section-number">2.32</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-11" class="section level2" number="2.34">
+<h2><span class="header-section-number">2.34</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |                                Sin estudios |  35 |  1.02 |    1.03 |   1.03
 2 |  Educacion Basica o Preparatoria incompleta | 445 | 13.02 |   13.04 |  14.06
 3 |    Educacion Basica o Preparatoria completa | 301 |  8.81 |    8.82 |  22.88
@@ -3420,8 +3451,8 @@ procjv$educ_rec_factor &lt;- sjlabelled::set_label(procjv$educ_rec_factor, label
 <p>Nivel educacional del entrevistado (x) <categorical>
 # total N=3417 valid N=3413 mean=5.25 sd=2.24</p>
 </div>
-<div id="value-n-raw-valid-cum.-8" class="section level2" number="2.33">
-<h2><span class="header-section-number">2.33</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-10" class="section level2" number="2.35">
+<h2><span class="header-section-number">2.35</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Sin estudios | 35 | 1.02 | 1.03 | 1.03
 Educacion Basica o Preparatoria incompleta | 445 | 13.02 | 13.04 | 14.06
 Educacion Basica o Preparatoria completa | 301 | 8.81 | 8.82 | 22.88
@@ -3437,8 +3468,8 @@ Estudios de posgrado (magister o doctorado) | 55 | 1.61 | 1.61 | 100.00
 <p>Nivel Educacional CINE 11 (x) <numeric>
 # total N=3417 valid N=3413 mean=3.17 sd=1.24</p>
 </div>
-<div id="value-label-n-raw-valid-cum.-12" class="section level2" number="2.34">
-<h2><span class="header-section-number">2.34</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-12" class="section level2" number="2.36">
+<h2><span class="header-section-number">2.36</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |  Primaria incompleta menos |  480 | 14.05 |   14.06 |  14.06
 2 | Primaria y secundaria baja |  301 |  8.81 |    8.82 |  22.88
 3 |            Secundaria alta | 1432 | 41.91 |   41.96 |  64.84
@@ -3449,8 +3480,8 @@ Estudios de posgrado (magister o doctorado) | 55 | 1.61 | 1.61 | 100.00
 <p>Nivel Educacional CINE 11 (x) <categorical>
 # total N=3417 valid N=3413 mean=3.17 sd=1.24</p>
 </div>
-<div id="value-n-raw-valid-cum.-9" class="section level2" number="2.35">
-<h2><span class="header-section-number">2.35</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-11" class="section level2" number="2.37">
+<h2><span class="header-section-number">2.37</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Primaria incompleta menos | 480 | 14.05 | 14.06 | 14.06
 Primaria y secundaria baja | 301 | 8.81 | 8.82 | 22.88
 Secundaria alta | 1432 | 41.91 | 41.96 | 64.84
@@ -3458,22 +3489,22 @@ Terciaria ciclo corto | 560 | 16.39 | 16.41 | 81.25
 Terciaria y Postgrado | 640 | 18.73 | 18.75 | 100.00
 <NA> | 4 | 0.12 | <NA> | <NA></p>
 </div>
-<div id="grupos-desaventajados-sexo" class="section level2" number="2.36">
-<h2><span class="header-section-number">2.36</span> Grupos Desaventajados: Sexo</h2>
-<div id="descriptivo-11" class="section level3" number="2.36.1">
-<h3><span class="header-section-number">2.36.1</span> Descriptivo</h3>
+<div id="grupos-desaventajados-sexo" class="section level2" number="2.38">
+<h2><span class="header-section-number">2.38</span> Grupos Desaventajados: Sexo</h2>
+<div id="descriptivo-11" class="section level3" number="2.38.1">
+<h3><span class="header-section-number">2.38.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sexo)</code></pre>
 <p>Sexo del entrevistado (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=1.62 sd=0.48</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-13" class="section level2" number="2.37">
-<h2><span class="header-section-number">2.37</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-13" class="section level2" number="2.39">
+<h2><span class="header-section-number">2.39</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 | Hombre | 1282 | 37.52 |   37.52 |  37.52
 2 |  Mujer | 2135 | 62.48 |   62.48 | 100.00</code></pre>
 <p><NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-12" class="section level3" number="2.37.1">
-<h3><span class="header-section-number">2.37.1</span> Recodificacion</h3>
+<div id="recodificacion-12" class="section level3" number="2.39.1">
+<h3><span class="header-section-number">2.39.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$sexo&lt;- set_na(procjv$sexo, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3483,15 +3514,15 @@ procjv$sexo_factor &lt;- factor(procjv$sexo, levels = c(1,2), labels = c(&quot;H
 # Etiquetado variable factor
 procjv$sexo_factor &lt;- sjlabelled::set_label(procjv$sexo_factor, label = &quot;Sexo&quot;)</code></pre>
 </div>
-<div id="desriptivo-final" class="section level3" number="2.37.2">
-<h3><span class="header-section-number">2.37.2</span> Desriptivo final</h3>
+<div id="desriptivo-final" class="section level3" number="2.39.2">
+<h3><span class="header-section-number">2.39.2</span> Desriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sexo)</code></pre>
 <p>Sexo del entrevistado (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=1.62 sd=0.48</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-14" class="section level2" number="2.38">
-<h2><span class="header-section-number">2.38</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-14" class="section level2" number="2.40">
+<h2><span class="header-section-number">2.40</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 | Hombre | 1282 | 37.52 |   37.52 |  37.52
 2 |  Mujer | 2135 | 62.48 |   62.48 | 100.00</code></pre>
 <p><NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
@@ -3499,23 +3530,23 @@ procjv$sexo_factor &lt;- sjlabelled::set_label(procjv$sexo_factor, label = &quot
 <p>Sexo (x) <categorical>
 # total N=3417 valid N=3417 mean=1.62 sd=0.48</p>
 </div>
-<div id="value-n-raw-valid-cum.-10" class="section level2" number="2.39">
-<h2><span class="header-section-number">2.39</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-12" class="section level2" number="2.41">
+<h2><span class="header-section-number">2.41</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Hombre | 1282 | 37.52 | 37.52 | 37.52
 Mujer | 2135 | 62.48 | 62.48 | 100.00
 <NA> | 0 | 0.00 | <NA> | <NA></p>
 </div>
-<div id="grupos-desaventajados-pertenencia-a-pueblos-indigenas" class="section level2" number="2.40">
-<h2><span class="header-section-number">2.40</span> Grupos Desaventajados: Pertenencia a Pueblos indigenas</h2>
-<div id="descriptivo-12" class="section level3" number="2.40.1">
-<h3><span class="header-section-number">2.40.1</span> Descriptivo</h3>
+<div id="grupos-desaventajados-pertenencia-a-pueblos-indigenas" class="section level2" number="2.42">
+<h2><span class="header-section-number">2.42</span> Grupos Desaventajados: Pertenencia a Pueblos indigenas</h2>
+<div id="descriptivo-12" class="section level3" number="2.42.1">
+<h3><span class="header-section-number">2.42.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$indigena)</code></pre>
 <p>Pertenencia a pueblo indigena (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-1.44 sd=98.19</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-15" class="section level2" number="2.41">
-<h2><span class="header-section-number">2.41</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-15" class="section level2" number="2.43">
+<h2><span class="header-section-number">2.43</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 9 | 0.26 | 0.26 | 0.26
 -888 | No Sabe (no leer) | 30 | 0.88 | 0.88 | 1.14
 1 | Mapuche | 304 | 8.90 | 8.90 | 10.04
@@ -3530,8 +3561,8 @@ Mujer | 2135 | 62.48 | 62.48 | 100.00
 10 | Ninguno | 2990 | 87.50 | 87.50 | 99.77
 11 | Otro | 8 | 0.23 | 0.23 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-13" class="section level3" number="2.41.1">
-<h3><span class="header-section-number">2.41.1</span> Recodificacion</h3>
+<div id="recodificacion-13" class="section level3" number="2.43.1">
+<h3><span class="header-section-number">2.43.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$indigena &lt;- set_na(procjv$indigena, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3549,15 +3580,15 @@ procjv$indigena_rec_factor &lt;- factor(procjv$indigena_rec, levels = c(1,2,3), 
 # Etiquetado variable factor
 procjv$indigena_rec_factor &lt;- sjlabelled::set_label(procjv$indigena_rec_factor, label = &quot;Pertenencia a Pueblo Indigena&quot;)</code></pre>
 </div>
-<div id="desriptivo-final-1" class="section level3" number="2.41.2">
-<h3><span class="header-section-number">2.41.2</span> Desriptivo final</h3>
+<div id="desriptivo-final-1" class="section level3" number="2.43.2">
+<h3><span class="header-section-number">2.43.2</span> Desriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$indigena)</code></pre>
 <p>Pertenencia a pueblo indigena (2019) (x) <numeric>
 # total N=3417 valid N=3378 mean=9.09 sd=2.65</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-16" class="section level2" number="2.42">
-<h2><span class="header-section-number">2.42</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-16" class="section level2" number="2.44">
+<h2><span class="header-section-number">2.44</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |        Mapuche |  304 |  8.90 |    9.00 |   9.00
 2 |         Aimara |   17 |  0.50 |    0.50 |   9.50
 3 |       Rapa Nui |    1 |  0.03 |    0.03 |   9.53
@@ -3574,24 +3605,24 @@ procjv$indigena_rec_factor &lt;- sjlabelled::set_label(procjv$indigena_rec_facto
 <p>Pertenencia a Pueblo Indigena (x) <categorical>
 # total N=3417 valid N=3378 mean=1.20 sd=0.59</p>
 </div>
-<div id="value-n-raw-valid-cum.-11" class="section level2" number="2.43">
-<h2><span class="header-section-number">2.43</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-13" class="section level2" number="2.45">
+<h2><span class="header-section-number">2.45</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Ninguno | 2990 | 87.50 | 88.51 | 88.51
 Otro pueblo | 84 | 2.46 | 2.49 | 91.00
 Mapuche | 304 | 8.90 | 9.00 | 100.00
 <NA> | 39 | 1.14 | <NA> | <NA></p>
 </div>
-<div id="ideología-sociedad-ideal-sdo" class="section level2" number="2.44">
-<h2><span class="header-section-number">2.44</span> Ideología: Sociedad Ideal (SDO)</h2>
-<div id="descriptivo-13" class="section level3" number="2.44.1">
-<h3><span class="header-section-number">2.44.1</span> Descriptivo</h3>
+<div id="ideología-sociedad-ideal-sdo" class="section level2" number="2.46">
+<h2><span class="header-section-number">2.46</span> Ideología: Sociedad Ideal (SDO)</h2>
+<div id="descriptivo-13" class="section level3" number="2.46.1">
+<h3><span class="header-section-number">2.46.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_soc_ideal)</code></pre>
 <p>Grado de acuerdo: Sociedad grupos superiores e inferiores (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-7.64 sd=95.33</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-17" class="section level2" number="2.45">
-<h2><span class="header-section-number">2.45</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-17" class="section level2" number="2.47">
+<h2><span class="header-section-number">2.47</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 6 | 0.18 | 0.18 | 0.18
 -888 | No Sabe (no leer) | 32 | 0.94 | 0.94 | 1.11
 1 | Totalmente en desacuerdo | 535 | 15.66 | 15.66 | 16.77
@@ -3600,8 +3631,8 @@ Mapuche | 304 | 8.90 | 9.00 | 100.00
 4 | De acuerdo | 599 | 17.53 | 17.53 | 97.63
 5 | Totalmente de acuerdo | 81 | 2.37 | 2.37 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-14" class="section level3" number="2.45.1">
-<h3><span class="header-section-number">2.45.1</span> Recodificacion</h3>
+<div id="recodificacion-14" class="section level3" number="2.47.1">
+<h3><span class="header-section-number">2.47.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$sdo_soc_ideal &lt;- set_na(procjv$sdo_soc_ideal, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3611,15 +3642,15 @@ procjv$sdo_soc_ideal_factor &lt;- factor(procjv$sdo_soc_ideal, levels = c(1:5), 
 # Etiquetado variable factor
 procjv$sdo_soc_ideal_factor &lt;- sjlabelled::set_label(procjv$sdo_soc_ideal_factor, label = &quot;SDO: Sociedad ideal requiere grupos superiores e inferiores&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-12" class="section level3" number="2.45.2">
-<h3><span class="header-section-number">2.45.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-12" class="section level3" number="2.47.2">
+<h3><span class="header-section-number">2.47.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_soc_ideal)</code></pre>
 <p>Grado de acuerdo: Sociedad grupos superiores e inferiores (2019) (x) <numeric>
 # total N=3417 valid N=3379 mean=2.46 sd=1.03</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-18" class="section level2" number="2.46">
-<h2><span class="header-section-number">2.46</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-18" class="section level2" number="2.48">
+<h2><span class="header-section-number">2.48</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente en desacuerdo |  535 | 15.66 |   15.83 |  15.83
 2 |                  En desacuerdo | 1515 | 44.34 |   44.84 |  60.67
 3 | Ni de acuerdo ni en desacuerdo |  649 | 18.99 |   19.21 |  79.88
@@ -3630,8 +3661,8 @@ procjv$sdo_soc_ideal_factor &lt;- sjlabelled::set_label(procjv$sdo_soc_ideal_fac
 <p>SDO: Sociedad ideal requiere grupos superiores e inferiores (x) <categorical>
 # total N=3417 valid N=3379 mean=2.46 sd=1.03</p>
 </div>
-<div id="value-n-raw-valid-cum.-12" class="section level2" number="2.47">
-<h2><span class="header-section-number">2.47</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-14" class="section level2" number="2.49">
+<h2><span class="header-section-number">2.49</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente en desacuerdo | 535 | 15.66 | 15.83 | 15.83
 En desacuerdo | 1515 | 44.34 | 44.84 | 60.67
 Ni de acuerdo ni en desacuerdo | 649 | 18.99 | 19.21 | 79.88
@@ -3639,17 +3670,17 @@ De acuerdo | 599 | 17.53 | 17.73 | 97.60
 Totalmente de acuerdo | 81 | 2.37 | 2.40 | 100.00
 <NA> | 38 | 1.11 | <NA> | <NA></p>
 </div>
-<div id="ideología-grupos-inferiores-sdo" class="section level2" number="2.48">
-<h2><span class="header-section-number">2.48</span> Ideología: Grupos Inferiores (SDO)</h2>
-<div id="descriptivo-14" class="section level3" number="2.48.1">
-<h3><span class="header-section-number">2.48.1</span> Descriptivo</h3>
+<div id="ideología-grupos-inferiores-sdo" class="section level2" number="2.50">
+<h2><span class="header-section-number">2.50</span> Ideología: Grupos Inferiores (SDO)</h2>
+<div id="descriptivo-14" class="section level3" number="2.50.1">
+<h3><span class="header-section-number">2.50.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_grupos_inferiores)</code></pre>
 <p>Grado de acuerdo: Hay grupos de personas inferiores (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-5.85 sd=88.26</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-19" class="section level2" number="2.49">
-<h2><span class="header-section-number">2.49</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-19" class="section level2" number="2.51">
+<h2><span class="header-section-number">2.51</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 7 | 0.20 | 0.20 | 0.20
 -888 | No Sabe (no leer) | 25 | 0.73 | 0.73 | 0.94
 1 | Totalmente en desacuerdo | 491 | 14.37 | 14.37 | 15.31
@@ -3658,8 +3689,8 @@ Totalmente de acuerdo | 81 | 2.37 | 2.40 | 100.00
 4 | De acuerdo | 1058 | 30.96 | 30.96 | 96.75
 5 | Totalmente de acuerdo | 111 | 3.25 | 3.25 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-15" class="section level3" number="2.49.1">
-<h3><span class="header-section-number">2.49.1</span> Recodificacion</h3>
+<div id="recodificacion-15" class="section level3" number="2.51.1">
+<h3><span class="header-section-number">2.51.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$sdo_grupos_inferiores &lt;- set_na(procjv$sdo_grupos_inferiores, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3669,15 +3700,15 @@ procjv$sdo_grupos_inferiores_factor &lt;- factor(procjv$sdo_grupos_inferiores, l
 # Etiquetado variable factor
 procjv$sdo_grupos_inferiores_factor &lt;- sjlabelled::set_label(procjv$sdo_grupos_inferiores_factor, label = &quot;SDO: Grupos son inferiores que otros&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-13" class="section level3" number="2.49.2">
-<h3><span class="header-section-number">2.49.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-13" class="section level3" number="2.51.2">
+<h3><span class="header-section-number">2.51.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_grupos_inferiores)</code></pre>
 <p>Grado de acuerdo: Hay grupos de personas inferiores (2019) (x) <numeric>
 # total N=3417 valid N=3385 mean=2.72 sd=1.15</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-20" class="section level2" number="2.50">
-<h2><span class="header-section-number">2.50</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-20" class="section level2" number="2.52">
+<h2><span class="header-section-number">2.52</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente en desacuerdo |  491 | 14.37 |   14.51 |  14.51
 2 |                  En desacuerdo | 1253 | 36.67 |   37.02 |  51.52
 3 | Ni de acuerdo ni en desacuerdo |  472 | 13.81 |   13.94 |  65.47
@@ -3688,8 +3719,8 @@ procjv$sdo_grupos_inferiores_factor &lt;- sjlabelled::set_label(procjv$sdo_grupo
 <p>SDO: Grupos son inferiores que otros (x) <categorical>
 # total N=3417 valid N=3385 mean=2.72 sd=1.15</p>
 </div>
-<div id="value-n-raw-valid-cum.-13" class="section level2" number="2.51">
-<h2><span class="header-section-number">2.51</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-15" class="section level2" number="2.53">
+<h2><span class="header-section-number">2.53</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente en desacuerdo | 491 | 14.37 | 14.51 | 14.51
 En desacuerdo | 1253 | 36.67 | 37.02 | 51.52
 Ni de acuerdo ni en desacuerdo | 472 | 13.81 | 13.94 | 65.47
@@ -3697,17 +3728,17 @@ De acuerdo | 1058 | 30.96 | 31.26 | 96.72
 Totalmente de acuerdo | 111 | 3.25 | 3.28 | 100.00
 <NA> | 32 | 0.94 | <NA> | <NA></p>
 </div>
-<div id="ideología-oportunidades-iguales-sdo" class="section level2" number="2.52">
-<h2><span class="header-section-number">2.52</span> Ideología: Oportunidades Iguales (SDO)</h2>
-<div id="descriptivo-15" class="section level3" number="2.52.1">
-<h3><span class="header-section-number">2.52.1</span> Descriptivo</h3>
+<div id="ideología-oportunidades-iguales-sdo" class="section level2" number="2.54">
+<h2><span class="header-section-number">2.54</span> Ideología: Oportunidades Iguales (SDO)</h2>
+<div id="descriptivo-15" class="section level3" number="2.54.1">
+<h3><span class="header-section-number">2.54.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_oportunidades_iguales)</code></pre>
 <p>Grado de acuerdo: Dar a todos las mismas oportunidades (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=0.96 sd=55.63</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-21" class="section level2" number="2.53">
-<h2><span class="header-section-number">2.53</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-21" class="section level2" number="2.55">
+<h2><span class="header-section-number">2.55</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 5 | 0.15 | 0.15 | 0.15
 -888 | No Sabe (no leer) | 7 | 0.20 | 0.20 | 0.35
 1 | Totalmente en desacuerdo | 16 | 0.47 | 0.47 | 0.82
@@ -3716,8 +3747,8 @@ Totalmente de acuerdo | 111 | 3.25 | 3.28 | 100.00
 4 | De acuerdo | 2034 | 59.53 | 59.53 | 65.70
 5 | Totalmente de acuerdo | 1172 | 34.30 | 34.30 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-16" class="section level3" number="2.53.1">
-<h3><span class="header-section-number">2.53.1</span> Recodificacion</h3>
+<div id="recodificacion-16" class="section level3" number="2.55.1">
+<h3><span class="header-section-number">2.55.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$sdo_oportunidades_iguales &lt;- set_na(procjv$sdo_oportunidades_iguales, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3745,15 +3776,15 @@ procjv$sdo_oportunidades_iguales_factor &lt;- factor(procjv$sdo_oportunidades_ig
 # Etiquetado variable factor
 procjv$sdo_oportunidades_iguales_factor &lt;- sjlabelled::set_label(procjv$sdo_oportunidades_iguales_factor, label = &quot;SDO: Misma oportunidad entre grupos (inversion aplicada)&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-14" class="section level3" number="2.53.2">
-<h3><span class="header-section-number">2.53.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-14" class="section level3" number="2.55.2">
+<h3><span class="header-section-number">2.55.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_oportunidades_iguales)</code></pre>
 <p>SDO: Misma oportunidad entre grupos (inversion aplicada) (x) <numeric>
 # total N=3417 valid N=3405 mean=1.75 sd=0.66</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-22" class="section level2" number="2.54">
-<h2><span class="header-section-number">2.54</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-22" class="section level2" number="2.56">
+<h2><span class="header-section-number">2.56</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |          Totalmente de acuerdo | 1172 | 34.30 |   34.42 |  34.42
 2 |                     De acuerdo | 2034 | 59.53 |   59.74 |  94.16
 3 | Ni de acuerdo ni en desacuerdo |  108 |  3.16 |    3.17 |  97.33
@@ -3764,8 +3795,8 @@ procjv$sdo_oportunidades_iguales_factor &lt;- sjlabelled::set_label(procjv$sdo_o
 <p>SDO: Misma oportunidad entre grupos (inversion aplicada) (x) <categorical>
 # total N=3417 valid N=3405 mean=1.75 sd=0.66</p>
 </div>
-<div id="value-n-raw-valid-cum.-14" class="section level2" number="2.55">
-<h2><span class="header-section-number">2.55</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-16" class="section level2" number="2.57">
+<h2><span class="header-section-number">2.57</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente de acuerdo | 1172 | 34.30 | 34.42 | 34.42
 De acuerdo | 2034 | 59.53 | 59.74 | 94.16
 Ni de acuerdo ni en desacuerdo | 108 | 3.16 | 3.17 | 97.33
@@ -3773,17 +3804,17 @@ En desacuerdo | 75 | 2.19 | 2.20 | 99.53
 Totalmente en desacuerdo | 16 | 0.47 | 0.47 | 100.00
 <NA> | 12 | 0.35 | <NA> | <NA></p>
 </div>
-<div id="ideología-condiciones-iguales-sdo" class="section level2" number="2.56">
-<h2><span class="header-section-number">2.56</span> Ideología: Condiciones iguales (SDO)</h2>
-<div id="descriptivo-16" class="section level3" number="2.56.1">
-<h3><span class="header-section-number">2.56.1</span> Descriptivo</h3>
+<div id="ideología-condiciones-iguales-sdo" class="section level2" number="2.58">
+<h2><span class="header-section-number">2.58</span> Ideología: Condiciones iguales (SDO)</h2>
+<div id="descriptivo-16" class="section level3" number="2.58.1">
+<h3><span class="header-section-number">2.58.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_condiciones_iguales)</code></pre>
 <p>Grado de acuerdo: Igualar condiciones diferentes grupos (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=0.43 sd=59.64</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-23" class="section level2" number="2.57">
-<h2><span class="header-section-number">2.57</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-23" class="section level2" number="2.59">
+<h2><span class="header-section-number">2.59</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 5 | 0.15 | 0.15 | 0.15
 -888 | No Sabe (no leer) | 9 | 0.26 | 0.26 | 0.41
 1 | Totalmente en desacuerdo | 8 | 0.23 | 0.23 | 0.64
@@ -3792,8 +3823,8 @@ Totalmente en desacuerdo | 16 | 0.47 | 0.47 | 100.00
 4 | De acuerdo | 2065 | 60.43 | 60.43 | 66.75
 5 | Totalmente de acuerdo | 1136 | 33.25 | 33.25 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-17" class="section level3" number="2.57.1">
-<h3><span class="header-section-number">2.57.1</span> Recodificacion</h3>
+<div id="recodificacion-17" class="section level3" number="2.59.1">
+<h3><span class="header-section-number">2.59.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$sdo_condiciones_iguales &lt;- set_na(procjv$sdo_condiciones_iguales, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3821,15 +3852,15 @@ procjv$sdo_condiciones_iguales_factor &lt;- factor(procjv$sdo_condiciones_iguale
 # Etiquetado variable factor
 procjv$sdo_condiciones_iguales_factor &lt;- sjlabelled::set_label(procjv$sdo_condiciones_iguales_factor, label = &quot;SDO: Condiciones iguales entre grupos (inversion aplicada)&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-15" class="section level3" number="2.57.2">
-<h3><span class="header-section-number">2.57.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-15" class="section level3" number="2.59.2">
+<h3><span class="header-section-number">2.59.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$sdo_condiciones_iguales)</code></pre>
 <p>SDO: Condiciones iguales entre grupos (inversion aplicada) (x) <numeric>
 # total N=3417 valid N=3403 mean=1.75 sd=0.64</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-24" class="section level2" number="2.58">
-<h2><span class="header-section-number">2.58</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-24" class="section level2" number="2.60">
+<h2><span class="header-section-number">2.60</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |          Totalmente de acuerdo | 1136 | 33.25 |   33.38 |  33.38
 2 |                     De acuerdo | 2065 | 60.43 |   60.68 |  94.06
 3 | Ni de acuerdo ni en desacuerdo |  131 |  3.83 |    3.85 |  97.91
@@ -3840,16 +3871,16 @@ procjv$sdo_condiciones_iguales_factor &lt;- sjlabelled::set_label(procjv$sdo_con
 <p>SDO: Condiciones iguales entre grupos (inversion aplicada) (x) <categorical>
 # total N=3417 valid N=3403 mean=1.75 sd=0.64</p>
 </div>
-<div id="value-n-raw-valid-cum.-15" class="section level2" number="2.59">
-<h2><span class="header-section-number">2.59</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-17" class="section level2" number="2.61">
+<h2><span class="header-section-number">2.61</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente de acuerdo | 1136 | 33.25 | 33.38 | 33.38
 De acuerdo | 2065 | 60.43 | 60.68 | 94.06
 Ni de acuerdo ni en desacuerdo | 131 | 3.83 | 3.85 | 97.91
 En desacuerdo | 63 | 1.84 | 1.85 | 99.76
 Totalmente en desacuerdo | 8 | 0.23 | 0.24 | 100.00
 <NA> | 14 | 0.41 | <NA> | <NA></p>
-<div id="otros-ajustes-1" class="section level3" number="2.59.1">
-<h3><span class="header-section-number">2.59.1</span> Otros ajustes</h3>
+<div id="otros-ajustes-1" class="section level3" number="2.61.1">
+<h3><span class="header-section-number">2.61.1</span> Otros ajustes</h3>
 <pre class="r"><code># Crear indices para ideología
 
 # SDO
@@ -3861,8 +3892,8 @@ frq(procjv$sdo_indice)</code></pre>
 # total N=3417 valid N=3417 mean=2.15 sd=0.61</p>
 </div>
 </div>
-<div id="value-n-raw-valid-cum.-16" class="section level2" number="2.60">
-<h2><span class="header-section-number">2.60</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-18" class="section level2" number="2.62">
+<h2><span class="header-section-number">2.62</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>0.00 | 5 | 0.15 | 0.15 | 0.15
 0.25 | 1 | 0.03 | 0.03 | 0.18
 0.50 | 5 | 0.15 | 0.15 | 0.32
@@ -3891,8 +3922,8 @@ frq(procjv$sdo_indice)</code></pre>
 <p>SDO Indice (x) <numeric>
 # total N=3417 valid N=3417 mean=0.54 sd=0.15</p>
 </div>
-<div id="value-n-raw-valid-cum.-17" class="section level2" number="2.61">
-<h2><span class="header-section-number">2.61</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-19" class="section level2" number="2.63">
+<h2><span class="header-section-number">2.63</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>0.00 | 5 | 0.15 | 0.15 | 0.15
 0.06 | 1 | 0.03 | 0.03 | 0.18
 0.12 | 5 | 0.15 | 0.15 | 0.32
@@ -3912,17 +3943,17 @@ frq(procjv$sdo_indice)</code></pre>
 1.00 | 3 | 0.09 | 0.09 | 100.00
 <NA> | 0 | 0.00 | <NA> | <NA></p>
 </div>
-<div id="ideología-gobierno-firme-rwa" class="section level2" number="2.62">
-<h2><span class="header-section-number">2.62</span> Ideología: Gobierno firme (RWA)</h2>
-<div id="descriptivo-17" class="section level3" number="2.62.1">
-<h3><span class="header-section-number">2.62.1</span> Descriptivo</h3>
+<div id="ideología-gobierno-firme-rwa" class="section level2" number="2.64">
+<h2><span class="header-section-number">2.64</span> Ideología: Gobierno firme (RWA)</h2>
+<div id="descriptivo-17" class="section level3" number="2.64.1">
+<h3><span class="header-section-number">2.64.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_gobierno_firme)</code></pre>
 <p>Grado de acuerdo: Necesitamos un gobierno firme (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-4.42 sd=83.34</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-25" class="section level2" number="2.63">
-<h2><span class="header-section-number">2.63</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-25" class="section level2" number="2.65">
+<h2><span class="header-section-number">2.65</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 8 | 0.23 | 0.23 | 0.23
 -888 | No Sabe (no leer) | 20 | 0.59 | 0.59 | 0.82
 1 | Totalmente en desacuerdo | 390 | 11.41 | 11.41 | 12.23
@@ -3931,8 +3962,8 @@ frq(procjv$sdo_indice)</code></pre>
 4 | De acuerdo | 1254 | 36.70 | 36.70 | 87.45
 5 | Totalmente de acuerdo | 429 | 12.55 | 12.55 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-18" class="section level3" number="2.63.1">
-<h3><span class="header-section-number">2.63.1</span> Recodificacion</h3>
+<div id="recodificacion-18" class="section level3" number="2.65.1">
+<h3><span class="header-section-number">2.65.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$rwa_gobierno_firme &lt;- set_na(procjv$rwa_gobierno_firme, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -3942,15 +3973,15 @@ procjv$rwa_gobierno_firme_factor &lt;- factor(procjv$rwa_gobierno_firme, levels 
 # Etiquetado variable factor
 procjv$rwa_gobierno_firme_factor &lt;- sjlabelled::set_label(procjv$rwa_gobierno_firme_factor, label = &quot;RWA: Se necesita gobierno firme&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-16" class="section level3" number="2.63.2">
-<h3><span class="header-section-number">2.63.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-16" class="section level3" number="2.65.2">
+<h3><span class="header-section-number">2.65.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_gobierno_firme)</code></pre>
 <p>Grado de acuerdo: Necesitamos un gobierno firme (2019) (x) <numeric>
 # total N=3417 valid N=3389 mean=3.14 sd=1.25</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-26" class="section level2" number="2.64">
-<h2><span class="header-section-number">2.64</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-26" class="section level2" number="2.66">
+<h2><span class="header-section-number">2.66</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente en desacuerdo |  390 | 11.41 |   11.51 |  11.51
 2 |                  En desacuerdo |  843 | 24.67 |   24.87 |  36.38
 3 | Ni de acuerdo ni en desacuerdo |  473 | 13.84 |   13.96 |  50.34
@@ -3961,8 +3992,8 @@ procjv$rwa_gobierno_firme_factor &lt;- sjlabelled::set_label(procjv$rwa_gobierno
 <p>RWA: Se necesita gobierno firme (x) <categorical>
 # total N=3417 valid N=3389 mean=3.14 sd=1.25</p>
 </div>
-<div id="value-n-raw-valid-cum.-18" class="section level2" number="2.65">
-<h2><span class="header-section-number">2.65</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-20" class="section level2" number="2.67">
+<h2><span class="header-section-number">2.67</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente en desacuerdo | 390 | 11.41 | 11.51 | 11.51
 En desacuerdo | 843 | 24.67 | 24.87 | 36.38
 Ni de acuerdo ni en desacuerdo | 473 | 13.84 | 13.96 | 50.34
@@ -3970,17 +4001,17 @@ De acuerdo | 1254 | 36.70 | 37.00 | 87.34
 Totalmente de acuerdo | 429 | 12.55 | 12.66 | 100.00
 <NA> | 28 | 0.82 | <NA> | <NA></p>
 </div>
-<div id="ideología-mandatario-fuerte-rwa" class="section level2" number="2.66">
-<h2><span class="header-section-number">2.66</span> Ideología: Mandatario fuerte (RWA)</h2>
-<div id="descriptivo-18" class="section level3" number="2.66.1">
-<h3><span class="header-section-number">2.66.1</span> Descriptivo</h3>
+<div id="ideología-mandatario-fuerte-rwa" class="section level2" number="2.68">
+<h2><span class="header-section-number">2.68</span> Ideología: Mandatario fuerte (RWA)</h2>
+<div id="descriptivo-18" class="section level3" number="2.68.1">
+<h3><span class="header-section-number">2.68.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_mandatario_fuerte)</code></pre>
 <p>Grado de acuerdo: Pais necesita un mandatario fuerte (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-7.62 sd=101.38</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-27" class="section level2" number="2.67">
-<h2><span class="header-section-number">2.67</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-27" class="section level2" number="2.69">
+<h2><span class="header-section-number">2.69</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 14 | 0.41 | 0.41 | 0.41
 -888 | No Sabe (no leer) | 27 | 0.79 | 0.79 | 1.20
 1 | Totalmente en desacuerdo | 227 | 6.64 | 6.64 | 7.84
@@ -3989,8 +4020,8 @@ Totalmente de acuerdo | 429 | 12.55 | 12.66 | 100.00
 4 | De acuerdo | 1619 | 47.38 | 47.38 | 83.35
 5 | Totalmente de acuerdo | 569 | 16.65 | 16.65 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-19" class="section level3" number="2.67.1">
-<h3><span class="header-section-number">2.67.1</span> Recodificacion</h3>
+<div id="recodificacion-19" class="section level3" number="2.69.1">
+<h3><span class="header-section-number">2.69.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$rwa_mandatario_fuerte &lt;- set_na(procjv$rwa_mandatario_fuerte, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4000,15 +4031,15 @@ procjv$rwa_mandatario_fuerte_factor &lt;- factor(procjv$rwa_mandatario_fuerte, l
 # Etiquetado variable factor
 procjv$rwa_mandatario_fuerte_factor &lt;- sjlabelled::set_label(procjv$rwa_mandatario_fuerte_factor, label = &quot;RWA: Mandatario determinado para guiarnos&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-17" class="section level3" number="2.67.2">
-<h3><span class="header-section-number">2.67.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-17" class="section level3" number="2.69.2">
+<h3><span class="header-section-number">2.69.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_mandatario_fuerte)</code></pre>
 <p>Grado de acuerdo: Pais necesita un mandatario fuerte (2019) (x) <numeric>
 # total N=3417 valid N=3376 mean=3.53 sd=1.14</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-28" class="section level2" number="2.68">
-<h2><span class="header-section-number">2.68</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-28" class="section level2" number="2.70">
+<h2><span class="header-section-number">2.70</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente en desacuerdo |  227 |  6.64 |    6.72 |   6.72
 2 |                  En desacuerdo |  513 | 15.01 |   15.20 |  21.92
 3 | Ni de acuerdo ni en desacuerdo |  448 | 13.11 |   13.27 |  35.19
@@ -4019,8 +4050,8 @@ procjv$rwa_mandatario_fuerte_factor &lt;- sjlabelled::set_label(procjv$rwa_manda
 <p>RWA: Mandatario determinado para guiarnos (x) <categorical>
 # total N=3417 valid N=3376 mean=3.53 sd=1.14</p>
 </div>
-<div id="value-n-raw-valid-cum.-19" class="section level2" number="2.69">
-<h2><span class="header-section-number">2.69</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-21" class="section level2" number="2.71">
+<h2><span class="header-section-number">2.71</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente en desacuerdo | 227 | 6.64 | 6.72 | 6.72
 En desacuerdo | 513 | 15.01 | 15.20 | 21.92
 Ni de acuerdo ni en desacuerdo | 448 | 13.11 | 13.27 | 35.19
@@ -4028,17 +4059,17 @@ De acuerdo | 1619 | 47.38 | 47.96 | 83.15
 Totalmente de acuerdo | 569 | 16.65 | 16.85 | 100.00
 <NA> | 41 | 1.20 | <NA> | <NA></p>
 </div>
-<div id="ideología-valores-niños-rwa" class="section level2" number="2.70">
-<h2><span class="header-section-number">2.70</span> Ideología: Valores niños (RWA)</h2>
-<div id="descriptivo-19" class="section level3" number="2.70.1">
-<h3><span class="header-section-number">2.70.1</span> Descriptivo</h3>
+<div id="ideología-valores-niños-rwa" class="section level2" number="2.72">
+<h2><span class="header-section-number">2.72</span> Ideología: Valores niños (RWA)</h2>
+<div id="descriptivo-19" class="section level3" number="2.72.1">
+<h3><span class="header-section-number">2.72.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_valores_ninos)</code></pre>
 <p>Grado de acuerdo: Obediencia y respeto para los ninnios (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-0.99 sd=64.78</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-29" class="section level2" number="2.71">
-<h2><span class="header-section-number">2.71</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-29" class="section level2" number="2.73">
+<h2><span class="header-section-number">2.73</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 8 | 0.23 | 0.23 | 0.23
 -888 | No Sabe (no leer) | 8 | 0.23 | 0.23 | 0.47
 1 | Totalmente en desacuerdo | 209 | 6.12 | 6.12 | 6.58
@@ -4047,8 +4078,8 @@ Totalmente de acuerdo | 569 | 16.65 | 16.85 | 100.00
 4 | De acuerdo | 1567 | 45.86 | 45.86 | 85.46
 5 | Totalmente de acuerdo | 497 | 14.54 | 14.54 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-20" class="section level3" number="2.71.1">
-<h3><span class="header-section-number">2.71.1</span> Recodificacion</h3>
+<div id="recodificacion-20" class="section level3" number="2.73.1">
+<h3><span class="header-section-number">2.73.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$rwa_valores_ninos &lt;- set_na(procjv$rwa_valores_ninos, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4058,15 +4089,15 @@ procjv$rwa_valores_ninos_factor &lt;- factor(procjv$rwa_valores_ninos, levels = 
 # Etiquetado variable factor
 procjv$rwa_valores_ninos_factor &lt;- sjlabelled::set_label(procjv$rwa_valores_ninos_factor, label = &quot;RWA: Valores importantes que niños deberían aprender&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-18" class="section level3" number="2.71.2">
-<h3><span class="header-section-number">2.71.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-18" class="section level3" number="2.73.2">
+<h3><span class="header-section-number">2.73.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_valores_ninos)</code></pre>
 <p>Grado de acuerdo: Obediencia y respeto para los ninnios (2019) (x) <numeric>
 # total N=3417 valid N=3401 mean=3.44 sd=1.13</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-30" class="section level2" number="2.72">
-<h2><span class="header-section-number">2.72</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-30" class="section level2" number="2.74">
+<h2><span class="header-section-number">2.74</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente en desacuerdo |  209 |  6.12 |    6.15 |   6.15
 2 |                  En desacuerdo |  644 | 18.85 |   18.94 |  25.08
 3 | Ni de acuerdo ni en desacuerdo |  484 | 14.16 |   14.23 |  39.31
@@ -4077,8 +4108,8 @@ procjv$rwa_valores_ninos_factor &lt;- sjlabelled::set_label(procjv$rwa_valores_n
 <p>RWA: Valores importantes que niños deberían aprender (x) <categorical>
 # total N=3417 valid N=3401 mean=3.44 sd=1.13</p>
 </div>
-<div id="value-n-raw-valid-cum.-20" class="section level2" number="2.73">
-<h2><span class="header-section-number">2.73</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-22" class="section level2" number="2.75">
+<h2><span class="header-section-number">2.75</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente en desacuerdo | 209 | 6.12 | 6.15 | 6.15
 En desacuerdo | 644 | 18.85 | 18.94 | 25.08
 Ni de acuerdo ni en desacuerdo | 484 | 14.16 | 14.23 | 39.31
@@ -4086,17 +4117,17 @@ De acuerdo | 1567 | 45.86 | 46.07 | 85.39
 Totalmente de acuerdo | 497 | 14.54 | 14.61 | 100.00
 <NA> | 16 | 0.47 | <NA> | <NA></p>
 </div>
-<div id="ideología-obediencia-y-disciplina-rwa" class="section level2" number="2.74">
-<h2><span class="header-section-number">2.74</span> Ideología: Obediencia y disciplina (RWA)</h2>
-<div id="descriptivo-20" class="section level3" number="2.74.1">
-<h3><span class="header-section-number">2.74.1</span> Descriptivo</h3>
+<div id="ideología-obediencia-y-disciplina-rwa" class="section level2" number="2.76">
+<h2><span class="header-section-number">2.76</span> Ideología: Obediencia y disciplina (RWA)</h2>
+<div id="descriptivo-20" class="section level3" number="2.76.1">
+<h3><span class="header-section-number">2.76.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_obediencia_discplina)</code></pre>
 <p>Grado de acuerdo: Obediencia y disciplina para buena vida (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-0.02 sd=57.63</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-31" class="section level2" number="2.75">
-<h2><span class="header-section-number">2.75</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-31" class="section level2" number="2.77">
+<h2><span class="header-section-number">2.77</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 5 | 0.15 | 0.15 | 0.15
 -888 | No Sabe (no leer) | 8 | 0.23 | 0.23 | 0.38
 1 | Totalmente en desacuerdo | 166 | 4.86 | 4.86 | 5.24
@@ -4105,8 +4136,8 @@ Totalmente de acuerdo | 497 | 14.54 | 14.61 | 100.00
 4 | De acuerdo | 1727 | 50.54 | 50.54 | 85.84
 5 | Totalmente de acuerdo | 484 | 14.16 | 14.16 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-21" class="section level3" number="2.75.1">
-<h3><span class="header-section-number">2.75.1</span> Recodificacion</h3>
+<div id="recodificacion-21" class="section level3" number="2.77.1">
+<h3><span class="header-section-number">2.77.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$rwa_obediencia_discplina &lt;- set_na(procjv$rwa_obediencia_discplina, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4116,15 +4147,15 @@ procjv$rwa_obediencia_discplina_factor &lt;- factor(procjv$rwa_obediencia_discpl
 # Etiquetado variable factor
 procjv$rwa_obediencia_discplina_factor &lt;- sjlabelled::set_label(procjv$rwa_obediencia_discplina_factor, label = &quot;RWA: Obedencia y disclpina como valores claves&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-19" class="section level3" number="2.75.2">
-<h3><span class="header-section-number">2.75.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-19" class="section level3" number="2.77.2">
+<h3><span class="header-section-number">2.77.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$rwa_obediencia_discplina)</code></pre>
 <p>Grado de acuerdo: Obediencia y disciplina para buena vida (2019) (x) <numeric>
 # total N=3417 valid N=3404 mean=3.53 sd=1.07</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-32" class="section level2" number="2.76">
-<h2><span class="header-section-number">2.76</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-32" class="section level2" number="2.78">
+<h2><span class="header-section-number">2.78</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |       Totalmente en desacuerdo |  166 |  4.86 |    4.88 |   4.88
 2 |                  En desacuerdo |  546 | 15.98 |   16.04 |  20.92
 3 | Ni de acuerdo ni en desacuerdo |  481 | 14.08 |   14.13 |  35.05
@@ -4135,16 +4166,16 @@ procjv$rwa_obediencia_discplina_factor &lt;- sjlabelled::set_label(procjv$rwa_ob
 <p>RWA: Obedencia y disclpina como valores claves (x) <categorical>
 # total N=3417 valid N=3404 mean=3.53 sd=1.07</p>
 </div>
-<div id="value-n-raw-valid-cum.-21" class="section level2" number="2.77">
-<h2><span class="header-section-number">2.77</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-23" class="section level2" number="2.79">
+<h2><span class="header-section-number">2.79</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Totalmente en desacuerdo | 166 | 4.86 | 4.88 | 4.88
 En desacuerdo | 546 | 15.98 | 16.04 | 20.92
 Ni de acuerdo ni en desacuerdo | 481 | 14.08 | 14.13 | 35.05
 De acuerdo | 1727 | 50.54 | 50.73 | 85.78
 Totalmente de acuerdo | 484 | 14.16 | 14.22 | 100.00
 <NA> | 13 | 0.38 | <NA> | <NA></p>
-<div id="otros-ajustes-2" class="section level3" number="2.77.1">
-<h3><span class="header-section-number">2.77.1</span> Otros ajustes</h3>
+<div id="otros-ajustes-2" class="section level3" number="2.79.1">
+<h3><span class="header-section-number">2.79.1</span> Otros ajustes</h3>
 <pre class="r"><code># RWA
 
 procjv &lt;- procjv %&gt;% rowwise() %&gt;% mutate(rwa_indice = sum(rwa_gobierno_firme, rwa_mandatario_fuerte, rwa_valores_ninos, rwa_obediencia_discplina, na.rm = T)/4) # Promediar indicadores
@@ -4154,8 +4185,8 @@ frq(procjv$rwa_indice)</code></pre>
 # total N=3417 valid N=3417 mean=3.39 sd=0.96</p>
 </div>
 </div>
-<div id="value-n-raw-valid-cum.-22" class="section level2" number="2.78">
-<h2><span class="header-section-number">2.78</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-24" class="section level2" number="2.80">
+<h2><span class="header-section-number">2.80</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>0.00 | 8 | 0.23 | 0.23 | 0.23
 0.25 | 1 | 0.03 | 0.03 | 0.26
 0.50 | 1 | 0.03 | 0.03 | 0.29
@@ -4188,8 +4219,8 @@ frq(procjv$rwa_indice)</code></pre>
 <p>RWA Indice (x) <numeric>
 # total N=3417 valid N=3417 mean=0.68 sd=0.19</p>
 </div>
-<div id="value-n-raw-valid-cum.-23" class="section level2" number="2.79">
-<h2><span class="header-section-number">2.79</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-25" class="section level2" number="2.81">
+<h2><span class="header-section-number">2.81</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>0.00 | 8 | 0.23 | 0.23 | 0.23
 0.05 | 1 | 0.03 | 0.03 | 0.26
 0.10 | 1 | 0.03 | 0.03 | 0.29
@@ -4213,10 +4244,10 @@ frq(procjv$rwa_indice)</code></pre>
 1.00 | 155 | 4.54 | 4.54 | 100.00
 <NA> | 0 | 0.00 | <NA> | <NA></p>
 </div>
-<div id="just.-proc-trato-respetuoso-en-servicios-de-salud" class="section level2" number="2.80">
-<h2><span class="header-section-number">2.80</span> Just. Proc: Trato respetuoso en servicios de salud</h2>
-<div id="descriptivo-21" class="section level3" number="2.80.1">
-<h3><span class="header-section-number">2.80.1</span> Descriptivo</h3>
+<div id="just.-proc-trato-respetuoso-en-servicios-de-salud" class="section level2" number="2.82">
+<h2><span class="header-section-number">2.82</span> Just. Proc: Trato respetuoso en servicios de salud</h2>
+<div id="descriptivo-21" class="section level3" number="2.82.1">
+<h3><span class="header-section-number">2.82.1</span> Descriptivo</h3>
 <pre class="r"><code># Frecuencias
 
 sjmisc::frq(procjv$trato_salud)</code></pre>
@@ -4224,8 +4255,8 @@ sjmisc::frq(procjv$trato_salud)</code></pre>
 # total N=3417 valid N=1250 mean=1.58 sd=35.64</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-33" class="section level2" number="2.81">
-<h2><span class="header-section-number">2.81</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-33" class="section level2" number="2.83">
+<h2><span class="header-section-number">2.83</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 0 | 0.00 | 0.00 | 0.00
 -888 | No Sabe (no leer) | 2 | 0.06 | 0.16 | 0.16
 1 | Nunca | 132 | 3.86 | 10.56 | 10.72
@@ -4234,8 +4265,8 @@ sjmisc::frq(procjv$trato_salud)</code></pre>
 4 | Casi siempre | 256 | 7.49 | 20.48 | 90.48
 5 | Siempre | 119 | 3.48 | 9.52 | 100.00
 <NA> | <NA> | 2167 | 63.42 | <NA> | <NA></p>
-<div id="recodificacion-22" class="section level3" number="2.81.1">
-<h3><span class="header-section-number">2.81.1</span> Recodificacion</h3>
+<div id="recodificacion-22" class="section level3" number="2.83.1">
+<h3><span class="header-section-number">2.83.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$trato_salud&lt;- set_na(procjv$trato_salud, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4245,15 +4276,15 @@ procjv$trato_salud_factor &lt;- factor(procjv$trato_salud, levels = c(1,2,3,4,5)
 # Etiquetado variable factor
 procjv$trato_salud_factor &lt;- sjlabelled::set_label(procjv$trato_salud_factor, label = &quot;Trato Respetuoso Salud&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-20" class="section level3" number="2.81.2">
-<h3><span class="header-section-number">2.81.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-20" class="section level3" number="2.83.2">
+<h3><span class="header-section-number">2.83.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$trato_salud)</code></pre>
 <p>Frecuencia: Trato respetuoso en servicios de salud a [CLASE] (2019) (x) <numeric>
 # total N=3417 valid N=1248 mean=3.01 sd=1.09</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-34" class="section level2" number="2.82">
-<h2><span class="header-section-number">2.82</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-34" class="section level2" number="2.84">
+<h2><span class="header-section-number">2.84</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |        Nunca |  132 |  3.86 |   10.58 |  10.58
 2 |   Casi nunca |  217 |  6.35 |   17.39 |  27.96
 3 |      A veces |  524 | 15.34 |   41.99 |  69.95
@@ -4264,8 +4295,8 @@ procjv$trato_salud_factor &lt;- sjlabelled::set_label(procjv$trato_salud_factor,
 <p>Trato Respetuoso Salud (x) <categorical>
 # total N=3417 valid N=1248 mean=3.01 sd=1.09</p>
 </div>
-<div id="value-n-raw-valid-cum.-24" class="section level2" number="2.83">
-<h2><span class="header-section-number">2.83</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-26" class="section level2" number="2.85">
+<h2><span class="header-section-number">2.85</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Nunca | 132 | 3.86 | 10.58 | 10.58
 Casi nunca | 217 | 6.35 | 17.39 | 27.96
 A veces | 524 | 15.34 | 41.99 | 69.95
@@ -4273,10 +4304,10 @@ Casi siempre | 256 | 7.49 | 20.51 | 90.46
 Siempre | 119 | 3.48 | 9.54 | 100.00
 <NA> | 2169 | 63.48 | <NA> | <NA></p>
 </div>
-<div id="just.-porc.-trato-respetuoso-carabineros" class="section level2" number="2.84">
-<h2><span class="header-section-number">2.84</span> Just. Porc. Trato respetuoso carabineros</h2>
-<div id="descriptivo-22" class="section level3" number="2.84.1">
-<h3><span class="header-section-number">2.84.1</span> Descriptivo</h3>
+<div id="just.-porc.-trato-respetuoso-carabineros" class="section level2" number="2.86">
+<h2><span class="header-section-number">2.86</span> Just. Porc. Trato respetuoso carabineros</h2>
+<div id="descriptivo-22" class="section level3" number="2.86.1">
+<h3><span class="header-section-number">2.86.1</span> Descriptivo</h3>
 <pre class="r"><code># Frecuencias
 
 sjmisc::frq(procjv$trato_carab)</code></pre>
@@ -4284,8 +4315,8 @@ sjmisc::frq(procjv$trato_carab)</code></pre>
 # total N=3417 valid N=1250 mean=-7.75 sd=97.06</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-35" class="section level2" number="2.85">
-<h2><span class="header-section-number">2.85</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-35" class="section level2" number="2.87">
+<h2><span class="header-section-number">2.87</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 0 | 0.00 | 0.00 | 0.00
 -888 | No Sabe (no leer) | 15 | 0.44 | 1.20 | 1.20
 1 | Nunca | 187 | 5.47 | 14.96 | 16.16
@@ -4296,8 +4327,8 @@ sjmisc::frq(procjv$trato_carab)</code></pre>
 <NA> | <NA> | 2167 | 63.42 | <NA> | <NA></p>
 <pre class="r"><code>sjmisc::frq(procjv$trato_carab_factor)</code></pre>
 <p>NULL</p>
-<div id="recodificacion-23" class="section level3" number="2.85.1">
-<h3><span class="header-section-number">2.85.1</span> Recodificacion</h3>
+<div id="recodificacion-23" class="section level3" number="2.87.1">
+<h3><span class="header-section-number">2.87.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$trato_carab&lt;- set_na(procjv$trato_carab, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4307,15 +4338,15 @@ procjv$trato_carab_factor &lt;- factor(procjv$trato_carab, levels = c(1,2,3,4,5)
 # Etiquetado variable factor
 procjv$trato_carab_factor &lt;- sjlabelled::set_label(procjv$trato_carab_factor, label = &quot;Trato Respetuoso Carabineros&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-21" class="section level3" number="2.85.2">
-<h3><span class="header-section-number">2.85.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-21" class="section level3" number="2.87.2">
+<h3><span class="header-section-number">2.87.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$trato_carab)</code></pre>
 <p>Frecuencia: Trato respetuoso por Carabineros a [CLASE] (2019) (x) <numeric>
 # total N=3417 valid N=1235 mean=2.95 sd=1.19</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-36" class="section level2" number="2.86">
-<h2><span class="header-section-number">2.86</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-36" class="section level2" number="2.88">
+<h2><span class="header-section-number">2.88</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |        Nunca |  187 |  5.47 |   15.14 |  15.14
 2 |   Casi nunca |  208 |  6.09 |   16.84 |  31.98
 3 |      A veces |  472 | 13.81 |   38.22 |  70.20
@@ -4326,8 +4357,8 @@ procjv$trato_carab_factor &lt;- sjlabelled::set_label(procjv$trato_carab_factor,
 <p>Trato Respetuoso Carabineros (x) <categorical>
 # total N=3417 valid N=1235 mean=2.95 sd=1.19</p>
 </div>
-<div id="value-n-raw-valid-cum.-25" class="section level2" number="2.87">
-<h2><span class="header-section-number">2.87</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-27" class="section level2" number="2.89">
+<h2><span class="header-section-number">2.89</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Nunca | 187 | 5.47 | 15.14 | 15.14
 Casi nunca | 208 | 6.09 | 16.84 | 31.98
 A veces | 472 | 13.81 | 38.22 | 70.20
@@ -4335,10 +4366,10 @@ Casi siempre | 221 | 6.47 | 17.89 | 88.10
 Siempre | 147 | 4.30 | 11.90 | 100.00
 <NA> | 2182 | 63.86 | <NA> | <NA></p>
 </div>
-<div id="control-exp-edad-del-entrevistado" class="section level2" number="2.88">
-<h2><span class="header-section-number">2.88</span> Control Exp: Edad del entrevistado</h2>
-<div id="descriptivo-23" class="section level3" number="2.88.1">
-<h3><span class="header-section-number">2.88.1</span> Descriptivo</h3>
+<div id="control-exp-edad-del-entrevistado" class="section level2" number="2.90">
+<h2><span class="header-section-number">2.90</span> Control Exp: Edad del entrevistado</h2>
+<div id="descriptivo-23" class="section level3" number="2.90.1">
+<h3><span class="header-section-number">2.90.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::descr(procjv$edad,
       show = c(&quot;label&quot;,&quot;range&quot;, &quot;mean&quot;, &quot;sd&quot;, &quot;NA.prc&quot;, &quot;n&quot;))%&gt;%
       kable(.,&quot;markdown&quot;)</code></pre>
@@ -4400,15 +4431,15 @@ Siempre | 147 | 4.30 | 11.90 | 100.00
 </table>
 </div>
 </div>
-<div id="recodificacion-24" class="section level3" number="2.88.2">
-<h3><span class="header-section-number">2.88.2</span> Recodificacion</h3>
+<div id="recodificacion-24" class="section level3" number="2.90.2">
+<h3><span class="header-section-number">2.90.2</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$edad&lt;- set_na(procjv$edad, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 procjv$edad &lt;- sjlabelled::set_label(procjv$edad, label = &quot;Edad&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-22" class="section level3" number="2.88.3">
-<h3><span class="header-section-number">2.88.3</span> Descriptivo final</h3>
+<div id="descriptivo-final-22" class="section level3" number="2.90.3">
+<h3><span class="header-section-number">2.90.3</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::descr(procjv$edad,
       show = c(&quot;label&quot;,&quot;range&quot;, &quot;mean&quot;, &quot;sd&quot;, &quot;NA.prc&quot;, &quot;n&quot;))%&gt;%
       kable(.,&quot;markdown&quot;)</code></pre>
@@ -4462,17 +4493,17 @@ procjv$edad &lt;- sjlabelled::set_label(procjv$edad, label = &quot;Edad&quot;)</
 </div>
 </div>
 </div>
-<div id="control-exp-posicion-política" class="section level2" number="2.89">
-<h2><span class="header-section-number">2.89</span> Control Exp: Posicion política</h2>
-<div id="descriptivo-24" class="section level3" number="2.89.1">
-<h3><span class="header-section-number">2.89.1</span> Descriptivo</h3>
+<div id="control-exp-posicion-política" class="section level2" number="2.91">
+<h2><span class="header-section-number">2.91</span> Control Exp: Posicion política</h2>
+<div id="descriptivo-24" class="section level3" number="2.91.1">
+<h3><span class="header-section-number">2.91.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$pos_pol)</code></pre>
 <p>Autoubicacion escala izquierda-derecha (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=-1.72 sd=91.01</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-37" class="section level2" number="2.90">
-<h2><span class="header-section-number">2.90</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-37" class="section level2" number="2.92">
+<h2><span class="header-section-number">2.92</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 6 | 0.18 | 0.18 | 0.18
 -888 | No Sabe (no leer) | 28 | 0.82 | 0.82 | 1.00
 0 | 0 Izquierda | 199 | 5.82 | 5.82 | 6.82
@@ -4489,8 +4520,8 @@ procjv$edad &lt;- sjlabelled::set_label(procjv$edad, label = &quot;Edad&quot;)</
 11 | 11 Independiente (no leer) | 70 | 2.05 | 2.05 | 64.79
 12 | 12 Ninguno (no leer) | 1203 | 35.21 | 35.21 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-25" class="section level3" number="2.90.1">
-<h3><span class="header-section-number">2.90.1</span> Recodificacion</h3>
+<div id="recodificacion-25" class="section level3" number="2.92.1">
+<h3><span class="header-section-number">2.92.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$pos_pol&lt;- set_na(procjv$pos_pol, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4510,15 +4541,15 @@ procjv$pos_pol_rec_factor &lt;- factor(procjv$pos_pol_rec, levels = c(1:5), labe
 # Etiquetado variable factor
 procjv$pos_pol_rec_factor &lt;- sjlabelled::set_label(procjv$pos_pol_rec_factor, label = &quot;Posicion Politica&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-23" class="section level3" number="2.90.2">
-<h3><span class="header-section-number">2.90.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-23" class="section level3" number="2.92.2">
+<h3><span class="header-section-number">2.92.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$pos_pol)</code></pre>
 <p>Autoubicacion escala izquierda-derecha (2019) (x) <numeric>
 # total N=3417 valid N=3383 mean=7.38 sd=4.04</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-38" class="section level2" number="2.91">
-<h2><span class="header-section-number">2.91</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-38" class="section level2" number="2.93">
+<h2><span class="header-section-number">2.93</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>0 |                0 Izquierda |  199 |  5.82 |    5.88 |   5.88
 1 |                          1 |   56 |  1.64 |    1.66 |   7.54
 2 |                          2 |  109 |  3.19 |    3.22 |  10.76
@@ -4536,17 +4567,17 @@ procjv$pos_pol_rec_factor &lt;- sjlabelled::set_label(procjv$pos_pol_rec_factor,
 <pre class="r"><code>sjmisc::frq(procjv$pos_pol_factor)</code></pre>
 <p>NULL</p>
 </div>
-<div id="control-exp-frecuencia-participacion-marchas" class="section level2" number="2.92">
-<h2><span class="header-section-number">2.92</span> Control Exp: Frecuencia participacion marchas</h2>
-<div id="descriptivo-25" class="section level3" number="2.92.1">
-<h3><span class="header-section-number">2.92.1</span> Descriptivo</h3>
+<div id="control-exp-frecuencia-participacion-marchas" class="section level2" number="2.94">
+<h2><span class="header-section-number">2.94</span> Control Exp: Frecuencia participacion marchas</h2>
+<div id="descriptivo-25" class="section level3" number="2.94.1">
+<h3><span class="header-section-number">2.94.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$frec_marcha)</code></pre>
 <p>Frecuencia: Asiste a marcha pacifica (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=0.98 sd=22.92</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-39" class="section level2" number="2.93">
-<h2><span class="header-section-number">2.93</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-39" class="section level2" number="2.95">
+<h2><span class="header-section-number">2.95</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 1 | 0.03 | 0.03 | 0.03
 -888 | No Sabe (no leer) | 1 | 0.03 | 0.03 | 0.06
 1 | Nunca | 2541 | 74.36 | 74.36 | 74.42
@@ -4555,8 +4586,8 @@ procjv$pos_pol_rec_factor &lt;- sjlabelled::set_label(procjv$pos_pol_rec_factor,
 4 | Frecuentemente | 173 | 5.06 | 5.06 | 97.83
 5 | Muy frecuentemente | 74 | 2.17 | 2.17 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-26" class="section level3" number="2.93.1">
-<h3><span class="header-section-number">2.93.1</span> Recodificacion</h3>
+<div id="recodificacion-26" class="section level3" number="2.95.1">
+<h3><span class="header-section-number">2.95.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$frec_marcha&lt;- set_na(procjv$frec_marcha, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4570,15 +4601,15 @@ procjv$frec_marcha_factor &lt;- factor(procjv$frec_marcha, levels = c(1,2,3,4,5)
 # Etiquetado variable factor
 procjv$frec_marcha_factor &lt;- sjlabelled::set_label(procjv$frec_marcha_factor, label = &quot;Frecuencia de Participacion en Marchas&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-24" class="section level3" number="2.93.2">
-<h3><span class="header-section-number">2.93.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-24" class="section level3" number="2.95.2">
+<h3><span class="header-section-number">2.95.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$frec_marcha)</code></pre>
 <p>Frecuencia: Asiste a marcha pacifica (2019) (x) <numeric>
 # total N=3417 valid N=3415 mean=1.54 sd=1.02</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-40" class="section level2" number="2.94">
-<h2><span class="header-section-number">2.94</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-40" class="section level2" number="2.96">
+<h2><span class="header-section-number">2.96</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |              Nunca | 2541 | 74.36 |   74.41 |  74.41
 2 |         Casi nunca |  241 |  7.05 |    7.06 |  81.46
 3 |            A veces |  386 | 11.30 |   11.30 |  92.77
@@ -4589,8 +4620,8 @@ procjv$frec_marcha_factor &lt;- sjlabelled::set_label(procjv$frec_marcha_factor,
 <p>Frecuencia de Participacion en Marchas (x) <categorical>
 # total N=3417 valid N=3415 mean=1.54 sd=1.02</p>
 </div>
-<div id="value-n-raw-valid-cum.-26" class="section level2" number="2.95">
-<h2><span class="header-section-number">2.95</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-28" class="section level2" number="2.97">
+<h2><span class="header-section-number">2.97</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Nunca | 2541 | 74.36 | 74.41 | 74.41
 Casi nunca | 241 | 7.05 | 7.06 | 81.46
 A veces | 386 | 11.30 | 11.30 | 92.77
@@ -4598,17 +4629,17 @@ Frecuentemente | 173 | 5.06 | 5.07 | 97.83
 Muy frecuentemente | 74 | 2.17 | 2.17 | 100.00
 <NA> | 2 | 0.06 | <NA> | <NA></p>
 </div>
-<div id="control-exp-confianza-en-carabineros" class="section level2" number="2.96">
-<h2><span class="header-section-number">2.96</span> Control Exp: Confianza en carabineros</h2>
-<div id="descriptivo-26" class="section level3" number="2.96.1">
-<h3><span class="header-section-number">2.96.1</span> Descriptivo</h3>
+<div id="control-exp-confianza-en-carabineros" class="section level2" number="2.98">
+<h2><span class="header-section-number">2.98</span> Control Exp: Confianza en carabineros</h2>
+<div id="descriptivo-26" class="section level3" number="2.98.1">
+<h3><span class="header-section-number">2.98.1</span> Descriptivo</h3>
 <pre class="r"><code>sjmisc::frq(procjv$conf_carab)</code></pre>
 <p>Grado de confianza: Carabineros (2019) (x) <numeric>
 # total N=3417 valid N=3417 mean=0.25 sd=44.46</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-41" class="section level2" number="2.97">
-<h2><span class="header-section-number">2.97</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-41" class="section level2" number="2.99">
+<h2><span class="header-section-number">2.99</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <p>-999 | No Responde (no leer) | 2 | 0.06 | 0.06 | 0.06
 -888 | No Sabe (no leer) | 6 | 0.18 | 0.18 | 0.23
 1 | Nada | 1106 | 32.37 | 32.37 | 32.60
@@ -4617,8 +4648,8 @@ Muy frecuentemente | 74 | 2.17 | 2.17 | 100.00
 4 | Bastante | 499 | 14.60 | 14.60 | 93.50
 5 | Mucha | 222 | 6.50 | 6.50 | 100.00
 <NA> | <NA> | 0 | 0.00 | <NA> | <NA></p>
-<div id="recodificacion-27" class="section level3" number="2.97.1">
-<h3><span class="header-section-number">2.97.1</span> Recodificacion</h3>
+<div id="recodificacion-27" class="section level3" number="2.99.1">
+<h3><span class="header-section-number">2.99.1</span> Recodificacion</h3>
 <pre class="r"><code># Recoficiacion NA
 procjv$conf_carab&lt;- set_na(procjv$conf_carab, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
@@ -4632,15 +4663,15 @@ procjv$conf_carab_factor &lt;- factor(procjv$conf_carab, levels = c(1,2,3,4,5), 
 # Etiquetado variable factor
 procjv$conf_carab_factor &lt;- sjlabelled::set_label(procjv$conf_carab_factor, label = &quot;Confianza en Carabineros&quot;)</code></pre>
 </div>
-<div id="descriptivo-final-25" class="section level3" number="2.97.2">
-<h3><span class="header-section-number">2.97.2</span> Descriptivo final</h3>
+<div id="descriptivo-final-25" class="section level3" number="2.99.2">
+<h3><span class="header-section-number">2.99.2</span> Descriptivo final</h3>
 <pre class="r"><code>sjmisc::frq(procjv$conf_carab)</code></pre>
 <p>Grado de confianza: Carabineros (2019) (x) <numeric>
 # total N=3417 valid N=3409 mean=2.40 sd=1.25</p>
 </div>
 </div>
-<div id="value-label-n-raw-valid-cum.-42" class="section level2" number="2.98">
-<h2><span class="header-section-number">2.98</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-label-n-raw-valid-cum.-42" class="section level2" number="2.100">
+<h2><span class="header-section-number">2.100</span> Value | Label | N | Raw % | Valid % | Cum. %</h2>
 <pre><code>1 |     Nada | 1106 | 32.37 |   32.44 |  32.44
 2 |     Poca |  781 | 22.86 |   22.91 |  55.35
 3 |     Algo |  801 | 23.44 |   23.50 |  78.85
@@ -4651,8 +4682,8 @@ procjv$conf_carab_factor &lt;- sjlabelled::set_label(procjv$conf_carab_factor, l
 <p>Confianza en Carabineros (x) <categorical>
 # total N=3417 valid N=3409 mean=2.40 sd=1.25</p>
 </div>
-<div id="value-n-raw-valid-cum.-27" class="section level2" number="2.99">
-<h2><span class="header-section-number">2.99</span> Value | N | Raw % | Valid % | Cum. %</h2>
+<div id="value-n-raw-valid-cum.-29" class="section level2" number="2.101">
+<h2><span class="header-section-number">2.101</span> Value | N | Raw % | Valid % | Cum. %</h2>
 <p>Nada | 1106 | 32.37 | 32.44 | 32.44
 Poca | 781 | 22.86 | 22.91 | 55.35
 Algo | 801 | 23.44 | 23.50 | 78.85
