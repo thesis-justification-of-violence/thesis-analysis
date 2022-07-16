@@ -422,9 +422,13 @@ table1::table1(~salario_perc_ceo + salario_perc_obrero + salario_just_ceo + sala
 
 procjv$sj_obrero <- ln(procjv$salario_perc_obrero/procjv$salario_just_obrero)
 
-procjv$sj_obrero_rec <- abs(procjv$sj_obrero)
+procjv$sj_obrero_rec <- procjv$sj_obrero*-1
+
+procjv$sj_obrero_rec[procjv$sj_obrero_rec < 0] <- 0
 
 procjv$sj_ceo <- ln(procjv$salario_perc_ceo/procjv$salario_just_ceo)
+
+procjv$sj_ceo[procjv$sj_ceo < 0] <- 0
 
 ## Etiquetado sense of justice
 
@@ -435,7 +439,7 @@ procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "J Gerente")
 
 ## Descriptivos sense of justice
 
-table1::table1(~sj_obrero + sj_ceo, data = procjv)
+table1::table1(~sj_obrero + sj_obrero_rec + sj_ceo, data = procjv)
 
 ## Histograms 
 sjPlot::plot_frq(procjv$sj_obrero, type = "histogram", show.mean = TRUE)
@@ -630,7 +634,9 @@ table1::table1(~ingreso + ingreso_justo, data = procjv)
 
 procjv$sj_entrevistado <- ln(procjv$ingreso/procjv$ingreso_justo)
 
-procjv$sj_entrevistado_rec <- abs(procjv$sj_entrevistado)
+procjv$sj_entrevistado_rec <- procjv$sj_entrevistado*-1
+
+procjv$sj_entrevistado_rec[procjv$sj_entrevistado_rec < 0] <- 0
 
 
 ## Etiquetado sense of justice
@@ -640,7 +646,7 @@ procjv$sj_entrevistado_rec <- sjlabelled::set_label(procjv$sj_entrevistado_rec, 
 
 ## Descriptivos sense of justice
 
-table1::table1(~sj_obrero + sj_ceo + sj_entrevistado, data = procjv)
+table1::table1(~sj_obrero + sj_ceo + sj_entrevistado + sj_entrevistado_rec, data = procjv)
 
 ## Histograms 
 sjPlot::plot_frq(na.omit(procjv$sj_entrevistado), type = "histogram", show.mean = TRUE)
