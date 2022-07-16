@@ -428,7 +428,9 @@ procjv$sj_obrero_rec[procjv$sj_obrero_rec < 0] <- 0
 
 procjv$sj_ceo <- ln(procjv$salario_perc_ceo/procjv$salario_just_ceo)
 
-procjv$sj_ceo[procjv$sj_ceo < 0] <- 0
+procjv$sj_ceo_rec <- procjv$sj_ceo
+
+procjv$sj_ceo_rec[procjv$sj_ceo_rec < 0] <- 0
 
 ## Etiquetado sense of justice
 
@@ -436,6 +438,7 @@ procjv$sj_obrero <- sjlabelled::set_label(procjv$sj_obrero, label = "J Obrero")
 procjv$sj_obrero_rec <- sjlabelled::set_label(procjv$sj_obrero_rec, label = "J Obrero")
 
 procjv$sj_ceo <- sjlabelled::set_label(procjv$sj_ceo, label = "J Gerente")
+procjv$sj_ceo_rec <- sjlabelled::set_label(procjv$sj_ceo_rec, label = "J Gerente")
 
 ## Descriptivos sense of justice
 
@@ -448,18 +451,18 @@ sjPlot::plot_frq(procjv$sj_ceo, type = "histogram", show.mean = TRUE)
 ## Creacion de sense of justicer categorico
 
 procjv$sj_ceo_cat[procjv$sj_ceo == 0] <- 0
-procjv$sj_ceo_cat[procjv$sj_ceo < 0] <- 0
-procjv$sj_ceo_cat[procjv$sj_ceo > 0] <- 1
+procjv$sj_ceo_cat[procjv$sj_ceo < 0] <- 1
+procjv$sj_ceo_cat[procjv$sj_ceo > 0] <- 2
 
 procjv$sj_obrero_cat[procjv$sj_obrero == 0] <- 0
-procjv$sj_obrero_cat[procjv$sj_obrero < 0] <- 0
-procjv$sj_obrero_cat[procjv$sj_obrero > 0] <- 1
+procjv$sj_obrero_cat[procjv$sj_obrero < 0] <- 1
+procjv$sj_obrero_cat[procjv$sj_obrero > 0] <- 2
 
 procjv$sj_obrero_cat <- sjlabelled::set_label(procjv$sj_obrero_cat, label = "J Obrero")
 procjv$sj_ceo_cat <- sjlabelled::set_label(procjv$sj_ceo_cat, label = "J Gerente")
 
-procjv$sj_ceo_cat_factor <- factor(procjv$sj_ceo_cat, levels = c(0,1), labels = c("Justo", "Injusto"))
-procjv$sj_obrero_cat_factor <- factor(procjv$sj_obrero_cat, levels = c(0,1), labels = c("Justo", "Injusto"))
+procjv$sj_ceo_cat_factor <- factor(procjv$sj_ceo_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensa", "Sobrerecompensa"))
+procjv$sj_obrero_cat_factor <- factor(procjv$sj_obrero_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensa", "Sobrerecompensa"))
 
 procjv$sj_obrero_cat_factor <- sjlabelled::set_label(procjv$sj_obrero_cat_factor, label = "J Obrero")
 procjv$sj_ceo_cat_factor <- sjlabelled::set_label(procjv$sj_ceo_cat_factor, label = "J Gerente")
@@ -653,12 +656,12 @@ sjPlot::plot_frq(na.omit(procjv$sj_entrevistado), type = "histogram", show.mean 
 
 # Crear categorica sense of justice
 procjv$sj_entrevistado_cat[procjv$sj_entrevistado == 0] <- 0
-procjv$sj_entrevistado_cat[procjv$sj_entrevistado < 0] <- 0
-procjv$sj_entrevistado_cat[procjv$sj_entrevistado > 0] <- 1
+procjv$sj_entrevistado_cat[procjv$sj_entrevistado < 0] <- 1
+procjv$sj_entrevistado_cat[procjv$sj_entrevistado > 0] <- 2
 
 procjv$sj_entrevistado_cat <- sjlabelled::set_label(procjv$sj_entrevistado_cat, label = "J Entrevistado")
 
-procjv$sj_entrevistado_cat_factor <- factor(procjv$sj_entrevistado_cat, levels = c(0,1), labels = c("Justo", "Injusto"))
+procjv$sj_entrevistado_cat_factor <- factor(procjv$sj_entrevistado_cat, levels = c(0,1,2), labels = c("Justo", "Subrecompensa", "Sobrerecompensa"))
 
 procjv$sj_entrevistado_cat_factor <- sjlabelled::set_label(procjv$sj_entrevistado_cat_factor, label = "J Entrevistado")
 
@@ -1409,6 +1412,7 @@ procjv_analysis <- procjv %>%  dplyr::select(jv_carab1_2019_factor:jv_est_2019_f
                                              sj_obrero,
                                              sj_obrero_rec,
                                              sj_ceo,
+                                             sj_ceo_rec,
                                              sj_ceo_cat_factor:sj_obrero_cat_factor,
                                              quintiles_ingreso_factor,
                                              ingreso,
@@ -1432,6 +1436,7 @@ procjv_nums <- procjv %>%  dplyr::select(jv_carab1_2019:jv_est_2019,
                                              sj_obrero,
                                              sj_obrero_rec,
                                              sj_ceo,
+                                             sj_ceo_rec,
                                              ingreso,
                                              sj_entrevistado,
                                              sj_entrevistado_rec,
