@@ -289,7 +289,7 @@ table1::table1(~salario_perc_ceo, data = procjv)
 procjv$salario_perc_ceo<- set_na(procjv$salario_perc_ceo, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar
-procjv$salario_perc_ceo <- sjlabelled::set_label(procjv$salario_perc_ceo, label = "Salario Percibido: Gerente de una gran empresa") 
+procjv$salario_perc_ceo <- sjlabelled::set_label(procjv$salario_perc_ceo, label = "Ingresos Reales Gerente") 
 ```
 
 
@@ -324,7 +324,7 @@ table1::table1(~salario_perc_obrero, data = procjv)
 procjv$salario_perc_obrero<- set_na(procjv$salario_perc_obrero, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar
-procjv$salario_perc_obrero <- sjlabelled::set_label(procjv$salario_perc_obrero, label = "Salario Percibido: Obrero no calificado") 
+procjv$salario_perc_obrero <- sjlabelled::set_label(procjv$salario_perc_obrero, label = "Ingresos Reales Obrero") 
 ```
 
 
@@ -361,7 +361,7 @@ table1::table1(~salario_just_ceo, data = procjv)
 procjv$salario_just_ceo<- set_na(procjv$salario_just_ceo, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar
-procjv$salario_just_ceo <- sjlabelled::set_label(procjv$salario_just_ceo, label = "Salario Justo: Gerente de una gran empresa") 
+procjv$salario_just_ceo <- sjlabelled::set_label(procjv$salario_just_ceo, label = "Ingresos Justos Gerente") 
 ```
 
 
@@ -396,7 +396,7 @@ table1::table1(~salario_just_obrero, data = procjv)
 procjv$salario_just_obrero<- set_na(procjv$salario_just_obrero, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar
-procjv$salario_just_obrero <- sjlabelled::set_label(procjv$salario_just_obrero, label = "Salario Justo: Obrero no calificado") 
+procjv$salario_just_obrero <- sjlabelled::set_label(procjv$salario_just_obrero, label = "Ingresos Justos Obrero") 
 ```
 
 
@@ -492,7 +492,7 @@ table1::table1(~ingreso, data = procjv)
 procjv$ingreso<- set_na(procjv$ingreso, na = c(-888,-999,0), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar variable
-procjv$ingreso <- sjlabelled::set_label(procjv$ingreso, label = "Ingresos")
+procjv$ingreso <- sjlabelled::set_label(procjv$ingreso, label = "Ingresos Entrevistado")
 ```
 
 ### Descriptivo final
@@ -615,7 +615,7 @@ table1::table1(~ingreso_justo, data = procjv)
 procjv$ingreso_justo<- set_na(procjv$ingreso_justo, na = c(-888,-999,0), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar variable
-procjv$ingreso_justo <- sjlabelled::set_label(procjv$ingreso_justo, label = "Ingreso mensual justo del entrevistado")
+procjv$ingreso_justo <- sjlabelled::set_label(procjv$ingreso_justo, label = "Ingresos Justos Entrevistado")
 ```
 
 ### Descriptivo final
@@ -1416,6 +1416,7 @@ procjv_analysis <- procjv %>%  dplyr::select(jv_carab1_2019_factor:jv_est_2019_f
                                              sj_ceo_cat_factor:sj_obrero_cat_factor,
                                              quintiles_ingreso_factor,
                                              ingreso,
+                                             ingreso_justo,
                                              sj_entrevistado,
                                              sj_entrevistado_rec,
                                              sj_entrevistado_cat_factor,
@@ -1429,7 +1430,11 @@ procjv_analysis <- procjv %>%  dplyr::select(jv_carab1_2019_factor:jv_est_2019_f
                                              trato_salud_factor:trato_carab_factor,
                                              pos_pol_rec_factor,
                                              frec_marcha_factor,
-                                             conf_carab_factor)
+                                             conf_carab_factor,
+                                             salario_just_obrero,
+                                             salario_just_ceo,
+                                             salario_perc_obrero,
+                                             salario_perc_ceo)
 
 
 procjv_nums <- procjv %>%  dplyr::select(jv_carab1_2019:jv_est_2019,
