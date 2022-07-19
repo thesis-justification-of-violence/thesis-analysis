@@ -289,7 +289,7 @@ table1::table1(~salario_perc_ceo, data = procjv)
 procjv$salario_perc_ceo<- set_na(procjv$salario_perc_ceo, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar
-procjv$salario_perc_ceo <- sjlabelled::set_label(procjv$salario_perc_ceo, label = "Ingresos Reales Gerente") 
+procjv$salario_perc_ceo <- sjlabelled::set_label(procjv$salario_perc_ceo, label = "Ingresos Percibidos Gerente") 
 ```
 
 
@@ -324,7 +324,7 @@ table1::table1(~salario_perc_obrero, data = procjv)
 procjv$salario_perc_obrero<- set_na(procjv$salario_perc_obrero, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
 
 # Etiquetar
-procjv$salario_perc_obrero <- sjlabelled::set_label(procjv$salario_perc_obrero, label = "Ingresos Reales Obrero") 
+procjv$salario_perc_obrero <- sjlabelled::set_label(procjv$salario_perc_obrero, label = "Ingresos Percibidos Obrero") 
 ```
 
 
