@@ -1,0 +1,574 @@
+---
+title: |
+  ![](../../../input/images/logo-sociales.jpg){width=25% height=25%}  
+  Anexos - Gráficos de Probabilidades Predichas y Coeficientes
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
+author: 
+  - Martin Venegas Márquez
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+knit: (function(inputFile, encoding) {
+      out_dir <- "../../../output/docs/Mult-Ordinal-Plots";
+      rmarkdown::render(inputFile,
+                        encoding=encoding,
+                        output_dir=file.path(dirname(inputFile), out_dir))})
+output:
+    bookdown::html_document2:
+          number_sections: false
+          theme: yeti
+    
+linkcolor: black
+urlcolor: blue
+link-citations: yes
+---
+
+<style type="text/css">
+
+h1 {
+  font-size: 38px;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  text-align: center;
+}
+</style>
+
+
+\newpage
+
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Tabla de contenidos}
+\tableofcontents
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=FALSE, results='asis', message = F, warning = F)
+summarytools::st_options(bootstrap.css     = FALSE,
+           plain.ascii       = FALSE,   
+           style             = "rmarkdown",
+           dfSummary.silent  = TRUE, 
+           footnote          = NA,
+           subtitle.emphasis = FALSE,
+           headings =  F,
+           lang =  "es")
+
+```
+
+```{r packages}
+
+if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
+
+pacman::p_load(knitr, 
+               summarytools, 
+               ggplot2,
+               kableExtra, 
+               dplyr, 
+               sjPlot, 
+               table1, 
+               psych, 
+               ordinal, 
+               MASS, 
+               brant, 
+               ggeffects) # librerias
+
+knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
+                      message = FALSE,  # mensajes/avisos de librerias  
+                      cache = FALSE,    # cache de los chunks,usar analisis pesados
+                      out.width = '85%',# largo de imagen en %
+                      fig.pos= "H",     # posicion figuras H = HERE
+                      echo = FALSE      # incluir chunk en output
+)
+
+# Otras configuraciones
+options(scipen=999) # notacion cientifica
+options(knitr.kable.NA = '') # NA en kable = ''
+
+```
+
+# Introducción
+
+El presente documento contiene los **gráficos de probabilidades predichas y de coeficientes** para la tesis "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
+
+```{r load-models}
+
+source("../../source_ordinal_models/ordinal_models.R", encoding = "UTF-8" )
+
+```
+
+# Probabilidades predichas
+
+A continuación se presentan los gráficos de probabilidades predichas para cada relación significativa del estudio.
+
+## Prob. Pred: Justificación de que estudiantes tiren piedras
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el sentido de injusticia de los gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+### Modelo 1
+
+```{r predjvest1, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_jvest_1 <- plot_model(jv_est_2019.modelmulpub1, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_1$data$response.level[plot_pred_jvest_1$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_1
+
+
+```
+
+### Modelo 2
+
+```{r predjvest2, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_jvest_2 <- plot_model(jv_est_2019.modelmulpub2, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_2$data$response.level[plot_pred_jvest_2$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_2
+
+
+```
+
+### Modelo 3
+
+```{r predjvest3, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_jvest_3 <- plot_model(jv_est_2019.modelmulpub3, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_3$data$response.level[plot_pred_jvest_3$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_3
+
+
+```
+
+### Modelo 4
+
+```{r predjvest4, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_jvest_4 <- plot_model(jv_est_2019.modelmulpub4, type = "pred", terms = c("sj_ceo_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 1] <- "1. Nunca"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_jvest_4$data$response.level[plot_pred_jvest_4$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_jvest_4 
+
+```
+
+## Prob. Pred: Justificación de que carabineros repriman marchas pacificas
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros repriman marchas pecificas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+### Modelo 1
+
+```{r predcarab1_1, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_carab1_1 <- plot_model(jv_carab1_2019.modelmulpub1, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab1_1$data$response.level[plot_pred_carab1_1$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab1_1
+```
+
+### Modelo 2
+
+```{r predcarab1_2, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_carab1_2 <- plot_model(jv_carab1_2019.modelmulpub2, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab1_2$data$response.level[plot_pred_carab1_2$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab1_2
+
+
+```
+
+## Prob. Pred: Justificación Carabineros desalojen tomas
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el sentido de injusticia de los obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+### Modelo 1
+
+```{r predcarab2_1, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_carab2_1 <- plot_model(jv_carab2_2019.modelmulpub1, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_1$data$response.level[plot_pred_carab2_1$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_1
+```
+
+### Modelo 2
+
+```{r predcarab2_2, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_carab2_2 <- plot_model(jv_carab2_2019.modelmulpub2, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_2$data$response.level[plot_pred_carab2_2$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_2
+```
+
+
+### Modelo 3
+
+```{r predcarab2_3, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_carab2_3 <- plot_model(jv_carab2_2019.modelmulpub3, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_3$data$response.level[plot_pred_carab2_3$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_3
+```
+
+### Modelo 4
+
+```{r predcarab2_4, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_pred_carab2_4 <- plot_model(jv_carab2_2019.modelmulpub4, type = "pred", terms = c("sj_obrero_rec[all]"), title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") + theme_classic()
+
+
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 1] <- "1. Nunca"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 2] <- "2. Pocas veces"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 3] <- "3. Algunas veces"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 4] <- "4. Muchas veces"
+plot_pred_carab2_4$data$response.level[plot_pred_carab2_4$data$response.level == 5] <- "5. Siempre"
+
+plot_pred_carab2_4
+```
+
+
+
+# Interacciones
+
+A continuación se presentan los gráficos de probabilidades predichas de los efectos de interacción significativos.
+
+## Interaction Term: Sexo x J Gerente
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el efecto de interacción entre el sexo y el sentido de injusticia en gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+```{r intsex, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_it1<- plot_model(jv_est_2019.modelmulpub5, type = "pred", ci.lvl = NA, terms = c("sexo_factor", "sj_ceo_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+
+levels(plot_it1$data$response.level)[levels(plot_it1$data$response.level) == "fit.Nunca.se.justifica"] <- "1. Nunca"
+levels(plot_it1$data$response.level)[levels(plot_it1$data$response.level) == "fit.Pocas.veces.se.justifica"] <- "2. Pocas veces"
+levels(plot_it1$data$response.level)[levels(plot_it1$data$response.level) == "fit.Algunas.veces.se.justifica"] <- "3. Algunas veces"
+levels(plot_it1$data$response.level)[levels(plot_it1$data$response.level) == "fit.Muchas.veces.se.justifica"] <- "4. Muchas veces"
+levels(plot_it1$data$response.level)[levels(plot_it1$data$response.level) == "fit.Siempre.se.justifica"] <- "5. Siempre"
+
+# plot_it1$data$response.level[plot_it1$data$response.level == 1] <- "1. Nunca"
+# plot_it1$data$response.level[plot_it1$data$response.level == 2] <- "2. Pocas veces"
+# plot_it1$data$response.level[plot_it1$data$response.level == 3] <- "3. Algunas veces"
+# plot_it1$data$response.level[plot_it1$data$response.level == 4] <- "4. Muchas veces"
+# plot_it1$data$response.level[plot_it1$data$response.level == 5] <- "5. Siempre"
+
+plot_it1$data$group <- factor(plot_it1$data$group, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
+plot_it1$data$group_col <- factor(plot_it1$data$group_col, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
+
+plot_it1 + theme_classic() +
+    labs(caption =
+           paste0("Fuente: Elaboración propia a partir de ELSOC 2019"," (n=",dim(na.omit(procjv_analysis_nona))[1],")"))
+
+```
+
+## Interaction Term: Satisfacción Ingreros x J Gerente
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que estudiantes tiren piedras a carabineros según el efecto de interacción entre la satisfacción con los ingresos y el sentido de injusticia en gerentes. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+
+```{r intsatisfact, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_it2<- plot_model(jv_est_2019.modelmulpub5, type = "pred", ci.lvl = NA, terms = c("ingreso_satisfact_factor", "sj_ceo_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha") +  scale_x_continuous(breaks = c(1,2,3,4,5), labels=c("TS", 
+                            "", 
+                            "", 
+                            "",
+                            "TI")) 
+
+levels(plot_it2$data$response.level)[levels(plot_it2$data$response.level) == "fit.Nunca.se.justifica"] <- "1. Nunca"
+levels(plot_it2$data$response.level)[levels(plot_it2$data$response.level) == "fit.Pocas.veces.se.justifica"] <- "2. Pocas veces"
+levels(plot_it2$data$response.level)[levels(plot_it2$data$response.level) == "fit.Algunas.veces.se.justifica"] <- "3. Algunas veces"
+levels(plot_it2$data$response.level)[levels(plot_it2$data$response.level) == "fit.Muchas.veces.se.justifica"] <- "4. Muchas veces"
+levels(plot_it2$data$response.level)[levels(plot_it2$data$response.level) == "fit.Siempre.se.justifica"] <- "5. Siempre"
+
+
+# plot_it2$data$response.level[plot_it2$data$response.level == 1] <- "1. Nunca"
+# plot_it2$data$response.level[plot_it2$data$response.level == 2] <- "2. Pocas veces"
+# plot_it2$data$response.level[plot_it2$data$response.level == 3] <- "3. Algunas veces"
+# plot_it2$data$response.level[plot_it2$data$response.level == 4] <- "4. Muchas veces"
+# plot_it2$data$response.level[plot_it2$data$response.level == 5] <- "5. Siempre"
+
+plot_it2$data$group <- factor(plot_it2$data$group, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
+plot_it2$data$group_col <- factor(plot_it2$data$group_col, levels = c(0.13, 1.13, 2.13), labels = c("Media-DE","Media","Media+DE"))
+
+plot_it2$data <- plot_it2$data %>% filter(x == 1 | x == 5)
+
+plot_it2 + theme_classic() +
+    labs(caption =
+           paste0("Fuente: Elaboración propia a partir de ELSOC 2019"," (n=",dim(na.omit(procjv_analysis_nona))[1],"). Nota: 'TS' refiere a 'Totalmente Satisfecho' y 'TI' refiere a 'Totalmente Insatisfecho'"))
+```
+
+## Interaction Term: Ingresos x J Obrero
+
+A continuación se presentan los gráficos de probabilidades predichas para el indicador de Justificación de que carabineros desalojen tomas según el efecto de interacción entre el ingreso y el sentido de injusticia en obreros. Se gráfica esta relación por presentar un p < 0.01 en las tablas de modelos logísticos ordinales.
+
+
+```{r intingreso, fig.width=11, fig.height=6, out.width = "300%", out.height= "300%"}
+
+plot_it3<- plot_model(jv_carab2_2019.modelmulpub5, type = "pred", terms = c("ingreso[all]", "sj_obrero_rec"), mdrt.values = "meansd", title = "")  + geom_line() + theme(legend.position="bottom") + ylab("Probabilidad Predicha")
+
+
+plot_it3$data$response.level[plot_it3$data$response.level == 1] <- "1. Nunca"
+plot_it3$data$response.level[plot_it3$data$response.level == 2] <- "2. Pocas veces"
+plot_it3$data$response.level[plot_it3$data$response.level == 3] <- "3. Algunas veces"
+plot_it3$data$response.level[plot_it3$data$response.level == 4] <- "4. Muchas veces"
+plot_it3$data$response.level[plot_it3$data$response.level == 5] <- "5. Siempre"
+
+plot_it3$data$group <- factor(plot_it3$data$group, levels = c(0.22, 0.64, 1.06), labels = c("Media-DE","Media","Media+DE"))
+plot_it3$data$group_col <- factor(plot_it3$data$group_col, levels = c(0.22, 0.64, 1.06), labels = c("Media-DE","Media","Media+DE"))
+
+plot_it3 + theme_classic() +
+    labs(caption =
+           paste0("Fuente: Elaboración propia a partir de ELSOC 2019"," (n=",dim(na.omit(procjv_analysis_nona))[1],"). Nota: El eje X fue invertido para que la interpretación sea de mayores a menores ingresos.")) + scale_x_reverse()
+
+```
+
+## Test de Supuesto de Proporcionalidad
+
+### Justificaciónn de que estudiantes tiren piedras
+
+```{r}
+round_df <- function(x, digits) {
+    # round all numeric variables
+    # x: data frame 
+    # digits: number of digits to round
+    numeric_columns <- sapply(x, mode) == 'numeric'
+    x[numeric_columns] <-  round(x[numeric_columns], digits)
+    x
+}
+```
+
+
+```{r ntest1}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+
+jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ 
+                                  sj_ceo_rec + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado, 
+                                data = procjv_analysis_nona)
+
+nt_est_1 <- nominal_test(jv_est_2019.modelmulpub1)
+
+nt_est_1 <- nt_est_1[-c(1), ]
+rownames(nt_est_1) <- c("J Gerente", "J Obrero", "J Entrevistado")
+
+nt_est_1$Indicador <- rownames(nt_est_1)
+
+nt_est_1 <- round_df(nt_est_1, 3)
+
+nt_est_1 <- nt_est_1[,c(6,1,2,3,4,5)]
+
+tab_df(nt_est_1)
+```
+
+```{r}
+nt_est_2 <- nominal_test(jv_est_2019.modelmulpub2)
+nt_est_3 <- nominal_test(jv_est_2019.modelmulpub3)
+nt_est_4 <- nominal_test(jv_est_2019.modelmulpub4)
+nt_est_5 <- nominal_test(jv_est_2019.modelmulpub5)
+```
+
+
+
+### Justificación de que carabineros reprima marchas pacificas
+
+```{r ntcarab1}
+
+nt_carab1_1 <- nominal_test(jv_carab1_2019.modelmulpub1)
+
+nt_carab1_1 <- nt_carab1_1[-c(1), ]
+rownames(nt_carab1_1) <- c("J Gerente", "J Obrero", "J Entrevistado")
+
+nt_carab1_1$Indicador <- rownames(nt_carab1_1)
+
+nt_carab1_1 <- round_df(nt_carab1_1, 3)
+
+nt_carab1_1 <- nt_carab1_1[,c(6,1,2,3,4,5)]
+
+tab_df(nt_carab1_1)
+
+```
+
+```{r}
+nt_carab1_2 <- nominal_test(jv_carab1_2019.modelmulpub2)
+nt_carab1_3 <- nominal_test(jv_carab1_2019.modelmulpub3)
+nt_carab1_4 <- nominal_test(jv_carab1_2019.modelmulpub4)
+nt_carab1_5 <- nominal_test(jv_carab1_2019.modelmulpub5)
+```
+
+
+
+### Justificación de que carabineros desalojen liceos en toma
+
+```{r ntcarab2}
+
+load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+
+jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ 
+                                  sj_ceo_rec + 
+                                  sj_obrero_rec + 
+                                  sj_entrevistado, 
+                                data = procjv_analysis_nona)
+
+nt_carab2_1 <- nominal_test(jv_carab2_2019.modelmulpub1)
+
+nt_carab2_1 <- nt_carab2_1[-c(1), ]
+rownames(nt_carab2_1) <- c("J Gerente", "J Obrero", "J Entrevistado")
+
+nt_carab2_1$Indicador <- rownames(nt_carab2_1)
+
+nt_carab2_1 <- round_df(nt_carab2_1, 3)
+
+nt_carab2_1 <- nt_carab2_1[,c(6,1,2,3,4,5)]
+
+tab_df(nt_carab2_1)
+
+```
+
+```{r}
+nt_carab2_2 <- nominal_test(jv_carab2_2019.modelmulpub2)
+nt_carab2_3 <- nominal_test(jv_carab2_2019.modelmulpub3)
+nt_carab2_4 <- nominal_test(jv_carab2_2019.modelmulpub4)
+nt_carab2_5 <- nominal_test(jv_carab2_2019.modelmulpub5)
+```
+
+```{r}
+ggpredict(jv_est_2019.modelmulpub4, "sj_ceo_rec[0.13, 1.13, 2.13]")
+```
+
+```{r}
+ggpredict(jv_carab1_2019.modelmulpub2, "sj_obrero_rec[0.22, 0.64, 1.06]")
+```
+
+```{r}
+ggpredict(jv_carab2_2019.modelmulpub4, "sj_obrero_rec[0.22, 0.64, 1.06]")
+```
+
+## Plots de coeficientes
+
+### Estudiantes tiren piedras
+```{r}
+
+plot_model(jv_est_2019.modelmulpub5, title = "Coeficientes de Regresión para Estudiantes Tiren Piedras", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado", "ingreso_satisfact_factorTotalmente insatisfecho", "rwa_indice", "trato_carab_factorSiempre", "sj_ceo_rec:sexo_factorMujer", "sj_ceo_rec:ingreso_satisfact_factorTotalmente insatisfecho")
+           
+,axis.labels =
+c("J Gerente x Satisfacción Ingresos: Tot. Insatis",
+  "J Gerente x Sexo: Mujer",
+  "Trato Justo: Siempre",
+  "RWA",
+  "Satisfacción Ingresos: Tot. Insatis.",
+  "J Entrevistado",
+  "J Obrero",
+  "J Gerente")
+)
+            
+```
+
+### Carabineros Reprimen Marchas Pacificas
+```{r}
+
+gridExtra::grid.arrange(
+plot_model(jv_carab1_2019.modelmulpub2, title = "Coeficientes de Regresión para Carabineros Reprimen Marchas (Solo J)", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado")
+           
+,axis.labels =
+c(
+  "J Entrevistado",
+  "J Obrero",
+  "J Gerente")
+)
+,
+plot_model(jv_carab1_2019.modelmulpub3, title = "Coeficientes de Regresión para Carabineros Carabineros Reprimen Marchas (J + Ideología)", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado", "rwa_indice", "sdo_indice")
+           
+,axis.labels =
+c(
+  "SDO",
+  "RWA",
+  "J Entrevistado",
+  "J Obrero",
+  "J Gerente")
+)
+
+)      
+
+```
+# Carabineros Desalojen Tomas
+
+```{r}
+
+plot_model(jv_carab2_2019.modelmulpub4, title = "Coeficientes de Regresión para Carabineros Desalojen Tomas", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado_rec", "rwa_indice", "sdo_indice")
+           
+,axis.labels =
+c(
+  "SDO",
+  "RWA",
+  "J Entrevistado",
+  "J Obrero",
+  "J Gerente")
+)
+
+```
+

@@ -6,6 +6,11 @@ subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las just
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+knit: (function(inputFile, encoding) {
+      out_dir <- "../../output/docs/Analisis-Multivariado-Ordinal";
+      rmarkdown::render(inputFile,
+                        encoding=encoding,
+                        output_dir=file.path(dirname(inputFile), out_dir))})
 output:
     bookdown::html_document2:
           number_sections: false
@@ -58,8 +63,25 @@ summarytools::st_css()
 ```{r packages}
 
 if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
-if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
-pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant) # librerias
+
+pacman::p_load(knitr, 
+               summarytools, 
+               kableExtra, 
+               dplyr, 
+               lavaan, 
+               haven, 
+               htmlwidgets, 
+               webshot, 
+               sjPlot, 
+               VIM, 
+               GGally, 
+               finalfit, 
+               table1, 
+               psych, 
+               ordinal, 
+               MASS, 
+               brant) # librerias
+
 knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
                       message = FALSE,  # mensajes/avisos de librerias  
                       cache = FALSE,    # cache de los chunks,usar analisis pesados
@@ -80,101 +102,16 @@ El presente documento corresponde al análisis multivariado de la tésis titulad
 
 ## Modelos para reporte oficial
 
-```{r load data}
+```{r load-models}
 
-load("../input/data/procjv_analysis_nona.RData")
+source("source_ordinal_models/ordinal_models.R", encoding = "UTF-8" )
+
 ```
 
 
 ### Justificación estudiantes lancen piedras
 
 ```{r jv-est-model, echo=FALSE, results='asis', cache = T}
-
-# load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
-
-
-jv_est_2019.modelmulpub1 <- clm(jv_est_2019_factor ~ 
-                                  sj_ceo_rec + 
-                                  sj_obrero_rec + 
-                                  sj_entrevistado, 
-                                data = procjv_analysis_nona)
- 
- jv_est_2019.modelmulpub2<- clm(jv_est_2019_factor ~ 
-                                  sj_ceo_rec + 
-                                  sj_obrero_rec + 
-                                  sj_entrevistado + 
-                                  ingreso + 
-                                  sexo_factor + 
-                                  ingreso_satisfact_factor + 
-                                  educ_rec_factor + 
-                                  indigena_rec_factor, 
-                                data = procjv_analysis_nona)
- 
-jv_est_2019.modelmulpub3<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + 
-                                 rwa_indice, 
-                               data = procjv_analysis_nona)
-  
-jv_est_2019.modelmulpub4<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + 
-                                 rwa_indice + 
-                                 trato_salud_factor + 
-                                 trato_carab_factor, 
-                               data = procjv_analysis_nona)
-
-jv_est_2019.modelmulpub5<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + 
-                                 rwa_indice + 
-                                 trato_salud_factor + 
-                                 trato_carab_factor + 
-                                 sexo_factor*sj_ceo_rec + 
-                                 ingreso_satisfact_factor*sj_ceo_rec, 
-                               data = procjv_analysis_nona)
-
-jv_est_2019.modelmulpub6<- clm(jv_est_2019_factor ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + rwa_indice + 
-                                 trato_salud_factor + 
-                                 trato_carab_factor + 
-                                 sexo_factor*sj_ceo_rec + 
-                                 ingreso_satisfact_factor*sj_ceo_rec + 
-                                 pos_pol_rec_factor + 
-                                 frec_marcha_factor + 
-                                 conf_carab_factor, 
-                               data = procjv_analysis_nona)
-
-
 
 omit_coef="(Intercept)|(educ_rec_factor)|(indigena_rec_factor)|(sdo_indice)|(rwa_indice)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
 
@@ -230,14 +167,13 @@ texreg::knitreg(list(jv_est_2019.modelmulpub1,
                         jv_est_2019.modelmulpub2,
                         jv_est_2019.modelmulpub3,
                         jv_est_2019.modelmulpub4,
-                        jv_est_2019.modelmulpub5,
-                        jv_est_2019.modelmulpub6),
+                        jv_est_2019.modelmulpub5),
         caption = paste("(\\#tab:jv-est-model)",cap1),
         caption.above=TRUE,
         omit.coef=omit_coef,
         include.thresholds=FALSE,
-        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=c("0.019",	"0.047",	"0.103",	"0.157",	"0.176",	"0.276")),
+        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit."),
+                             R2Nagelkerke=c("0.019",	"0.047",	"0.103",	"0.157",	"0.176")),
         groups=list("Sentido de Injusticia (J)"=1:3,
                     "Sexo (ref: Hombre)"=5,
                     "Satisfacción Ingresos (ref: Totalmente satisfecho)" = 6:9,
@@ -254,92 +190,9 @@ texreg::knitreg(list(jv_est_2019.modelmulpub1,
 
 ```{r jv-carab1-model, echo=FALSE, results='asis', cache = T}
 
-# load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+omit_coef="(Intercept)|(ingreso)|(sexo_factor)|(ingreso_satisfact_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)"
 
-jv_carab1_2019.modelmulpub1 <- clm(jv_carab1_2019_factor ~ 
-                                     sj_ceo_rec + 
-                                     sj_obrero_rec + 
-                                     sj_entrevistado, 
-                                   data = procjv_analysis_nona)
- 
- jv_carab1_2019.modelmulpub2<- clm(jv_carab1_2019_factor ~ 
-                                     sj_ceo_rec + 
-                                     sj_obrero_rec + 
-                                     sj_entrevistado + 
-                                     ingreso + 
-                                     sexo_factor + 
-                                     ingreso_satisfact_factor + 
-                                     educ_rec_factor + 
-                                     indigena_rec_factor, 
-                                   data = procjv_analysis_nona)
- 
-jv_carab1_2019.modelmulpub3<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice, 
-                                  data = procjv_analysis_nona)
-  
-jv_carab1_2019.modelmulpub4<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor, 
-                                  data = procjv_analysis_nona)
-
-jv_carab1_2019.modelmulpub5<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    educ_rec_factor*sj_obrero_rec, 
-                                  data = procjv_analysis_nona)
-
-jv_carab1_2019.modelmulpub6<- clm(jv_carab1_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    educ_rec_factor*sj_obrero_rec + 
-                                    pos_pol_rec_factor + 
-                                    frec_marcha_factor + 
-                                    conf_carab_factor, 
-                                  data = procjv_analysis_nona)
-
-                   
-omit_coef="(Intercept)|(ingreso)|(sexo_factor)|(ingreso_satisfact_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
-
-cap1 <- "Modelos de regresión logística ordinal para justificación de que carabineros repriman marchas pacificas" # Título tabla
+cap1 <- "Modelos de regresión logística ordinal para Justificación de que Carabineros Repriman Marchas Pacificas" # Título tabla
 
 coef_names <- c(
   "Gerente",
@@ -367,10 +220,10 @@ coef_names <- c(
   # "A veces",
   # "Casi siempre",
   # "Siempre",
-  "J Obrero x Primaria y secundaria baja",
-  "J Obrero x Secundaria alta",
-  "J Obrero x Terciaria ciclo corto",
-  "J Obrero x Terciaria y postgrado"
+  "J' Obrero x Primaria y secundaria baja",
+  "J' Obrero x Secundaria alta",
+  "J' Obrero x Terciaria ciclo corto",
+  "J' Obrero x Terciaria y postgrado"
   # "Pos. Pol. - Centro (ref: Izquierda)",
   # "Derecha",
   # "Independiente",
@@ -390,14 +243,13 @@ texreg::knitreg(list(jv_carab1_2019.modelmulpub1,
                         jv_carab1_2019.modelmulpub2,
                         jv_carab1_2019.modelmulpub3,
                         jv_carab1_2019.modelmulpub4,
-                        jv_carab1_2019.modelmulpub5,
-                        jv_carab1_2019.modelmulpub6),
+                        jv_carab1_2019.modelmulpub5),
         caption = paste("(\\#tab:jv-carab1-model)",cap1),
         caption.above=TRUE,
         omit.coef=omit_coef,
         include.thresholds=FALSE,
-        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=c("0.033",	"0.065",	"0.145",	"0.163",	"0.171",	"0.198")), # ESTOS VALORES SE EXTRAEN DEL CALCULO DE MODELOS EN EL RMD DE ANÁLISIS MULTIVARIADO.
+        custom.gof.rows=list(Controles=c("Ninguno","Desv.","Ideol.","Trato", "Todo"),
+                             R2Nagelkerke=c("0.033",	"0.065",	"0.145",	"0.163",	"0.171")), # ESTOS VALORES SE EXTRAEN DEL CALCULO DE MODELOS EN EL RMD DE ANÁLISIS MULTIVARIADO.
         groups=list("Sentido de Injusticia (J)"=1:3,
                     "Educación (ref: Primaria incompleta menos)"=4:7,
                     "Ideologia" = 8:9,
@@ -405,104 +257,18 @@ texreg::knitreg(list(jv_carab1_2019.modelmulpub1,
         custom.coef.names=coef_names,
         scalebox = 0.75,
         threeparttable = T,
-        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Lit' refiere a la introducción de todas las variables relevantes por literatura. 'Exp.' refiere a la incorporación de variables de control exploratorias."
+        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Ninguno' se refiere a que no se ha incluido ningun control. 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Todo' refiere a la inclusión de todos los controles relevantes por literatura junto a los efectos de interacción"
 )                   
-                   
+
 ```
 
-### Justificación carabineros desalojen tomas
 
-```{r jv-carab2-model, echo=FALSE, results='asis', cache = T}
+### Justificación de que carabineros desalojen tomas
 
-# load(url("https://github.com/thesis-justification-of-violence/thesis-analysis/raw/main/input/data/procjv_analysis_nona.RData"))
+```{r}
+omit_coef="(Intercept)|(educ_rec_factor)|(sexo_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)"
 
-
- jv_carab2_2019.modelmulpub1 <- clm(jv_carab2_2019_factor ~ 
-                                      sj_ceo_rec + 
-                                      sj_obrero_rec + 
-                                      sj_entrevistado_rec, 
-                                    data = procjv_analysis_nona)
- 
- jv_carab2_2019.modelmulpub2<- clm(jv_carab2_2019_factor ~ 
-                                     sj_ceo_rec +
-                                     sj_obrero_rec + 
-                                     sj_entrevistado_rec +
-                                     ingreso + 
-                                     sexo_factor + 
-                                     ingreso_satisfact_factor + 
-                                     educ_rec_factor +
-                                     indigena_rec_factor,
-                                   data = procjv_analysis_nona)
- 
-jv_carab2_2019.modelmulpub3<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado_rec + 
-                                    ingreso +
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor +
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice, 
-                                  data = procjv_analysis_nona)
-  
-jv_carab2_2019.modelmulpub4<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec +
-                                    sj_entrevistado_rec + 
-                                    ingreso +
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor +
-                                    indigena_rec_factor +
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor +
-                                    trato_carab_factor, 
-                                  data = procjv_analysis_nona)
-
-jv_carab2_2019.modelmulpub5<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado_rec + 
-                                    ingreso +
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor +
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice +
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    ingreso*sj_obrero_rec + 
-                                    ingreso_satisfact_factor*sj_obrero_rec,
-                                  data = procjv_analysis_nona)
-
-jv_carab2_2019.modelmulpub6<- clm(jv_carab2_2019_factor ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado_rec + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor +
-                                    indigena_rec_factor +
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    ingreso*sj_obrero_rec + 
-                                    ingreso_satisfact_factor*sj_obrero_rec +
-                                    pos_pol_rec_factor +
-                                    frec_marcha_factor + 
-                                    conf_carab_factor, 
-                                  data = procjv_analysis_nona)
-
-
-omit_coef="(Intercept)|(educ_rec_factor)|(sexo_factor)|(indigena_rec_factor)|(trato_salud_factor)|(trato_carab_factor)|(pos_pol_rec_factor)|(frec_marcha_factor)|(conf_carab_factor)"
-
-cap1 <- "Modelos de regresión logística ordinal para justificación de carabineros desalojen tomas" # Título tabla
+cap1 <- "Modelos de regresión logística ordinal para Justificación de Carabineros Desalojen Tomas" # Título tabla
 
 coef_names <- c(
   "Gerente",
@@ -530,11 +296,11 @@ coef_names <- c(
   # "A veces",
   # "Casi siempre",
   # "Siempre",
-  "J Obrero x Ingreso",
-  "J Obrero x Satisfecho",
-  "J Obrero x Ni satisfecho ni insatisfecho",
-  "J Obrero x Insatisfecho",
-  "J Obrero x Totalmente insatisfecho"
+  "J' Obrero x Ingreso",
+  "J' Obrero x Satisfecho",
+  "J' Obrero x Ni satisfecho ni insatisfecho",
+  "J' Obrero x Insatisfecho",
+  "J' Obrero x Totalmente insatisfecho"
   # "Pos. Pol. - Centro (ref: Izquierda)",
   # "Derecha",
   # "Independiente",
@@ -554,14 +320,13 @@ texreg::knitreg(list(jv_carab2_2019.modelmulpub1,
                         jv_carab2_2019.modelmulpub2,
                         jv_carab2_2019.modelmulpub3,
                         jv_carab2_2019.modelmulpub4,
-                        jv_carab2_2019.modelmulpub5,
-                        jv_carab2_2019.modelmulpub6),
+                        jv_carab2_2019.modelmulpub5),
         caption = paste("(\\#tab:jv-carab2-model)",cap1),
         caption.above=TRUE,
         omit.coef=omit_coef,
         include.thresholds=FALSE,
-        custom.gof.rows=list(Controles=c("No","Desv.","Ideol.","Trato", "Lit.", "Lit. y Exp."),
-                             R2Nagelkerke=c("0.051",	"0.085",	"0.155",	"0.198",	"0.211",	"0.261")),
+        custom.gof.rows=list(Controles=c("Ninguno","Desv.","Ideol.","Trato", "Todo"),
+                             R2Nagelkerke=c("0.051",	"0.085",	"0.155",	"0.198",	"0.211")),
         groups=list("Sentido de Injusticia (J)"=1:3,
                     "Satisfacción Ingresos (ref: Totalmente satisfecho)"=5:8,
                     "Ideologia" = 9:10,
@@ -569,11 +334,9 @@ texreg::knitreg(list(jv_carab2_2019.modelmulpub1,
         custom.coef.names=coef_names,
         scalebox = 0.75,
         threeparttable = T,
-        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Lit' refiere a la introducción de todas las variables relevantes por literatura. 'Exp.' refiere a la incorporación de variables de control exploratorias."
+        custom.note="\\item *** p < 0.001; ** p < 0.01; * p < 0.05.\\item Nota: 'Ninguno' se refiere a que no se ha incluido ningun control. 'Desv.' refiere a la introducción de variables sobre grupos desaventajados. 'Ideol.' refiere a la introducción de variables de ideología. 'Trato' refiere a la introducción de variables de justicia en el trato. 'Todo' refiere a la inclusión de todos los controles relevantes por literatura junto a los efectos de interacción"
 )
 ```
-
-
 
 
 
