@@ -1,11 +1,16 @@
 ---
 title: |
-  ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
-  Anexo - Modelos de Regresión Logística Binaria (extensos)
+  ![](../../../input/images/logo-sociales.jpg){width=25% height=25%}  
+  Anexo - Modelos de Regresión Logística Binaria (5 vs 1234)
 subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+knit: (function(inputFile, encoding) {
+      out_dir <- "../../../output/docs/Analisis-Mult-Binary";
+      rmarkdown::render(inputFile,
+                        encoding=encoding,
+                        output_dir=file.path(dirname(inputFile), out_dir))})
 output:
     bookdown::html_document2:
           number_sections: false
@@ -58,8 +63,14 @@ summarytools::st_css()
 ```{r packages}
 
 if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
-if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instalar
-pacman::p_load(knitr, summarytools, kableExtra, dplyr, lavaan, haven, htmlwidgets, webshot, sjPlot, VIM, GGally, finalfit, table1, psych, ordinal, MASS, brant) # librerias
+
+pacman::p_load(knitr, 
+               summarytools, 
+               kableExtra, 
+               dplyr,
+               sjPlot
+               ) # librerias
+
 knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
                       message = FALSE,  # mensajes/avisos de librerias  
                       cache = FALSE,    # cache de los chunks,usar analisis pesados
@@ -76,357 +87,62 @@ options(knitr.kable.NA = '') # NA en kable = ''
 
 # Introducción
 
-En el presente documento se reportan los modelos logísticos ordinales de la tesis titulada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta". A diferencia del reporte en el trabajo original, aquí se presentan los modelos con todos los predictores, tanto las variables de hipótesis, como las variables independientes.
-
-
-Primero se comienza cargando los paquetes y la base de datos.
+En el presente documento se reportan los modelos logísticos binarios de la tesis titulada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta". A diferencia del reporte en el trabajo original, aquí se presentan los modelos con todos los predictores, tanto las variables de hipótesis, como las variables independientes con las variables dependientes dicotomizadas.
 
 ## Modelos con todos los predictores
 
 A continuación, se presentan los modelos de regresión ordinal con todos los predictores.
 
-```{r load data}
+```{r load-models}
 
-load("../input/data/procjv_analysis_nona.RData")
-
-procjv_analysis_nona$jv_est_2019_bin[procjv_analysis_nona$jv_est_2019_factor == "Nunca se justifica"] <- 0
-procjv_analysis_nona$jv_est_2019_bin[procjv_analysis_nona$jv_est_2019_factor == "Pocas veces se justifica"] <- 0
-procjv_analysis_nona$jv_est_2019_bin[procjv_analysis_nona$jv_est_2019_factor == "Algunas veces se justifica"] <- 0
-procjv_analysis_nona$jv_est_2019_bin[procjv_analysis_nona$jv_est_2019_factor == "Muchas veces se justifica"] <- 0
-procjv_analysis_nona$jv_est_2019_bin[procjv_analysis_nona$jv_est_2019_factor == "Siempre se justifica"] <- 1
-
-# procjv_analysis_nona$jv_est_2019_bin <- factor(procjv_analysis_nona$jv_est_2019_bin, levels = c(0,1), labels = c("No se justifica", "Se justifica"))
-
-procjv_analysis_nona$jv_carab1_2019_bin[procjv_analysis_nona$jv_carab1_2019_factor == "Nunca se justifica"] <- 0
-procjv_analysis_nona$jv_carab1_2019_bin[procjv_analysis_nona$jv_carab1_2019_factor == "Pocas veces se justifica"] <- 0
-procjv_analysis_nona$jv_carab1_2019_bin[procjv_analysis_nona$jv_carab1_2019_factor == "Algunas veces se justifica"] <- 0
-procjv_analysis_nona$jv_carab1_2019_bin[procjv_analysis_nona$jv_carab1_2019_factor == "Muchas veces se justifica"] <- 0
-procjv_analysis_nona$jv_carab1_2019_bin[procjv_analysis_nona$jv_carab1_2019_factor == "Siempre se justifica"] <- 1
-
-# procjv_analysis_nona$jv_carab1_2019_bin <- factor(procjv_analysis_nona$jv_carab1_2019_bin, levels = c(0,1), labels = c("No se justifica", "Se justifica"))
-
-procjv_analysis_nona$jv_carab2_2019_bin[procjv_analysis_nona$jv_carab2_2019_factor == "Nunca se justifica"] <- 0
-procjv_analysis_nona$jv_carab2_2019_bin[procjv_analysis_nona$jv_carab2_2019_factor == "Pocas veces se justifica"] <- 0
-procjv_analysis_nona$jv_carab2_2019_bin[procjv_analysis_nona$jv_carab2_2019_factor == "Algunas veces se justifica"] <- 0
-procjv_analysis_nona$jv_carab2_2019_bin[procjv_analysis_nona$jv_carab2_2019_factor == "Muchas veces se justifica"] <- 0
-procjv_analysis_nona$jv_carab2_2019_bin[procjv_analysis_nona$jv_carab2_2019_factor == "Siempre se justifica"] <- 1
-
-# procjv_analysis_nona$jv_carab2_2019_bin <- factor(procjv_analysis_nona$jv_carab2_2019_bin, levels = c(0,1), labels = c("No se justifica", "Se justifica"))
+source("source_binary_models/binary_models5vs1234.R", encoding = "UTF-8" )
 
 ```
-
 
 ### Justificación estudiantes lancen piedras
 
 ```{r}
-
-# Crear modelos para publicación
-
-
-jv_est_2019.modelmulpub1 <- glm(jv_est_2019_bin ~ 
-                                  sj_ceo_rec + 
-                                  sj_obrero_rec + 
-                                  sj_entrevistado, 
-                                data = procjv_analysis_nona, family = "binomial")
- 
- jv_est_2019.modelmulpub2<- glm(jv_est_2019_bin ~ 
-                                  sj_ceo_rec + 
-                                  sj_obrero_rec + 
-                                  sj_entrevistado + 
-                                  ingreso + 
-                                  sexo_factor + 
-                                  ingreso_satisfact_factor + 
-                                  educ_rec_factor + 
-                                  indigena_rec_factor, 
-                                data = procjv_analysis_nona, family = "binomial")
- 
-jv_est_2019.modelmulpub3<- glm(jv_est_2019_bin ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + 
-                                 rwa_indice, 
-                               data = procjv_analysis_nona, family = "binomial")
-  
-jv_est_2019.modelmulpub4<- glm(jv_est_2019_bin ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + 
-                                 rwa_indice + 
-                                 trato_salud_factor + 
-                                 trato_carab_factor, 
-                               data = procjv_analysis_nona, family = "binomial")
-
-jv_est_2019.modelmulpub5<- glm(jv_est_2019_bin ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + 
-                                 rwa_indice + 
-                                 trato_salud_factor + 
-                                 trato_carab_factor + 
-                                 sexo_factor*sj_ceo_rec + 
-                                 ingreso_satisfact_factor*sj_ceo_rec, 
-                               data = procjv_analysis_nona, family = "binomial")
-
-jv_est_2019.modelmulpub6<- glm(jv_est_2019_bin ~ 
-                                 sj_ceo_rec + 
-                                 sj_obrero_rec + 
-                                 sj_entrevistado + 
-                                 ingreso + 
-                                 sexo_factor + 
-                                 ingreso_satisfact_factor + 
-                                 educ_rec_factor + 
-                                 indigena_rec_factor + 
-                                 sdo_indice + rwa_indice + 
-                                 trato_salud_factor + 
-                                 trato_carab_factor + 
-                                 sexo_factor*sj_ceo_rec + 
-                                 ingreso_satisfact_factor*sj_ceo_rec + 
-                                 pos_pol_rec_factor + 
-                                 frec_marcha_factor + 
-                                 conf_carab_factor, 
-                               data = procjv_analysis_nona, family = "binomial")
-
-
-
-
  sjPlot::tab_model(list(jv_est_2019.modelmulpub1,
                         jv_est_2019.modelmulpub2,
                         jv_est_2019.modelmulpub3,
                         jv_est_2019.modelmulpub4,
-                        jv_est_2019.modelmulpub5,
-                        jv_est_2019.modelmulpub6), # los modelos estimados
+                        jv_est_2019.modelmulpub5), # los modelos estimados
    transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
    p.style = "stars", # asteriscos de significación estadística
-   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
-   string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion estudiantes lancen piedras", file = "../output/tables/jv_est_num.html") # nombre predictores y símbolo beta en tabla
+   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones"), # etiquetas de modelos o variables dep.
+   string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion estudiantes lancen piedras") # nombre predictores y símbolo beta en tabla
 
 ```
 
 ### Justificación carabineros repriman marchas
 
 ```{r}
-
-# Crear modelos para publicación
- ## Independientes numericas
-
-jv_carab1_2019.modelmulpub1 <- glm(jv_carab1_2019_bin ~ 
-                                     sj_ceo_rec + 
-                                     sj_obrero_rec + 
-                                     sj_entrevistado, 
-                                   data = procjv_analysis_nona, family = "binomial")
- 
- jv_carab1_2019.modelmulpub2<- glm(jv_carab1_2019_bin ~ 
-                                     sj_ceo_rec + 
-                                     sj_obrero_rec + 
-                                     sj_entrevistado + 
-                                     ingreso + 
-                                     sexo_factor + 
-                                     ingreso_satisfact_factor + 
-                                     educ_rec_factor + 
-                                     indigena_rec_factor, 
-                                   data = procjv_analysis_nona, family = "binomial")
- 
-jv_carab1_2019.modelmulpub3<- glm(jv_carab1_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice, 
-                                  data = procjv_analysis_nona, family = "binomial")
-  
-jv_carab1_2019.modelmulpub4<- glm(jv_carab1_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor, 
-                                  data = procjv_analysis_nona, family = "binomial")
-
-jv_carab1_2019.modelmulpub5<- glm(jv_carab1_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    educ_rec_factor*sj_obrero_rec, 
-                                  data = procjv_analysis_nona, family = "binomial")
-
-jv_carab1_2019.modelmulpub6<- glm(jv_carab1_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    educ_rec_factor*sj_obrero_rec + 
-                                    pos_pol_rec_factor + 
-                                    frec_marcha_factor + 
-                                    conf_carab_factor, 
-                                  data = procjv_analysis_nona, family = "binomial")
-
-
-
-
  sjPlot::tab_model(list(jv_carab1_2019.modelmulpub1,
                         jv_carab1_2019.modelmulpub2,
                         jv_carab1_2019.modelmulpub3,
                         jv_carab1_2019.modelmulpub4,
-                        jv_carab1_2019.modelmulpub5,
-                        jv_carab1_2019.modelmulpub6), # los modelos estimados
+                        jv_carab1_2019.modelmulpub5), # los modelos estimados
    transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
    p.style = "stars", # asteriscos de significación estadística
-   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
-   string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion carabineros reprime marchas", file = "../output/tables/jv_carab1_num.html") # nombre predictores y símbolo beta en tabla
+   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones"), # etiquetas de modelos o variables dep.
+   string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion carabineros reprime marchas") # nombre predictores y símbolo beta en tabla
 
 ```
 
 ### Justificación carabineros desalojen tomas
 
 ```{r}
-
-# Crear modelos para publicación
-#  ## Independientes numericas
-
- jv_carab2_2019.modelmulpub1 <- glm(jv_carab2_2019_bin ~ 
-                                      sj_ceo_rec + 
-                                      sj_obrero_rec + 
-                                      sj_entrevistado_rec, 
-                                    data = procjv_analysis_nona, family = "binomial")
- 
- jv_carab2_2019.modelmulpub2<- glm(jv_carab2_2019_bin ~ 
-                                     sj_ceo_rec +
-                                     sj_obrero_rec + 
-                                     sj_entrevistado_rec +
-                                     ingreso + 
-                                     sexo_factor + 
-                                     ingreso_satisfact_factor + 
-                                     educ_rec_factor +
-                                     indigena_rec_factor,
-                                   data = procjv_analysis_nona, family = "binomial")
- 
-jv_carab2_2019.modelmulpub3<- glm(jv_carab2_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado_rec + 
-                                    ingreso +
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor +
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice, 
-                                  data = procjv_analysis_nona, family = "binomial")
-  
-jv_carab2_2019.modelmulpub4<- glm(jv_carab2_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec +
-                                    sj_entrevistado_rec + 
-                                    ingreso +
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor +
-                                    indigena_rec_factor +
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor +
-                                    trato_carab_factor, 
-                                  data = procjv_analysis_nona, family = "binomial")
-
-jv_carab2_2019.modelmulpub5<- glm(jv_carab2_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado_rec + 
-                                    ingreso +
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor +
-                                    educ_rec_factor + 
-                                    indigena_rec_factor + 
-                                    sdo_indice + 
-                                    rwa_indice +
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    ingreso*sj_obrero_rec + 
-                                    ingreso_satisfact_factor*sj_obrero_rec,
-                                  data = procjv_analysis_nona, family = "binomial")
-
-jv_carab2_2019.modelmulpub6<- glm(jv_carab2_2019_bin ~ 
-                                    sj_ceo_rec + 
-                                    sj_obrero_rec + 
-                                    sj_entrevistado_rec + 
-                                    ingreso + 
-                                    sexo_factor + 
-                                    ingreso_satisfact_factor + 
-                                    educ_rec_factor +
-                                    indigena_rec_factor +
-                                    sdo_indice + 
-                                    rwa_indice + 
-                                    trato_salud_factor + 
-                                    trato_carab_factor + 
-                                    ingreso*sj_obrero_rec + 
-                                    ingreso_satisfact_factor*sj_obrero_rec +
-                                    pos_pol_rec_factor +
-                                    frec_marcha_factor + 
-                                    conf_carab_factor, 
-                                  data = procjv_analysis_nona, family = "binomial")
-
-
-
-
  sjPlot::tab_model(list(jv_carab2_2019.modelmulpub1,
                         jv_carab2_2019.modelmulpub2,
                         jv_carab2_2019.modelmulpub3,
                         jv_carab2_2019.modelmulpub4,
-                        jv_carab2_2019.modelmulpub5,
-                        jv_carab2_2019.modelmulpub6), # los modelos estimados
+                        jv_carab2_2019.modelmulpub5), # los modelos estimados
    transform = NULL,
    show.ci=FALSE, # no mostrar intervalo de confianza (por defecto lo hace)
    p.style = "stars", # asteriscos de significación estadística
-   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones", "Modelo Controles Exp"), # etiquetas de modelos o variables dep.
-   string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion carabineros desalojan tomas", file = "../output/tables/jv_carab2_num.html") # nombre predictores y símbolo beta en tabla
+   dv.labels = c("Modelo SJ", "Modelo Grupos Desaventajados", "Modelo Ideologia", "Modelo Trato Justo", "Modelo Interacciones"), # etiquetas de modelos o variables dep.
+   string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion carabineros desalojan tomas") # nombre predictores y símbolo beta en tabla
 
 ```
