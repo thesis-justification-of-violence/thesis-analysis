@@ -559,12 +559,14 @@ c(
 
 ```{r}
 
-plot_model(jv_carab2_2019.modelmulpub4, title = "Coeficientes de Regresión para Carabineros Desalojen Tomas", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado_rec", "rwa_indice", "sdo_indice")
+plot_model(jv_carab2_2019.modelmulpub5, title = "Coeficientes de Regresión para Carabineros Desalojen Tomas", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado_rec", "ingreso","rwa_indice", "sdo_indice", "sj_obrero_rec:ingreso")
            
 ,axis.labels =
 c(
+  "J Obrero x Ingresos",
   "SDO",
   "RWA",
+  "Ingresos",
   "J Entrevistado",
   "J Obrero",
   "J Gerente")

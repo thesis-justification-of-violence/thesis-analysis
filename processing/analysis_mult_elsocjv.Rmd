@@ -339,4 +339,38 @@ texreg::knitreg(list(jv_carab2_2019.modelmulpub1,
 ```
 
 
+## Test de Razón de Verosimilitud
 
+```{r}
+
+test_est <- ordinal:::anova.clm(jv_est_2019.modelmulpub4,
+               jv_est_2019.modelmulpub5)
+
+test_carab1 <- ordinal:::anova.clm(jv_carab1_2019.modelmulpub2,
+               jv_carab1_2019.modelmulpub4)
+
+test_carab2 <- ordinal:::anova.clm(jv_carab2_2019.modelmulpub4,
+               jv_carab2_2019.modelmulpub5)
+
+ 
+tests <- rbind(
+               test_est,
+               # test_carab1,
+               test_carab2
+               ) %>% unique()
+
+row.names(tests) <- c(
+                      "JV: Piedras (M4)",
+                      "JV: Piedras (M5)",
+                      # "JV: Represión (M2)",
+                      # "JV: Represión (M4)",
+                      "JV: Desalojo (M4)",
+                      "JV: Desalojo (M5)"
+                      )
+tests$LR.stat
+tests <- tests %>% dplyr::select(-no.par,
+                           -LR.stat)
+
+knitr::kable(tests,digits = 3, caption = "Test de devianza entre modelos") %>% 
+    kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F) #%>% # Añadir estilo en
+```

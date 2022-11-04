@@ -1,13 +1,13 @@
 ---
 title: |
   ![](../../../input/images/logo-sociales.jpg){width=25% height=25%}  
-  Anexo - Modelos de Regresión Logística Binaria (2345 vs 1)
+  Anexo: Modelos de Regresión Lineal OLS
 subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
 author: 
   - Martin Venegas Márquez
 date: "`r format(Sys.Date(), '%d/%m/%Y')`"
 knit: (function(inputFile, encoding) {
-      out_dir <- "../../../output/docs/Analisis-Mult-Binary";
+      out_dir <- "../../../output/docs/Analisis-Multivariado-OLS";
       rmarkdown::render(inputFile,
                         encoding=encoding,
                         output_dir=file.path(dirname(inputFile), out_dir))})
@@ -67,9 +67,20 @@ if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
 pacman::p_load(knitr, 
                summarytools, 
                kableExtra, 
-               dplyr,
-               sjPlot
-               ) # librerias
+               dplyr, 
+               lavaan, 
+               haven, 
+               htmlwidgets, 
+               webshot, 
+               sjPlot, 
+               VIM, 
+               GGally, 
+               finalfit, 
+               table1, 
+               psych, 
+               ordinal, 
+               MASS, 
+               brant) # librerias
 
 knitr::opts_chunk$set(warning = FALSE,  # mensaje de warning
                       message = FALSE,  # mensajes/avisos de librerias  
@@ -87,15 +98,13 @@ options(knitr.kable.NA = '') # NA en kable = ''
 
 # Introducción
 
-En el presente documento se reportan los modelos logísticos binarios de la tesis titulada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta". A diferencia del reporte en el trabajo original, aquí se presentan los modelos con todos los predictores, tanto las variables de hipótesis, como las variables independientes con las variables dependientes dicotomizadas.
+El presente documento corresponde al análisis multivariado de la tésis titulada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
 
-## Modelos con todos los predictores
-
-A continuación, se presentan los modelos de regresión ordinal con todos los predictores.
+## Modelos OLS
 
 ```{r load-models}
 
-source("source_binary_models/binary_models2345vs1.R", encoding = "UTF-8" )
+source("source_ols_models/ols_models.R", encoding = "UTF-8" )
 
 ```
 
@@ -146,107 +155,3 @@ source("source_binary_models/binary_models2345vs1.R", encoding = "UTF-8" )
    string.pred = "Predictores", string.est = "β", title = "Regresiones binarias logit - Justificacion carabineros desalojan tomas") # nombre predictores y símbolo beta en tabla
 
 ```
-
-## Plots de coeficientes
-
-### Estudiantes tiren piedras
-```{r}
-
-plot_model(jv_est_2019.modelmulpub5, title = "Coeficientes de Regresión para Estudiantes Tiren Piedras", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado", "ingreso_satisfact_factorTotalmente insatisfecho", "rwa_indice", "trato_carab_factorSiempre", "sj_ceo_rec:sexo_factorMujer", "sj_ceo_rec:ingreso_satisfact_factorTotalmente insatisfecho")
-           
-,axis.labels =
-c("J Gerente x Satisfacción Ingresos: Tot. Insatis",
-  "J Gerente x Sexo: Mujer",
-  "Trato Justo: Siempre",
-  "RWA",
-  "Satisfacción Ingresos: Tot. Insatis.",
-  "J Entrevistado",
-  "J Obrero",
-  "J Gerente")
-)
-            
-```
-
-### Carabineros Reprimen Marchas Pacificas
-```{r}
-
-gridExtra::grid.arrange(
-plot_model(jv_carab1_2019.modelmulpub2, title = "Coeficientes de Regresión para Carabineros Reprimen Marchas (Solo J)", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado")
-           
-,axis.labels =
-c(
-  "J Entrevistado",
-  "J Obrero",
-  "J Gerente")
-)
-,
-plot_model(jv_carab1_2019.modelmulpub3, title = "Coeficientes de Regresión para Carabineros Carabineros Reprimen Marchas (J + Ideología)", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado", "rwa_indice", "sdo_indice")
-           
-,axis.labels =
-c(
-  "SDO",
-  "RWA",
-  "J Entrevistado",
-  "J Obrero",
-  "J Gerente")
-)
-
-)      
-
-```
-# Carabineros Desalojen Tomas
-
-```{r}
-
-plot_model(jv_carab2_2019.modelmulpub5, title = "Coeficientes de Regresión para Carabineros Desalojen Tomas", vline.color = "gray", show.values = TRUE, value.offset = .3, terms = c("sj_ceo_rec", "sj_obrero_rec", "sj_entrevistado_rec", "ingreso","rwa_indice", "sdo_indice", "sj_obrero_rec:ingreso")
-           
-,axis.labels =
-c(
-  "J Obrero x Ingresos",
-  "SDO",
-  "RWA",
-  "Ingresos",
-  "J Entrevistado",
-  "J Obrero",
-  "J Gerente")
-)
-
-```
-
-## Test de Razon de Verosimilitud
-
-```{r}
-test_est <- anova(jv_est_2019.modelmulpub4,
-               jv_est_2019.modelmulpub5,
-               test = "Chisq")
-
-test_carab1 <- anova(jv_carab1_2019.modelmulpub2,
-               jv_carab1_2019.modelmulpub4,
-               test = "Chisq")
-
-test_carab2 <- anova(jv_carab2_2019.modelmulpub4,
-               jv_carab2_2019.modelmulpub5,
-               test = "Chisq")
-
- 
-tests <- rbind(
-               test_est,
-               # test_carab1,
-               test_carab2
-               ) %>% unique()
-
-row.names(tests) <- c(
-                      "JV: Piedras (M4)",
-                      "JV: Piedras (M5)",
-                      # "JV: Represión (M2)",
-                      # "JV: Represión (M4)",
-                      "JV: Desalojo (M4)",
-                      "JV: Desalojo (M5)"
-                      )
-# tests <- tests %>% dplyr::select(-no.par,
-#                            -LR.stat)
-
-knitr::kable(tests,digits = 3, caption = "Test de devianza entre modelos") %>% 
-    kableExtra::kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive"), full_width = F) #%>% # Añadir estilo en
-```
-
