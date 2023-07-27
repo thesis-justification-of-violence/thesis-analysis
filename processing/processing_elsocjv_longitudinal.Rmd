@@ -1,0 +1,271 @@
+---
+title: |
+  ![](../input/images/logo-sociales.jpg){width=25% height=25%}  
+  Documento de Procesamiento Longitudinal
+  
+subtitle: "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta"
+author: 
+  - Martin Venegas Márquez
+date: "`r format(Sys.Date(), '%d/%m/%Y')`"
+output:
+    bookdown::html_document2:
+          number_sections: yes
+          toc: yes
+          toc_float: yes
+          theme: yeti
+    
+linkcolor: black
+urlcolor: blue
+link-citations: yes
+---
+
+<style type="text/css">
+
+h1 {
+  font-size: 38px;
+  text-align: center;
+}
+h4.author { /* Header 4 - and the author and data headers use this too  */
+    font-size: 18px;
+  text-align: center;
+}
+h4.date { /* Header 4 - and the author and data headers use this too  */
+  font-size: 18px;
+  text-align: center;
+}
+</style>
+
+
+\newpage
+
+\setcounter{tocdepth}{2}
+\renewcommand{\contentsname}{Tabla de contenidos}
+\tableofcontents
+
+\newpage
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(comment=NA, prompt=FALSE, cache=FALSE, echo=TRUE, results='asis', message = F, warning = F)
+summarytools::st_options(bootstrap.css     = FALSE,
+           plain.ascii       = FALSE,   
+           style             = "rmarkdown",
+           dfSummary.silent  = TRUE, 
+           footnote          = NA,
+           subtitle.emphasis = FALSE,
+           headings =  F,
+           lang =  "es")
+summarytools::st_css()
+
+```
+
+
+# Introduccion
+
+El presente documento corresponde al procesamiento de los datos la tesis llamada "¿Quién justifica qué? El rol del sentido de injusticia en las justificaciones de violencia en contexto de protesta".
+
+```{r}
+if (!require("pacman")) install.packages("pacman")  #si falta pacman, instalar
+if (!require("tinytex")) install.packages("tinytex")#si falta tinytex, instala
+
+pacman::p_load(tidyverse, sjlabelled, ggplot2, sjmisc, kableExtra, table1, SciViews, sjPlot, car) # librerias
+
+```
+
+```{r load}
+load("../input/data/ELSOC_Wide_2016_2019_v1.00_R.RData") # cargar base
+```
+
+```{r select}
+
+# Seleccionar y renombrar variables para el análisis
+procjv <- elsoc_wide_2016_2019 %>% dplyr::select(
+                                      # idencuesta,
+                                      # Variables dependientes
+                                      ## Justificacion violencia por el control social
+                                      jv_carab11 = f05_03_w01, # Carabineros reprimen marchas
+                                      jv_carab12 = f05_03_w02, # Carabineros reprimen marchas
+                                      jv_carab13 = f05_03_w03, # Carabineros reprimen marchas
+                                      jv_carab14 = f05_03_w04, # Carabineros reprimen marchas
+                                      
+                                      jv_carab21 = f05_04_w01, # Carabineros desalojen tomas
+                                      jv_carab22 = f05_04_w02, # Carabineros desalojen tomas
+                                      jv_carab23 = f05_04_w03, # Carabineros desalojen tomas
+                                      jv_carab24 = f05_04_w04, # Carabineros desalojen tomas
+                                      
+                                      ## Justificacon violencia por el cambio social
+                                      jv_est1 = f05_07_w01, # Estudiantes tiren piedras
+                                      jv_est2 = f05_07_w02, # Estudiantes tiren piedras
+                                      jv_est3 = f05_07_w03, # Estudiantes tiren piedras
+                                      jv_est4 = f05_07_w04, # Estudiantes tiren piedras
+                                      
+                                      # Variables independientes
+                                      
+                                      ## Justicia distributiva
+                                      salario_perc_ceo1 = d03_01_w01, # Salario percibido CEO
+                                      salario_perc_ceo2 = d03_01_w02, # Salario percibido CEO
+                                      salario_perc_ceo3 = d03_01_w03, # Salario percibido CEO
+                                      salario_perc_ceo4 = d03_01_rev_w04, # Salario percibido CEO
+                                      
+                                      salario_perc_obrero1 = d03_02_w01, # Salario percibido obrero
+                                      salario_perc_obrero2 = d03_02_w02, # Salario percibido obrero
+                                      salario_perc_obrero3 = d03_02_w03, # Salario percibido obrero
+                                      salario_perc_obrero4 = d03_02_rev_w04, # Salario percibido obrero
+                                      
+                                      salario_just_ceo1 = d04_01_w01, # Salario justo CEO
+                                      salario_just_ceo2 = d04_01_w02, # Salario justo CEO
+                                      salario_just_ceo3 = d04_01_w03, # Salario justo CEO
+                                      salario_just_ceo4 = d04_01_rev_w04, # Salario justo CEO
+                                      
+                                      salario_just_obrero1 = d04_02_w01, # Salario justo obrero
+                                      salario_just_obrero2 = d04_02_w02, # Salario justo obrero
+                                      salario_just_obrero3 = d04_02_w03, # Salario justo obrero
+                                      salario_just_obrero4 = d04_02_rev_w04 # Salario justo obrero
+
+                                      )
+```
+
+```{r}
+# Definir N muestral. Para eso eliminaremos las filas donde todos los casos sean NA
+
+procjv_respaldoet <- procjv # Hacemos un respaldo de la base para que no se pierdan las etiquetas
+
+# Eliminar filas en donde todos los casos sean NA
+procjv <- procjv[rowSums(is.na(procjv)) != ncol(procjv),]
+
+procjv <-sjlabelled::copy_labels(procjv, procjv_respaldoet) # Copiamos las etiquetas una vez extraidos los NA
+
+# procjv <- procjv[] %>% janitor::remove_empty("rows") # Esta es una funcion del paquete janitor, la dejo para acordarme.
+
+```
+
+# Procesamiento
+
+## JV Control Social: Carabineros reprimen marchas
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$jv_carab11<- set_na(procjv$jv_carab11, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_carab12<- set_na(procjv$jv_carab12, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_carab13<- set_na(procjv$jv_carab13, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_carab14<- set_na(procjv$jv_carab14, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+```
+
+## JV Control Social: Carabineros desalojan tomas
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$jv_carab21<- set_na(procjv$jv_carab21, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_carab22<- set_na(procjv$jv_carab22, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_carab23<- set_na(procjv$jv_carab23, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_carab24<- set_na(procjv$jv_carab24, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+```
+
+## JV Cambio Social: Estudiantes tiran piedras
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$jv_est1<- set_na(procjv$jv_est1, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_est2<- set_na(procjv$jv_est2, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_est3<- set_na(procjv$jv_est3, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$jv_est4<- set_na(procjv$jv_est4, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+```
+
+## Just. Dist: Salario percibido CEO
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$salario_perc_ceo1<- set_na(procjv$salario_perc_ceo1, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_perc_ceo2<- set_na(procjv$salario_perc_ceo2, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_perc_ceo3<- set_na(procjv$salario_perc_ceo3, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_perc_ceo4<- set_na(procjv$salario_perc_ceo4, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+```
+
+## Just. Dist: Salario percibido obrero
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$salario_perc_obrero1<- set_na(procjv$salario_perc_obrero1, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_perc_obrero2<- set_na(procjv$salario_perc_obrero2, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_perc_obrero3<- set_na(procjv$salario_perc_obrero3, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_perc_obrero4<- set_na(procjv$salario_perc_obrero4, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+
+# # Etiquetar
+# procjv$salario_perc_obrero <- sjlabelled::set_label(procjv$salario_perc_obrero, label = "Ingresos Percibidos Obrero") 
+```
+
+## Just. Dist: Salario justo CEO
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$salario_just_ceo1<- set_na(procjv$salario_just_ceo1, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_just_ceo2<- set_na(procjv$salario_just_ceo2, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_just_ceo3<- set_na(procjv$salario_just_ceo3, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_just_ceo4<- set_na(procjv$salario_just_ceo4, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+```
+
+## Just. Dist: Salario justo obrero
+
+### Recodificacion
+
+```{r}
+# Recoficiacion NA
+procjv$salario_just_obrero1<- set_na(procjv$salario_just_obrero1, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_just_obrero2<- set_na(procjv$salario_just_obrero2, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_just_obrero3<- set_na(procjv$salario_just_obrero3, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+procjv$salario_just_obrero4<- set_na(procjv$salario_just_obrero4, na = c(-888,-999), drop.levels = TRUE, as.tag = FALSE)
+```
+
+### Otros ajustes
+
+```{r}
+
+## Creacion sense of justice
+
+procjv$sj_obrero1 <- ln(procjv$salario_perc_obrero1/procjv$salario_just_obrero1)
+procjv$sj_obrero2 <- ln(procjv$salario_perc_obrero2/procjv$salario_just_obrero2)
+procjv$sj_obrero3 <- ln(procjv$salario_perc_obrero3/procjv$salario_just_obrero3)
+procjv$sj_obrero4 <- ln(procjv$salario_perc_obrero4/procjv$salario_just_obrero4)
+
+procjv$sj_obrero_rec1 <- procjv$sj_obrero1*-1
+procjv$sj_obrero_rec2 <- procjv$sj_obrero2*-1
+procjv$sj_obrero_rec3 <- procjv$sj_obrero3*-1
+procjv$sj_obrero_rec4 <- procjv$sj_obrero4*-1
+
+procjv$sj_obrero_rec1 <- ifelse(procjv$sj_obrero_rec1 == Inf, NA, procjv$sj_obrero_rec1)
+procjv$sj_obrero_rec1 <- ifelse(procjv$sj_obrero_rec1 == -Inf, NA, procjv$sj_obrero_rec1)
+procjv$sj_obrero_rec2 <- ifelse(procjv$sj_obrero_rec2 == Inf, NA, procjv$sj_obrero_rec2)
+procjv$sj_obrero_rec3 <- ifelse(procjv$sj_obrero_rec3 == Inf, NA, procjv$sj_obrero_rec3)
+procjv$sj_obrero_rec4 <- ifelse(procjv$sj_obrero_rec4 == Inf, NA, procjv$sj_obrero_rec4)
+
+procjv$sj_ceo1 <- ln(procjv$salario_perc_ceo1/procjv$salario_just_ceo1)
+procjv$sj_ceo2 <- ln(procjv$salario_perc_ceo2/procjv$salario_just_ceo2)
+procjv$sj_ceo3 <- ln(procjv$salario_perc_ceo3/procjv$salario_just_ceo3)
+procjv$sj_ceo4 <- ln(procjv$salario_perc_ceo4/procjv$salario_just_ceo4)
+
+procjv$sj_ceo_rec1 <- procjv$sj_ceo1
+procjv$sj_ceo_rec2 <- procjv$sj_ceo2
+procjv$sj_ceo_rec3 <- procjv$sj_ceo3
+procjv$sj_ceo_rec4 <- procjv$sj_ceo4
+
+procjv$sj_ceo_rec1 <- ifelse(procjv$sj_ceo_rec1 == Inf, NA, procjv$sj_ceo_rec1)
+procjv$sj_ceo_rec2 <- ifelse(procjv$sj_ceo_rec2 == Inf, NA, procjv$sj_ceo_rec2)
+procjv$sj_ceo_rec3 <- ifelse(procjv$sj_ceo_rec3 == Inf, NA, procjv$sj_ceo_rec3)
+procjv$sj_ceo_rec4 <- ifelse(procjv$sj_ceo_rec4 == Inf, NA, procjv$sj_ceo_rec4)
+```
+
+```{r}
+saveRDS(procjv, "../input/data/procjv_long.RDS")
+```
+
