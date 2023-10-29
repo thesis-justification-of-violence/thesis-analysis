@@ -493,6 +493,9 @@ procjv$ingreso<- set_na(procjv$ingreso, na = c(-888,-999,0), drop.levels = TRUE,
 
 # Etiquetar variable
 procjv$ingreso <- sjlabelled::set_label(procjv$ingreso, label = "Ingresos Entrevistado")
+
+# Reescalar
+procjv$ingreso <- procjv$ingreso/300000 # Rescalar
 ```
 
 ### Descriptivo final
